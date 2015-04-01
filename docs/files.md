@@ -1,60 +1,60 @@
-#Ä£°åÎÄ¼ş½á¹¹
+#æ¨¡æ¿æ–‡ä»¶ç»“æ„
 
 -------------
 ```
-templates/	//Ä£°åÄ¿Â¼
+templates/	//æ¨¡æ¿ç›®å½•
 	class.json
-	class1/		//Ä£°åÎÄ¼ş¼Ğ1
-	class2/		//Ä£°åÎÄ¼ş¼Ğ2
+	class1/		//æ¨¡æ¿æ–‡ä»¶å¤¹1
+	class2/		//æ¨¡æ¿æ–‡ä»¶å¤¹2
 	...
 	
-class.json	//Ä£°å·ÖÀàÇåµ¥, json¸ñÊ½
-	Àı£º[{name: "ÉÌÎñ", src: "bussiness/", description: ""},
-		 {name: "¼òÔ¼", src: "simplicity/", description: ""}]
+class.json	//æ¨¡æ¿åˆ†ç±»æ¸…å•, jsonæ ¼å¼
+	ä¾‹ï¼š[{name: "å•†åŠ¡", src: "bussiness/", description: ""},
+		 {name: "ç®€çº¦", src: "simplicity/", description: ""}]
 
-class1/		//·ÖÀàÎÄ¼ş¼Ğ
+class1/		//åˆ†ç±»æ–‡ä»¶å¤¹
 	manifest.json
 	item1/
 	item2/
 	...
 	
-manifest.json	//·ÖÀàÏÂÄ£°åÇåµ¥
-	Àı£º[{name: "±±´óÇå·ç" ,src: "pku_1/", description: "",
+manifest.json	//åˆ†ç±»ä¸‹æ¨¡æ¿æ¸…å•
+	ä¾‹ï¼š[{name: "åŒ—å¤§æ¸…é£" ,src: "pku_1/", description: "",
 		  size: "1200x800"}, ... ]
 
-item1/		//Ä£°åÎÄ¼ş¼Ğ
+item1/		//æ¨¡æ¿æ–‡ä»¶å¤¹
 	main.json
-	thumbnail.png	//ËõÂÔÍ¼
-	demo/		//ÓÃÓÚÑİÊ¾µÄ×ÊÔ´
-	origin/		//ÓÃÓÚÉú³É³ÉÆ·µÄ×ÊÔ´
+	thumbnail.png	//ç¼©ç•¥å›¾
+	demo/		//ç”¨äºæ¼”ç¤ºçš„èµ„æº
+	origin/		//ç”¨äºç”Ÿæˆæˆå“çš„èµ„æº
 	
-main.json	//Ä£°åÖ÷ÎÄ¼ş£¬¼ÇÂ¼±³¾°¡¢×é¼ş¡¢ÎÄ×ÖĞÅÏ¢
+main.json	//æ¨¡æ¿ä¸»æ–‡ä»¶ï¼Œè®°å½•èƒŒæ™¯ã€ç»„ä»¶ã€æ–‡å­—ä¿¡æ¯
 	{
 		demo_width:960 , demo_height: 400,
 		origin_width: 9600, origin_height: 4000,
 		bg: {
-				manualable: false	//ÊÇ·ñ¿ÉÊÖ¶¯ÉèÖÃ±³¾°
-				src: ["bg1.png","bg2.png", ... ],	//Ä¬ÈÏ±³¾°£¬¿ÉÄÜÓĞ¶àÖÖ
+				manualable: false	//æ˜¯å¦å¯æ‰‹åŠ¨è®¾ç½®èƒŒæ™¯
+				src: ["bg1.png","bg2.png", ... ],	//é»˜è®¤èƒŒæ™¯ï¼Œå¯èƒ½æœ‰å¤šç§
 		},
-		elements: [element1, element2, ... ],	//¸÷²¿¼şÊı×é£¬Ã¿¸öelementÊÇÒ»¸öJS¶ÔÏó£¬ÏÂÃæÃèÊö
-		texts: [text1, text2, ... ]		//ÎÄ×ÖÊı×é£¬Ã¿¸ötextÊÇÒ»¸öJS¶ÔÏó£¬ÏÂÃæÃèÊö
+		elements: [element1, element2, ... ],	//å„éƒ¨ä»¶æ•°ç»„ï¼Œæ¯ä¸ªelementæ˜¯ä¸€ä¸ªJSå¯¹è±¡ï¼Œä¸‹é¢æè¿°
+		texts: [text1, text2, ... ]		//æ–‡å­—æ•°ç»„ï¼Œæ¯ä¸ªtextæ˜¯ä¸€ä¸ªJSå¯¹è±¡ï¼Œä¸‹é¢æè¿°
 	}
 
-//elementÃèÊö
+//elementæè¿°
 element = {
-		src: "shape.png",	//¸Ã²¿¼şÎÄ¼ş
-		x: 30, y: 30, regX: 0, regY: 0 , ...	//ÆäËûÊôĞÔÍ¬easelJS
+		src: "shape.png",	//è¯¥éƒ¨ä»¶æ–‡ä»¶
+		x: 30, y: 30, regX: 0, regY: 0 , ...	//å…¶ä»–å±æ€§åŒeaselJS
 }
 
-//textÃèÊö
+//textæè¿°
 text = {
-		font: "Courier_New",	//×ÖÌåÃû×Ö
-		content: "Study in Germany\nLand of Ideas",	//ÎÄ×ÖÄÚÈİ£¬¿ÉÒÔÓĞ\n
-		size: 14	//×ÖÌå´óĞ¡ÊıÖµ±íÊ¾
-		style: "bold"	//×ÖĞÎ(bold, italic, etc)
-		dir:0,	//·½Ïò£¬0ºá1Êú
-		reg: 1,		//²Î¿¼µã¡£0×óÉÏ1ÓÒÉÏ2ÓÒÏÂ3×óÉÏ¡£²Î¿¼µã×ø±ê²»±ä£¬ÓÉx,yÊôĞÔ¸ø³ö
-		letter-spacing:0	//×Ö·û¼ä¾à
-		x:y:regX:....	//ÆäËûÊôĞÔÍ¬easelJS
+		font: "Courier_New",	//å­—ä½“åå­—
+		content: "Study in Germany\nLand of Ideas",	//æ–‡å­—å†…å®¹ï¼Œå¯ä»¥æœ‰\n
+		size: 14	//å­—ä½“å¤§å°æ•°å€¼è¡¨ç¤º
+		style: "bold"	//å­—å½¢(bold, italic, etc)
+		dir:0,	//æ–¹å‘ï¼Œ0æ¨ª1ç«–
+		reg: 1,		//å‚è€ƒç‚¹ã€‚0å·¦ä¸Š1å³ä¸Š2å³ä¸‹3å·¦ä¸Šã€‚å‚è€ƒç‚¹åæ ‡ä¸å˜ï¼Œç”±x,yå±æ€§ç»™å‡º
+		letter-spacing:0	//å­—ç¬¦é—´è·
+		x:y:regX:....	//å…¶ä»–å±æ€§åŒeaselJS
 }
 ```
