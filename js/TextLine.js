@@ -41,6 +41,11 @@ define(['createjs'], function(createjs) {
 
     var p = createjs.extend(TextLine, createjs.Bitmap);
 
+    p.config = function(obj)
+    {
+        p.imageLoder = obj.imageLoder;
+    }
+
     p.load = function(text)
     {
         this.text = text;

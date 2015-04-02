@@ -46,6 +46,7 @@ define(['createjs', function(createjs) {
         this.color = color;
 
         this.texts = [];
+        this.name = "ImageText";    //click事件冒泡到model时用于判断是否是点击了文字
 
         this.load(originText);
     }
@@ -54,9 +55,10 @@ define(['createjs', function(createjs) {
 
     p.imageLoder = new Function();
 
-    p.config = function(imageLoader)
+    p.config = function(obj)
     {
-        p.imageLoder = imageLoader;
+
+        createjs.TextLine.config(obj);
     }
 
     p.load = function(str)
@@ -68,7 +70,7 @@ define(['createjs', function(createjs) {
 
         for(var i = 0; i < arr.size(); i++)
         {
-            var textline = new TextLine(arr[i], dir, letterSpacing, fontSize, fontFamily, color);
+            var textline = new createjs.TextLine(arr[i], dir, letterSpacing, fontSize, fontFamily, color);
             var bound = textLine.getBounds();
 
             switch(this.reg)
