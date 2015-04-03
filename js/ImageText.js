@@ -55,7 +55,7 @@ define(['createjs', 'TextLine'], function(createjs) {
 
     p.imageLoder = new Function();
 
-    p.config = function(obj)
+    ImageText.config = function(obj)
     {
         createjs.TextLine.config(obj);
     };
@@ -66,13 +66,12 @@ define(['createjs', 'TextLine'], function(createjs) {
         this.texts.length = 0;
 
         var arr = str.split('\n');
-
-        for(var i = 0; i < arr.size(); i++)
+        var self = this;
+        var oncomplete = function(textline)
         {
-            var textline = new createjs.TextLine(arr[i], dir, letterSpacing, fontSize, fontFamily, color);
-            var bound = textLine.getBounds();
+            var bound = textline.getBounds();
 
-            switch(this.reg)
+            switch(self.reg)
             {
                 case 0:
                     textline.set({
@@ -100,8 +99,13 @@ define(['createjs', 'TextLine'], function(createjs) {
                     break;
             }
 
-            this.texts.push(textLine);
-            this.addChild(textline);
+            self.texts.push(textline);
+            self.addChild(textline);
+        }
+
+        for(var i = 0; i < arr.length; i++)
+        {
+            var textline = new createjs.TextLine(arr[i], this.dir, this.letterSpacing, this.fontSize, this.fontFamily, this.color, oncomplete);
         }
     };
 

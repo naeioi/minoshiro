@@ -23,27 +23,27 @@ define(['createjs', 'jquery'], function(createjs, $) {
     var controller = {};
     var p = controller;
 
-    p.imageLoader = function(t)
+    p.imageLoader = function(t, callback)
     {
         var onsucess = function(data){
             var img = document.createElement('img');
             img.src = data;
-            return img;
+            callback(img);
         }
 
         $.ajax({
             url: 'pcs.php?'
                 +'text=' + t.text
                 +'&dir=' + t.dir
-                +'&letterSpacing=' + t.letterSpacing
-                +'&fontFamily=' + t.fontFamily
-                +'&fontSize=' + t.fontSize
+                +'&space=' + t.letterSpacing
+                +'&font=' + t.fontFamily
+                +'&size=' + t.fontSize
                 +'&color=' + t.color,
-            sucess: onsucess
+            success: onsucess
         })
     }
 
-    $.ajaxSend(function(event, jqhxr, setting){
+    $(document).ajaxSend(function(event, jqhxr, setting){
         var res;
         if(!setting.url.match(/php/))
             res = setting.url.match(/[^\/]+$/);
@@ -53,11 +53,9 @@ define(['createjs', 'jquery'], function(createjs, $) {
         $('#notificator').show();
     })
 
-    $.ajaxSuccess(function(){
+    $(document).ajaxSuccess(function(){
         $('#notificator').hide();
     })
-
-
 
     return controller;
 })

@@ -24,10 +24,10 @@
  */
 define(['createjs'], function(createjs) {
 
-    console.log('messsage frome TextLine: ');
-    console.log(createjs);
+    /*console.log('messsage frome TextLine: ');
+    console.log(createjs);*/
 
-    function TextLine(text, dir, space, size, family, color) {
+    function TextLine(text, dir, space, size, family, color, callback) {
         this.Bitmap_constructor();
 
         this.text = text || "";
@@ -40,20 +40,24 @@ define(['createjs'], function(createjs) {
 
         this.cursor = "text";
 
-        this.load(text);
+        this.load(text, callback);
     }
 
     var p = createjs.extend(TextLine, createjs.Bitmap);
 
-    p.config = function(obj)
+    TextLine.config = function(obj)
     {
-        p.imageLoder = obj.imageLoder;
+        TextLine.imageLoader = obj.imageLoader;
     }
 
-    p.load = function(text)
+    p.load = function(text, callback)
     {
+        var self = this;
         this.text = text;
-        this.image = p.imageLoader(this);
+        TextLine.imageLoader(this, function(data){
+            self.image = data;
+            callback(self);
+        });
     }
 
     createjs.TextLine = TextLine;
