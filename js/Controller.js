@@ -21,7 +21,7 @@ output_origin()
 
 define(['createjs', 'jquery'], function(createjs, $) {
     var controller = {};
-    var p = controller.prototype;
+    var p = controller;
 
     p.imageLoader(t)
     {
@@ -42,4 +42,22 @@ define(['createjs', 'jquery'], function(createjs, $) {
             sucess: onsucess
         })
     }
+
+    $.ajaxSend(function(event, jqhxr, setting){
+        var res;
+        if(!setting.url.match(/php/))
+            res = setting.url.match(/[^\/]+$/);
+        else
+            res = 'font';
+        $('#notficator').html('Loading ' + res + '...');
+        $('#notificator').show();
+    })
+
+    $.ajaxSuccess(function(){
+        $('#notificator').hide();
+    })
+
+
+
+    return controller;
 })

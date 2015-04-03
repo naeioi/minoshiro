@@ -52,5 +52,6 @@ define(['createjs'], function(createjs) {
         this.image = p.imageLoader(this);
     }
 
+    createjs.TextLine = TextLine;
     return createjs.promote(TextLine, "Bitmap");
 });

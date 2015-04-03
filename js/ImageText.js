@@ -33,7 +33,7 @@
  当text被单击时触发。事件原型同control_bar中click_handler
 */
 
-define(['createjs'], function(createjs) {
+define(['createjs', 'TextLine'], function(createjs) {
     function ImageText(originText, reg, dir, space, size, family, color)
     {
         this.Container_constructor();
@@ -105,5 +105,6 @@ define(['createjs'], function(createjs) {
         }
     };
 
+    createjs.ImageText = ImageText;
     return createjs.promote(ImageText, "Container");
 })
