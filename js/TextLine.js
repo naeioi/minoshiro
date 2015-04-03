@@ -23,6 +23,10 @@
  颜色。
  */
 define(['createjs'], function(createjs) {
+
+    console.log('messsage frome TextLine: ');
+    console.log(createjs);
+
     function TextLine(text, dir, space, size, family, color) {
         this.Bitmap_constructor();
 

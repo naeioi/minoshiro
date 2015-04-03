@@ -23,7 +23,7 @@ define(['createjs', 'jquery'], function(createjs, $) {
     var controller = {};
     var p = controller;
 
-    p.imageLoader(t)
+    p.imageLoader = function(t)
     {
         var onsucess = function(data){
             var img = document.createElement('img');

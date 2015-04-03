@@ -5,18 +5,25 @@
 This is the main JS file for requireJS
  */
 
-require.config({
-    path: {
-        'createjs': '../lib/easeljs-0.8.0.combined.js',
-        'jquery': '../lib/jquery-1.11.1.min.js'
+requirejs.config({
+    paths: {
+        'createjs': '../lib/easeljs-0.8.0.combined',
+        'jquery': '../lib/jquery-1.11.1.min'
     },
     shim: {
         'jquery': {
             export: '$'
-        }
+        },
+        /*'createjs': {
+            export: 'createjs'
+        }*/
+    },
+    map: {
+        '*': {'createjs': 'createjs_private'},
+        'createjs_private': {'createjs': 'createjs'}
     }
 });
-
+/*
 require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine'], function(){
 
     createjs.ImageText.config({
@@ -31,4 +38,7 @@ require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine'], function(
     stage.update();
 
     stage.enableMouseOver(10);
+})*/
+require(['createjs'], function(createjs){
+    console.log(createjs);
 })
