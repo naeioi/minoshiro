@@ -33,7 +33,7 @@
  当text被单击时触发。事件原型同control_bar中click_handler
 */
 
-define(['createjs', function(createjs) {
+define(['createjs'], function(createjs) {
     function ImageText(originText, reg, dir, space, size, family, color)
     {
         this.Container_constructor();
@@ -57,9 +57,8 @@ define(['createjs', function(createjs) {
 
     p.config = function(obj)
     {
-
         createjs.TextLine.config(obj);
-    }
+    };
 
     p.load = function(str)
     {
@@ -79,32 +78,32 @@ define(['createjs', function(createjs) {
                     textline.set({
                         x: 0,
                         y: i*bound.height
-                    })
+                    });
                     break;
                 case 1:
                     textline.set({
                         x: -bound.width,
                         y: i*bound.height
-                    })
+                    });
                     break;
                 case 2:
                     textline.set({
                         x: -bound.width,
                         y: i*bound.height
-                    })
+                    });
                     break;
                 case 3:
                     textline.set({
                         x: 0,
                         y: i*bound.height
-                    })
+                    });
                     break;
             }
 
             this.texts.push(textLine);
             this.addChild(textline);
         }
-    }
+    };
 
     return createjs.promote(ImageText, "Container");
-}])
+})
