@@ -74,6 +74,7 @@ baseUrl是所有js文件的基础父目录
 
 也可以利用require.config显式地设置baseUrl
 例如
+
 ```
 文件结构
 root/
@@ -93,6 +94,7 @@ main.js
         baseUrl: '/lib'
     })
 ```
+
 以上设置默认目录将指向root/lib
 
 ###config设置（二）  paths
