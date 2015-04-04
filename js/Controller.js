@@ -26,6 +26,12 @@ define(['createjs', 'jquery'], function(createjs, $) {
     p.imageLoader = function(t, callback)
     {
         var onsucess = function(data){
+
+            /*debug
+            var img_e = document.getElementById('img');
+            img_e.src = data;
+            */
+
             var img = document.createElement('img');
             img.src = data;
             callback(img);

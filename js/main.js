@@ -33,18 +33,21 @@ require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine'], function(
     })
 
     var stage = new createjs.Stage('canvas');
-    var imagetext = new createjs.ImageText("hello", 0, 0, 0, 120, 'arial', '000000');
+    var imagetext = new createjs.ImageText("hello\nworld", 1, 0, 0, 40, 'arial', '000000');
     var shape = new createjs.Shape();
 
     shape.graphics.beginFill('red').drawCircle(0, 0, 40);
     shape.x = shape.y = 0;
 
-    imagetext.x = imagetext.y = 0;
+    imagetext.x = 400;
+    imagetext.y = 0;
 
     //stage.addChild(shape);
     stage.addChild(imagetext);
 
-    stage.update();
+    imagetext.load(null, function(){
+        stage.update();
+    });
 
     stage.enableMouseOver(10);
 })

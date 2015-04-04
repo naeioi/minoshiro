@@ -47,8 +47,6 @@ define(['createjs', 'TextLine'], function(createjs) {
 
         this.texts = [];
         this.name = "ImageText";    //click事件冒泡到model时用于判断是否是点击了文字
-
-        this.load(originText);
     }
 
     var p = createjs.extend(ImageText, createjs.Container);
@@ -60,53 +58,63 @@ define(['createjs', 'TextLine'], function(createjs) {
         createjs.TextLine.config(obj);
     };
 
-    p.load = function(str)
+    p.load = function(str, callback)
     {
+        str = str || this.originText;
+
         this.removeAllChildren();
         this.texts.length = 0;
 
         var arr = str.split('\n');
         var self = this;
-        var oncomplete = function(textline)
-        {
-            var bound = textline.getBounds();
 
-            switch(self.reg)
-            {
-                case 0:
-                    textline.set({
-                        x: 0,
-                        y: i*bound.height
-                    });
-                    break;
-                case 1:
-                    textline.set({
-                        x: -bound.width,
-                        y: i*bound.height
-                    });
-                    break;
-                case 2:
-                    textline.set({
-                        x: -bound.width,
-                        y: i*bound.height
-                    });
-                    break;
-                case 3:
-                    textline.set({
-                        x: 0,
-                        y: i*bound.height
-                    });
-                    break;
+        var flow = function(i, textline)
+        {
+            if(i != 0) {
+                var bound = textline.getBounds();
+
+                switch (self.reg) {
+                    case 0:
+                        textline.set({
+                            x: 0,
+                            y: (i-1) * bound.height
+                        });
+                        break;
+                    case 1:
+                        textline.set({
+                            x: -bound.width,
+                            y: (i-1) * bound.height
+                        });
+                        break;
+                    case 2:
+                        textline.set({
+                            x: -bound.width,
+                            y: (i-1) * bound.height
+                        });
+                        break;
+                    case 3:
+                        textline.set({
+                            x: 0,
+                            y: (i-1) * bound.height
+                        });
+                        break;
+                }
+
+                self.texts.push(textline);
+                self.addChild(textline);
             }
 
-            self.texts.push(textline);
-            self.addChild(textline);
+            if(i < arr.length) {
+                textline = new createjs.TextLine(arr[i], self.dir, self.letterSpacing, self.fontSize, self.fontFamily, self.color);
+                textline.load(null, function (data) {
+                    flow(i + 1, data)
+                });
+            }
+            else
+                callback(self);
         }
 
-        for(var i = 0; i < arr.length; i++)
-        {
-            var textline = new createjs.TextLine(arr[i], this.dir, this.letterSpacing, this.fontSize, this.fontFamily, this.color, oncomplete);
-        }
+        flow(0);    //start loading series
     };
 
     createjs.ImageText = ImageText;
