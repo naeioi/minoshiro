@@ -141,7 +141,7 @@ define(['createjs', 'TextLine'], function(createjs) {
 
             if(i < arr.length) {
                 console.log("in ImgaeText.js, arr," + arr[i]);
-                textline = new createjs.TextLine(arr[i], self.dir, self.letterSpacing, self.fontSize, self.fontFamily, self.color);
+                textline = new createjs.TextLine(arr[i] || " ", self.dir, self.letterSpacing, self.fontSize, self.fontFamily, self.color);
                 textline.load(null, function (data) {
                     flow(i + 1, data)
                 });

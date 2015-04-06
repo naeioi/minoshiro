@@ -33,7 +33,7 @@ require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine'], function(
     })
 
     var stage = new createjs.Stage('canvas');//100pt->120px base height
-    var imagetext = new createjs.ImageText("中文字体测试\n这是一行普通的文字\na string of texts\n另一行普通的文字");
+    var imagetext = new createjs.ImageText("中文字体测试\n\n这是一行普通的文字\na string of texts\n另一行普通的文字");
     imagetext.set({
         fontSize: 30,
         fontFamily: "msjh.ttc",
