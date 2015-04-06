@@ -14,16 +14,16 @@
     //var_dump($c_red);
     $width=$length*$fontsize;
     if($dir==1) {
-        $img = imagecreatetruecolor($height*1.5, $width*1.5+$space*$length);
+        $img = imagecreatetruecolor($height*1.7, $width*1.5+$space*$length);
     }
     else {
-        $img = imagecreatetruecolor($width*1.5+$space*$length, $height*1.5);
+        $img = imagecreatetruecolor($width*1.5+$space*$length, $height*1.7);
     }
     $white = imagecolorallocatealpha($img, 255, 255, 255,0);
     $black = imagecolorallocatealpha($img, 0,0,0,0);
     $transparent = imagecolorallocatealpha($img, 255, 255, 255,127);
     $c_color = imagecolorallocatealpha($img,$c_red,$c_green,$c_blue,0);
-    $font_file = './'.$fontname.'.ttf';
+    $font_file = './'.$fontname;
     imagesavealpha ($img , true );
     imagefill($img,0,0,$transparent);
     if($dir==1)
@@ -44,7 +44,7 @@
          }
          */
         if($str[0]<='z')
-            imagefttext($img,$fontsize,0,0,$height,$c_color,$font_file,$str);
+            imagefttext($img,$fontsize,0,0,$height*1.2,$c_color,$font_file,$str);
         else {
             for ($i = 0; $i < mb_strlen($str); $i++) {
                 imagefttext($img, $fontsize, 0, ($space + $height) *1.3*($i),$height*1.3, $c_color, $font_file, mb_substr($str,$i,1,'utf-8'));

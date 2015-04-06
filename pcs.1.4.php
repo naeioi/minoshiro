@@ -50,7 +50,7 @@
         }
     }
     //End of vendering
-    list($t,$r,$b,$l)=trimImage($img,2);
+    list($t,$r,$b,$l)=trimImage($img,0);
     $w = $r-$l; // find width
     $h = $b-$t; // find height
     $dst_img=imagecreatetruecolor($w,$h);
@@ -68,14 +68,8 @@
     imagedestroy($img);
     imagedestroy($dst_img);
     
-    function trimImage(&$im,$t) {
-        $rgb = imagecolorat($im, 2, 2); // 2 pixels in to avoid messy edges
-        $r = ($rgb >> 16) & 0xFF;
-        $g = ($rgb >> 8) & 0xFF;
-        $b = $rgb & 0xFF;
-        $c = round(($r+$g+$b)/3);
+    function trimImage(&$im) {
         // if tolerance ($t) isn't a number between 0 - 255 use 10 as default
-        if (!is_numeric($t) || $t < 0 || $t > 255) $t = 10;
         $w = imagesx($im); // image width
         $h = imagesy($im); // image height
         $top=0;$right=0;$bottom=0;$left=0;
@@ -85,14 +79,8 @@
             for($x=0;$x<$w;$x++)
             {
                 $rgb = imagecolorat($im, $x, $y);
-                $r = ($rgb >> 16) & 0xFF;
-                $g = ($rgb >> 8) & 0xFF;
-                $b = $rgb & 0xFF;
-                if (
-                    ($r < $c-$t || $r > $c+$t) && // red not within tolerance of trim colour
-                    ($g < $c-$t || $g > $c+$t) && // green not within tolerance of trim colour
-                    ($b < $c-$t || $b > $c+$t) // blue not within tolerance of trim colour
-                    )
+                $alpha = ($rgb >> 24) & 0x7F;
+                if ($alpha != 127)
                 {
                     
                     //var_dump($bottom);
@@ -109,14 +97,8 @@
             for($x=0;$x<$w;$x++)
             {
                 $rgb = imagecolorat($im, $x, $y);
-                $r = ($rgb >> 16) & 0xFF;
-                $g = ($rgb >> 8) & 0xFF;
-                $b = $rgb & 0xFF;
-                if (
-                    ($r < $c-$t || $r > $c+$t) && // red not within tolerance of trim colour
-                    ($g < $c-$t || $g > $c+$t) && // green not within tolerance of trim colour
-                    ($b < $c-$t || $b > $c+$t) // blue not within tolerance of trim colour
-                    )
+                $alpha = ($rgb >> 24) & 0x7F;
+                if ($alpha != 127)
                 {
                     $top=$y;
                     $succeed=1;
@@ -131,14 +113,8 @@
             for($y=$top;$y<$bottom;$y++)
             {
                 $rgb = imagecolorat($im, $x, $y);
-                $r = ($rgb >> 16) & 0xFF;
-                $g = ($rgb >> 8) & 0xFF;
-                $b = $rgb & 0xFF;
-                if (
-                    ($r < $c-$t || $r > $c+$t) && // red not within tolerance of trim colour
-                    ($g < $c-$t || $g > $c+$t) && // green not within tolerance of trim colour
-                    ($b < $c-$t || $b > $c+$t) // blue not within tolerance of trim colour
-                    )
+                $alpha = ($rgb >> 24) & 0x7F;
+                if ($alpha != 127)
                 {
                     $right=$x;
                     $succeed=1;
@@ -148,6 +124,6 @@
             if($succeed==1)break;
         }
         $left=0;
-        return array($top,$right,$bottom,$left);
+        return array($top,$right+1,$bottom+1,$left);
     }
     

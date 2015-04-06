@@ -56,6 +56,12 @@ define(['createjs'], function(createjs) {
         this.text = text;
         TextLine.imageLoader(this, function(data){
             self.image = data;
+
+            //set HitArea so that a click on white space between letter will be captured
+            var shape = new createjs.Shape();
+            shape.graphics.beginFill("#000000").drawRect(0, 0, data.width, data.height);
+            self.hitArea = shape;
+
             callback(self);
         });
     }

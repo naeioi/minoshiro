@@ -23,6 +23,66 @@ define(['createjs', 'jquery'], function(createjs, $) {
     var controller = {};
     var p = controller;
 
+    p.trimPic = function(img, dir)
+    {
+        dir = dir || 0;
+
+        var _can = document.createElement('canvas');
+        var ctx = _can.getContext('2d');
+        var _w = img.width, _h = img.height;
+        var bitmap;
+
+        _can.width = _w;
+        _can.height = _h;
+
+        ctx.drawImage(img, 0, 0);
+
+        bitmap = ctx.getImageData(0, 0, _can.width, _can.height);
+
+        function pos(x, y)
+        {
+            return (y*_w + x)*4 + 3;    //retrieve alpha channel
+        }
+
+        if(dir == 0){
+            for(var x = _w-1; x >= 0; x--){
+                var flag = false;
+                for(var y = 0; y < _h; y++)
+                    if(bitmap.data[pos(x,y)] != 0)
+                    {
+                        flag = true;
+                        break;
+                    }
+                if(flag)
+                {
+                    _can.width = x+2;
+                    ctx.drawImage(img, 0, 0, x+2, _h, 0, 0, x+2, _h);
+                    img.src = _can.toDataURL('image/png');
+                    break;
+                }
+            }
+        }
+       // else if(dir == 1){
+            for(var y = _h-1; y >= 0; y--){
+                var flag = false;
+                for(x = 0; x < _w; x++)
+                    if(bitmap.data[pos(x,y)] != 0)
+                    {
+                        flag = true;
+                        break;
+                    }
+                if(flag)
+                {
+                    _can.height = y+2;
+                    ctx.drawImage(img, 0, 0, _w, y+2, 0, 0, _w, y+2);
+                    img.src = _can.toDataURL('image/png');
+                    return;
+                }
+            }
+        //}
+    }
+
+
     p.imageLoader = function(t, callback)
     {
         var onsucess = function(data){
@@ -34,11 +94,18 @@ define(['createjs', 'jquery'], function(createjs, $) {
 
             var img = document.createElement('img');
             img.src = data;
+
+            p.trimPic(img);
+
+            document.getElementById('test_img').src = img.src;
+
             callback(img);
         }
 
+        console.log('text=' + encodeURI(t.text));
+
         $.ajax({
-            url: 'pcs.php?'
+            url: 'pcs.1.1.php?'
                 +'text=' + t.text
                 +'&dir=' + t.dir
                 +'&space=' + t.letterSpacing

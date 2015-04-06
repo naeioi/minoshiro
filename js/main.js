@@ -32,15 +32,22 @@ require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine'], function(
         imageLoader: controller.imageLoader
     })
 
-    var stage = new createjs.Stage('canvas');
-    var imagetext = new createjs.ImageText("hello\nworld", 1, 0, 0, 40, 'arial', '000000');
+    var stage = new createjs.Stage('canvas');//100pt->120px base height
+    var imagetext = new createjs.ImageText("中文字体测试\n这是一行普通的文字\na string of texts\n另一行普通的文字");
+    imagetext.set({
+        fontSize: 30,
+        fontFamily: "msjh.ttc",
+        reg:0,
+        dir:1,
+        x: 100,
+        y: 100
+    })
     var shape = new createjs.Shape();
+
+    console.log("in main.js, " + encodeURI("胡"));
 
     shape.graphics.beginFill('red').drawCircle(0, 0, 40);
     shape.x = shape.y = 0;
-
-    imagetext.x = 400;
-    imagetext.y = 0;
 
     //stage.addChild(shape);
     stage.addChild(imagetext);

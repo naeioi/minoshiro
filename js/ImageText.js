@@ -38,12 +38,14 @@ define(['createjs', 'TextLine'], function(createjs) {
     {
         this.Container_constructor();
 
-        this.originText = originText;
-        this.reg = reg;
-        this.letterSpacing = space;
-        this.fontSize = size;
-        this.fontFamily = family;
-        this.color = color;
+        this.originText = originText || "";
+        this.reg = reg || 0;
+        this.dir = dir || 0;
+        this.letterSpacing = space || 0;
+        this.fontSize = size || 20;
+        this.fontFamily = family || "";
+        this.color = color || "000000";
+        this.lineHeight = 170;  //___% of font-size
 
         this.texts = [];
         this.name = "ImageText";    //click事件冒泡到model时用于判断是否是点击了文字
@@ -73,31 +75,64 @@ define(['createjs', 'TextLine'], function(createjs) {
             if(i != 0) {
                 var bound = textline.getBounds();
 
-                switch (self.reg) {
-                    case 0:
-                        textline.set({
-                            x: 0,
-                            y: (i-1) * bound.height
-                        });
-                        break;
-                    case 1:
-                        textline.set({
-                            x: -bound.width,
-                            y: (i-1) * bound.height
-                        });
-                        break;
-                    case 2:
-                        textline.set({
-                            x: -bound.width,
-                            y: (i-1) * bound.height
-                        });
-                        break;
-                    case 3:
-                        textline.set({
-                            x: 0,
-                            y: (i-1) * bound.height
-                        });
-                        break;
+                if(self.dir == 0) {
+                    var _h = self.fontSize * self.lineHeight /100;
+                    switch (self.reg) {
+                        case 0:
+                            textline.set({
+                                x: 0,
+                                y: (i - 1) * _h
+                            });
+                            break;
+                        case 1:
+                            textline.set({
+                                x: -bound.width,
+                                y: (i - 1) * _h
+                            });
+                            break;
+                        case 2:
+                            textline.set({
+                                x: -bound.width,
+                                y: -(i - 1) * _h
+                            });
+                            break;
+                        case 3:
+                            textline.set({
+                                x: 0,
+                                y: -(i - 1) * _h
+                            });
+
+                            break;
+                    }
+                }
+                else if(self.dir == 1){
+                    var _w = self.fontSize * self.lineHeight /100;
+                    switch(self.reg) {
+                        case 0:
+                            textline.set({
+                                y: 0,
+                                x: (i-1) * _w
+                            })
+                            break;
+                        case 1:
+                            textline.set({
+                                y: 0,
+                                x: -(i-1) * _w
+                            })
+                            break;
+                        case 2:
+                            textline.set({
+                                y: -bound.height,
+                                x: -(i-1) * _w
+                            })
+                            break;
+                        case 3:
+                            textline.set({
+                                y: -bound.height,
+                                x: (i-1) * _w
+                            })
+                            break;
+                    }
                 }
 
                 self.texts.push(textline);
@@ -105,6 +140,7 @@ define(['createjs', 'TextLine'], function(createjs) {
             }
 
             if(i < arr.length) {
+                console.log("in ImgaeText.js, arr," + arr[i]);
                 textline = new createjs.TextLine(arr[i], self.dir, self.letterSpacing, self.fontSize, self.fontFamily, self.color);
                 textline.load(null, function (data) {
                     flow(i + 1, data)
