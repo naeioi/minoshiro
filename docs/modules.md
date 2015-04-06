@@ -26,6 +26,7 @@ model:
 	Model有demo和origin两个实例，需要写成类
 	存储当前载入模板，绘制海报（不等于显示海报）
 	Model类应该是Container类的继承
+	严格来说，template实例才是MVC模型中的M,而model实例只是M与V的中间物，更贴近于V
 	接口：
 		init(template)
 			template是以Template类实例的形式保存的海报模板数据。根据template数据初始化model。

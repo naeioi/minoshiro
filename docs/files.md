@@ -21,6 +21,7 @@ class1/		//分类文件夹
 manifest.json	//分类下模板清单
 	例：[{name: "北大清风" ,src: "pku_1/", description: "",
 		  size: "1200x800"}, ... ]
+	//此处的size仅用于显示
 
 item1/		//模板文件夹
 	main.json
