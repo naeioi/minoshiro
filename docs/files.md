@@ -30,6 +30,7 @@ item1/		//模板文件夹
 	origin/		//用于生成成品的资源
 	
 main.json	//模板主文件，记录背景、组件、文字信息
+			//所有坐标以origin为准，demo时按比例缩放
 	{
 		demo_width:960 , demo_height: 400,
 		origin_width: 9600, origin_height: 4000,

@@ -7,11 +7,11 @@ template = {
     width: @integer,
     height: @integer,
     bg: [{
-        src: @base64,
+        src: @Image,
         x, y, scaleX, scaleY: @float
     }]  @array
     elements: [{
-        src: @base64,
+        src: @Image,
         x, y, scaleX, scaleY: @float
     }]
     texts: [{

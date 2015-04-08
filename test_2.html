@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="lib/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<script>
+    $(function(){
+        var d = $.Deferred();
+
+        d = d.then(function(){
+            var d2 = $.Deferred();
+            d2.resolve();
+            return d2.promise();
+        });
+
+        d = d.then(function(){
+            var d2 = $.Deferred();
+            console.log("second");
+            d2.resolve();
+            return d2.promise();
+        })
+
+        d.done(function(){
+            console.log("done");
+        })
+    })
+</script>
+</body>
+</html>
