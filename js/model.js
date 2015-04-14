@@ -14,12 +14,15 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         var self = this;
         var t = new createjs.Template();
 
-        var dfd = $.get(src).then(function(res){
+        var def = $.get(src);
+
+        def = def.then(function(res){
 
             var baseUrl = mode+'/';
 
             if(mode === 'demo'){
 
+                //scale to proper size in demo mode
                 var scaleX = res.demo_width  / res.origin_width,
                     scaleY = res.demo_height / res.origin_height;
 
@@ -29,56 +32,65 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
                 })
 
                 //load and set bg img
-                var d = getImage(baseUrl + res.bg.src[0]).then(function(img){
+                //note that the src of default bg is src[0], with others choices to be manually selected
+                var def = getImage(baseUrl + res.bg.src[0]);
+                def = def.then(function(img){
+                    //img is <img> object, due to the inconvenience of base64
                     t.bg[0].img = img;
                     t.bg[0].x = t.bg[0].y = 0;
                     t.bg[0].scaleX = t.width / img.width;
                     t.bg[0].scaleY = t.height / img.height;
-
-                    var td = $.Deferred();  //ugly jQuery deferred
-                    td.resolve();
-                    return td.promise();
                 })
 
                 //load and set elements
-                d = d.then(function(){
-                    var d2 = $.Deferred();
+                def = def.then(function(){
+
+                    //load the elements one by one(instead of in parallel)
+                    var chain = $.Deferred();
+                    chain.resolve();
 
                     for(var i = 0; i < t.elements.length; i++){
                         var e = res.elements[i];
 
-                        d2 = d2.then(function(){
+                        chain = chain.then(function(){
                             return getImage(baseUrl + e.src).then(function(img){
 
                                 var obj = e;
                                 e.img = img;
+                                e.scaleX = scaleX;
+                                e.scaleY = scaleY;
+                                e.x = e.x * scaleX;
+                                e.y = e.y * scaleY;
 
                                 t.elements.push(obj);
-
-                                var td = $.Deferred();  //ugly jQuery deferred
-                                td.resolve();
-                                return td.promise();
                             });
                         })
                     }
 
-                    d2.resolve();
+                    return chain.promise();
                 })
 
-                d = d.then(function(){
+                //load texts
+                def = def.then(function(){
 
                     var texts = res.texts;
 
-                    var d2=
+                    var chain = $.Deferred();
+                    chain.resolve();
+
                     for(var i = 0; i < texts.length; i++){
                         var text = texts[i];
-                        var imgtext = new createjs.ImageText(text.context, text.reg, text.dir, text.space, text.size, text.font, text.color);
+                        var imgtext = new createjs.ImageText(text.context, text.reg, text.dir,
+                                                             text.space, Math.floor(text.size * scaleX),
+                                                             text.font, text.color);
 
+                        imgtext.x = imgtext.x / scaleX;
+                        imgtext.y = imgtext.y / scaleY;
+
+                        chain = chain.then(imgtext.load);
                     }
 
-                    var td = $.Deferred();  //ugly jQuery deferred
-                    td.resolve();
-                    return td.promise();
+                    chain.done(def.resolve);
                 })
             }
             else if(mode === 'origin'){
@@ -86,7 +98,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             }
         })
 
-        defer.resolve();
+        return def.promise();
     }
 
     createjs.Model = Model;

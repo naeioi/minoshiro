@@ -60,8 +60,11 @@ define(['createjs', 'TextLine'], function(createjs) {
         createjs.TextLine.config(obj);
     };
 
-    p.load = function(str, callback)
+    p.load = function(str)
     {
+        var def = $.Deferred();
+        def.resolve();
+
         str = str || this.originText;
 
         this.removeAllChildren();
@@ -70,87 +73,94 @@ define(['createjs', 'TextLine'], function(createjs) {
         var arr = str.split('\n');
         var self = this;
 
-        var flow = function(i, textline)
-        {
-            if(i != 0) {
-                var bound = textline.getBounds();
+        for(var i = 0; i < arr.length; i++) {
+            //console.log("in ImgaeText.js, arr," + arr[i]);
 
-                if(self.dir == 0) {
-                    var _h = self.fontSize * self.lineHeight /100;
-                    switch (self.reg) {
-                        case 0:
-                            textline.set({
-                                x: 0,
-                                y: (i - 1) * _h
-                            });
-                            break;
-                        case 1:
-                            textline.set({
-                                x: -bound.width,
-                                y: (i - 1) * _h
-                            });
-                            break;
-                        case 2:
-                            textline.set({
-                                x: -bound.width,
-                                y: -(i - 1) * _h
-                            });
-                            break;
-                        case 3:
-                            textline.set({
-                                x: 0,
-                                y: -(i - 1) * _h
-                            });
+            // (IMPORTANT) use closure to save textline for each step of loop
+            (function(i) {
+                var textline = new createjs.TextLine(arr[i] || " ", self.dir, self.letterSpacing, self.fontSize, self.fontFamily, self.color);
 
-                            break;
-                    }
-                }
-                else if(self.dir == 1){
-                    var _w = self.fontSize * self.lineHeight /100;
-                    switch(self.reg) {
-                        case 0:
-                            textline.set({
-                                y: 0,
-                                x: (i-1) * _w
-                            })
-                            break;
-                        case 1:
-                            textline.set({
-                                y: 0,
-                                x: -(i-1) * _w
-                            })
-                            break;
-                        case 2:
-                            textline.set({
-                                y: -bound.height,
-                                x: -(i-1) * _w
-                            })
-                            break;
-                        case 3:
-                            textline.set({
-                                y: -bound.height,
-                                x: (i-1) * _w
-                            })
-                            break;
-                    }
-                }
-
-                self.texts.push(textline);
-                self.addChild(textline);
-            }
-
-            if(i < arr.length) {
-                console.log("in ImgaeText.js, arr," + arr[i]);
-                textline = new createjs.TextLine(arr[i] || " ", self.dir, self.letterSpacing, self.fontSize, self.fontFamily, self.color);
-                textline.load(null, function (data) {
-                    flow(i + 1, data)
+                def = def.then(function () {
+                    return textline.load();
                 });
-            }
-            else
-                callback(self);
+                def.done(function(textline){
+                    setAttr(i, textline);
+                });
+            }(i));
         }
 
-        flow(0);    //start loading series
+        var setAttr= function(i, textline) {
+
+            //console.log("in setAttr");
+            //console.log(textline);
+
+            self.texts.push(textline);
+            self.addChild(textline);
+
+            var bound = textline.getBounds();
+
+            if (self.dir == 0) {
+                var _h = self.fontSize * self.lineHeight / 100;
+                switch (self.reg) {
+                    case 0:
+                        textline.set({
+                            x: 0,
+                            y: i * _h
+                        });
+                        break;
+                    case 1:
+                        textline.set({
+                            x: -bound.width,
+                            y: i * _h
+                        });
+                        break;
+                    case 2:
+                        textline.set({
+                            x: -bound.width,
+                            y: -i * _h
+                        });
+                        break;
+                    case 3:
+                        textline.set({
+                            x: 0,
+                            y: -i * _h
+                        });
+
+                        break;
+                }
+            }
+            else if (self.dir == 1) {
+                var _w = self.fontSize * self.lineHeight / 100;
+                switch (self.reg) {
+                    case 0:
+                        textline.set({
+                            y: 0,
+                            x: i * _w
+                        })
+                        break;
+                    case 1:
+                        textline.set({
+                            y: 0,
+                            x: -i * _w
+                        })
+                        break;
+                    case 2:
+                        textline.set({
+                            y: -bound.height,
+                            x: -i * _w
+                        })
+                        break;
+                    case 3:
+                        textline.set({
+                            y: -bound.height,
+                            x: i * _w
+                        })
+                        break;
+                }
+            }
+        }
+
+        return def;
     };
 
     createjs.ImageText = ImageText;

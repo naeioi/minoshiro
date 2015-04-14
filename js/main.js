@@ -44,7 +44,7 @@ require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine'], function(
     })
     var shape = new createjs.Shape();
 
-    console.log("in main.js, " + encodeURI("胡"));
+    //console.log("in main.js, " + encodeURI("胡"));
 
     shape.graphics.beginFill('red').drawCircle(0, 0, 40);
     shape.x = shape.y = 0;
@@ -52,9 +52,11 @@ require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine'], function(
     //stage.addChild(shape);
     stage.addChild(imagetext);
 
-    imagetext.load(null, function(){
+    imagetext.load().done(function(){
         stage.update();
     });
+
+    //console.log(imagetext);
 
     stage.enableMouseOver(10);
 })

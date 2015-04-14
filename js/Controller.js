@@ -83,8 +83,11 @@ define(['createjs', 'jquery'], function(createjs, $) {
     }
 
 
-    p.imageLoader = function(t, callback)
+    p.imageLoader = function(t)
     {
+        var def = $.Deferred();
+        //def.resolve();
+
         var onsucess = function(data){
 
             /*debug
@@ -97,12 +100,12 @@ define(['createjs', 'jquery'], function(createjs, $) {
 
             p.trimPic(img);
 
-            document.getElementById('test_img').src = img.src;
+            //document.getElementById('test_img').src = img.src;
 
-            callback(img);
+            def.resolve(img);
         }
 
-        console.log('text=' + encodeURI(t.text));
+        //console.log('text=' + encodeURI(t.text));
 
         $.ajax({
             url: 'pcs.1.1.php?'
@@ -114,6 +117,8 @@ define(['createjs', 'jquery'], function(createjs, $) {
                 +'&color=' + t.color,
             success: onsucess
         })
+
+        return def.promise();
     }
 
     $(document).ajaxSend(function(event, jqhxr, setting){

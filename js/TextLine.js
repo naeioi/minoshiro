@@ -48,13 +48,19 @@ define(['createjs'], function(createjs) {
         TextLine.imageLoader = obj.imageLoader;
     }
 
-    p.load = function(text, callback)
+    p.load = function(text)
     {
         text = text || this.text;
-
         var self = this;
         this.text = text;
-        TextLine.imageLoader(this, function(data){
+
+        //console.log("in testLine.load: text = " + text);
+
+        var d = $.Deferred();
+        var def = TextLine.imageLoader(this);
+
+        def.then(function(data){
+            //console.log("in testLine.load: received data from imageLoader");
             self.image = data;
 
             //set HitArea so that a click on white space between letter will be captured
@@ -62,8 +68,10 @@ define(['createjs'], function(createjs) {
             shape.graphics.beginFill("#000000").drawRect(0, 0, data.width, data.height);
             self.hitArea = shape;
 
-            callback(self);
+            d.resolve(self);
         });
+
+        return d.promise();
     }
 
     createjs.TextLine = TextLine;

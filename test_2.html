@@ -10,17 +10,24 @@
     $(function(){
         var d = $.Deferred();
 
-        d = d.then(function(){
-            var d2 = $.Deferred();
-            d2.resolve();
-            return d2.promise();
-        });
+        d.resolve();
 
         d = d.then(function(){
-            var d2 = $.Deferred();
-            console.log("second");
-            d2.resolve();
-            return d2.promise();
+            console.log("hello");
+        })
+
+        d = d.then(function(){
+            console.log("hello2");
+        })
+
+        d = d.then(function(){
+            var def = $.Deferred();
+
+            setTimeout(function(){
+                def.resolve();
+            }, 1000);
+
+            return def.promise();
         })
 
         d.done(function(){
