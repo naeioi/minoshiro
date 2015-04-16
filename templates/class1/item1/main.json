@@ -1,0 +1,27 @@
+{
+	"demo_width":    397,
+	"demo_height":   561,
+	"origin_width":  1191,
+	"origin_height": 1684,
+	"bg_manualable": false,
+	"bg": [{
+		"src": "bg.png",
+		"x": 0, "y": 0
+	}],
+	"elements": [],
+	"texts":[{
+		"font": "msjh.ttc",
+		"content": "百年\n讲堂",
+		"size": 28,
+		"dir":0,
+		"reg": 0,
+		"x": 100, "y": 100
+	},{
+		"font": "msjh.ttc",
+		"content": "艺术的乐章在这里回荡\n智慧的火花在这里迸发",
+		"size": 20,
+		"dir":0,
+		"reg": 0,
+		"x": 50, "y": 400
+	}]
+}

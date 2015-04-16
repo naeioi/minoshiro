@@ -1,9 +1,9 @@
 /**
  * Created by naeioi on 2015/4/14.
  */
-requirejs(["createjs"], function(createjs){
+define(["createjs"], function(createjs){
     function Template(){
-        this.DisplayObject_Constructor();
+        this.DisplayObject_constructor();
         this.elements = [];
         this.bg = [];
         this.texts = [];
@@ -15,18 +15,19 @@ requirejs(["createjs"], function(createjs){
         var def = $.Deferred();
         var img = document.createElement('img');
         img.src = src;
-        img.onload(function(){
+        img.onload = function(){
             def.resolve(img);
-        });
+        };
         return def.promise();
     }
 
-    p.load = function(res) {
+    p.load = function(rootUrl, res) {
         var t = this;
 
         t.res = res;
+        t.rootUrl = rootUrl;
 
-        var baseUrl = 'mode/';
+        var baseUrl = rootUrl + 'demo/';
         t.bg_manualable = res.bg_manualable;
 
         //scale to proper size in demo mode
@@ -47,11 +48,15 @@ requirejs(["createjs"], function(createjs){
             def = getImage(baseUrl + res.bg[0].src);
             def = def.then(function (img) {
                 //img is <img> object, due to the inconvenience of base64
-                t.bg[0].img = img;
-                t.bg[0].x = (res.bg[0].x || 0) * scaleX;
-                t.bg[0].y = (res.bg[0].y || 0) * scaleY;
-                t.bg[0].scaleX = (res.bg[0].scaleX || 0) * scaleX;
-                t.bg[0].scaleY = (res.bg[0].scaleY || 0) * scaleY;
+                var obj = {
+                    img: img,
+                    x: (res.bg[0].x || 0) * scaleX,
+                    y: (res.bg[0].y || 0) * scaleY,
+                    scaleX: (res.bg[0].scaleX || 0) * scaleX,
+                    scaleY: (res.bg[0].scaleY || 0) * scaleY
+                }
+
+                t.bg.push(obj);
             })
         }
 
@@ -95,12 +100,12 @@ requirejs(["createjs"], function(createjs){
             for (var i = 0; i < texts.length; i++) {
                 (function () {
                     var text = texts[i];
-                    var imgtext = new createjs.ImageText(text.context, text.reg, text.dir,
+                    var imgtext = new createjs.ImageText(text.content, text.reg, text.dir,
                         text.space, Math.floor(text.size * scaleX),
                         text.font, text.color);
 
-                    imgtext.x = imgtext.x / scaleX;
-                    imgtext.y = imgtext.y / scaleY;
+                    imgtext.x = text.x * scaleX;
+                    imgtext.y = text.y * scaleY;
 
                     t.texts.push(imgtext);
 
@@ -117,5 +122,5 @@ requirejs(["createjs"], function(createjs){
     }
 
     createjs.Template = Template;
-    return createjs.prompt(Template, "DisplayObject");
+    return createjs.promote(Template, "DisplayObject");
 })
