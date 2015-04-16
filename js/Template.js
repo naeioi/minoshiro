@@ -5,6 +5,8 @@ requirejs(["createjs"], function(createjs){
     function Template(){
         this.DisplayObject_Constructor();
         this.elements = [];
+        this.bg = [];
+        this.texts = [];
     }
 
     var p = createjs.extend(Template, createjs.DisplayObject);
@@ -100,15 +102,19 @@ requirejs(["createjs"], function(createjs){
                     imgtext.x = imgtext.x / scaleX;
                     imgtext.y = imgtext.y / scaleY;
 
-                    chain = chain.then(imgtext.load);
+                    t.texts.push(imgtext);
+
+                    chain = chain.then(function(){
+                        return imgtext.load();
+                    });
                 })();
             }
 
-            chain.done(def.resolve);
+            return chain.promise();
         })
+
+        return def.promise();
     }
-
-
 
     createjs.Template = Template;
     return createjs.prompt(Template, "DisplayObject");
