@@ -37,7 +37,7 @@ define(['createjs'], function(createjs) {
         this.fontSize = size || 12;
         this.fontFamily = family || "";     //需要选择默认字体
         this.color = color || '#000000';
-
+        this.name = 'TextLine';
         this.cursor = "text";
     }
 

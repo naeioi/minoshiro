@@ -95,6 +95,7 @@ define(['createjs', 'jquery'], function(createjs, $) {
             img_e.src = data;
             */
 
+            //here we assign base64 to img.src, so it is not necessary to treat it in async way
             var img = document.createElement('img');
             img.src = data;
 

@@ -43,6 +43,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         for(var i = 0; i < t.texts.length; i++){
             var imgtext = t.texts[i];
             self.addChild(imgtext);
+            //imgtext.dispatchEvent('click');
         }
     }
 
@@ -52,7 +53,9 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         var self = this;
         var t = new createjs.Template();
         var rootUrl = src.match(/^\S+\//);
+
         this.template = t;
+        this.rootUrl = rootUrl;
 
         var def = $.get(src);
 
@@ -64,6 +67,22 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         //add all staff into container
         def = def.then(function(){
             self.put();
+        })
+
+        return def.promise();
+    }
+
+    p.output = function(){
+        var oriModel = new createjs.Model();
+        var oriTemplate = new createjs.Template();
+        var def;
+
+        oriModel.template = oriTemplate;
+        def = oriTemplate.load(this.rootUrl, this.template.res, 'origin');
+        def = def.then(function(){
+            oriModel.put();
+            oriModel.cache(0, 0, oriTemplate.width, oriTemplate.height);
+            return oriModel.cacheCanvas.toDataURL('image/png');
         })
 
         return def.promise();

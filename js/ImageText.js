@@ -67,10 +67,11 @@ define(['createjs', 'TextLine'], function(createjs) {
 
         str = str || this.originText;
 
-        this.removeAllChildren();
+        //this.removeAllChildren();
         this.texts.length = 0;
 
         var arr = str.split('\n');
+        var textline_arr = []
         var self = this;
 
         for(var i = 0; i < arr.length; i++) {
@@ -84,18 +85,33 @@ define(['createjs', 'TextLine'], function(createjs) {
                     return textline.load();
                 });
                 def.done(function(textline){
-                    setAttr(i, textline);
+                    textline_arr.push(textline);
+                    //setAttr(i, textline);
                 });
             }(i));
         }
+
+        def = def.then(function(){
+            self.removeAllChildren();
+            for(var i = 0; i < arr.length; i++)
+                setAttr(i, textline_arr[i])
+        })
 
         var setAttr= function(i, textline) {
 
             //console.log("in setAttr");
             //console.log(textline);
 
+            //add this line to deal with click event
+            textline.father = self;
+
             self.texts.push(textline);
             self.addChild(textline);
+
+            textline.addEventListener('click', function(e){
+                //e.stopPropagation();
+                //self.dispatchEvent('click');
+            })
 
             var bound = textline.getBounds();
 

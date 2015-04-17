@@ -43,11 +43,49 @@ require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine', 'Model'], 
 
     var def = model.load("templates/class1/item1/main.json");
     def.done(function(){
-        //console.log(model);
+        //  console.log(model);
         stage.update();
     })
 
     createjs.Ticker.addEventListener("tick", stage);
 
     stage.enableMouseOver(10);
+
+    $('#btn').click(function(){
+        model.output().then(function(img){
+            location.href = img;
+        })
+    })
+
+    var curTarget = null;
+    var curStr = null;
+    model.addEventListener('click', function(e){
+        if(e.target.name === 'TextLine'){
+            console.log('click');
+            var imgtext = e.target.father;
+            $('#textarea').val(imgtext.originText);
+            curTarget = imgtext;
+            curStr = imgtext;
+        }
+    })
+    /*$('#textarea').on('keydown', function(){
+        if(curTarget){
+            var text = $('#textarea').val();
+            console.log('onchange');
+            console.log(text);
+            curTarget.load(text);
+        }
+    })*/
+
+    setInterval(function(){
+        var str = $('#textarea').val();
+        if(str != curStr){
+            str = str || " ";
+            curStr = str;
+            curTarget.load(curStr);
+        }
+    }, 0.2);
+    //createjs.Ticker.addEventListener('tick', stage);
+
+    //model.dispatchEvent('click');
 })

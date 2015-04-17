@@ -21,22 +21,37 @@ define(["createjs"], function(createjs){
         return def.promise();
     }
 
-    p.load = function(rootUrl, res) {
+    p.load = function(rootUrl, res, mode) {
         var t = this;
+
+        mode = mode || "demo";
 
         t.res = res;
         t.rootUrl = rootUrl;
 
-        var baseUrl = rootUrl + 'demo/';
+        var baseUrl = rootUrl;
         t.bg_manualable = res.bg_manualable;
 
+        var width, height;
+
+        if(mode === 'demo') {
+            baseUrl = baseUrl + 'demo/';
+            width = res.demo_width;
+            height = res.demo_height;
+        }
+        else if(mode === 'origin'){
+            baseUrl = baseUrl + 'origin/';
+            width = res.origin_width;
+            height = res.origin_height;
+        }
+
         //scale to proper size in demo mode
-        var scaleX = res.demo_width / res.origin_width,
-            scaleY = res.demo_height / res.origin_height;
+        var scaleX = width / res.origin_width,
+            scaleY = height / res.origin_height;
 
         t.set({
-            width: res.demo_width,
-            height: res.demo_height
+            width: width,
+            height: height
         })
 
         var def = $.Deferred();
@@ -120,6 +135,10 @@ define(["createjs"], function(createjs){
 
         return def.promise();
     }
+
+    /*p.loadOrigin = function(){
+        return this.load(this.rootUrl, this.res, 'origin');
+    }*/
 
     createjs.Template = Template;
     return createjs.promote(Template, "DisplayObject");
