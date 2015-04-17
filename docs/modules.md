@@ -84,7 +84,7 @@ ImageText
         originText  @type String
             原始字符串。以'\n'表示换行
         reg     @type integer
-            参考点。0左上1右上2右下3坐下
+            参考点(对齐方式）。0左上1右上2右下3左下4居中
         texts   @type array of TextLine
             文字数组。每个元素为一行字母
         dir     @type integer

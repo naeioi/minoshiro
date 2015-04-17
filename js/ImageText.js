@@ -141,7 +141,12 @@ define(['createjs', 'TextLine'], function(createjs) {
                             x: 0,
                             y: -i * _h
                         });
-
+                        break;
+                    case 4:
+                        textline.set({
+                            x: bound.width / 2,
+                            y: i * _h
+                        });
                         break;
                 }
             }
@@ -172,6 +177,11 @@ define(['createjs', 'TextLine'], function(createjs) {
                             x: i * _w
                         })
                         break;
+                    case 4:
+                        textline.set({
+                            y: bound.height / 2,
+                            x: i * _w
+                        })
                 }
             }
         }
