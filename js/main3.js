@@ -79,7 +79,7 @@ require(['createjs', 'jquery', 'controller', 'ImageText', 'TextLine', 'Model'], 
 
     setInterval(function(){
         var str = $('#textarea').val();
-        if(str != curStr){
+        if(curTarget && str != curStr){
             str = str || " ";
             curStr = str;
             curTarget.load(curStr);

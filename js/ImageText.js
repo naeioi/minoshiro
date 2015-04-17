@@ -49,6 +49,7 @@ define(['createjs', 'TextLine'], function(createjs) {
 
         this.texts = [];
         this.name = "ImageText";    //click事件冒泡到model时用于判断是否是点击了文字
+        this.res_text = null;   //指向template中res的text的引用，修改imagetext的内容时应该先修改res_text中的
     }
 
     var p = createjs.extend(ImageText, createjs.Container);
@@ -69,6 +70,9 @@ define(['createjs', 'TextLine'], function(createjs) {
 
         //this.removeAllChildren();
         this.texts.length = 0;
+
+        if(this.res_text)
+            this.res_text.content = str;
 
         var arr = str.split('\n');
         var textline_arr = []
@@ -144,7 +148,7 @@ define(['createjs', 'TextLine'], function(createjs) {
                         break;
                     case 4:
                         textline.set({
-                            x: bound.width / 2,
+                            x: -bound.width / 2,
                             y: i * _h
                         });
                         break;
@@ -179,7 +183,7 @@ define(['createjs', 'TextLine'], function(createjs) {
                         break;
                     case 4:
                         textline.set({
-                            y: bound.height / 2,
+                            y: -bound.height / 2,
                             x: i * _w
                         })
                 }

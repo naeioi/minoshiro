@@ -9,6 +9,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
     var p = createjs.extend(Model, createjs.Container);
 
     //put template into container
+    //bind res to texts at the same time
     p.put = function(){
         var self = this;
         var t = self.template;
@@ -42,6 +43,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         //put texts;
         for(var i = 0; i < t.texts.length; i++){
             var imgtext = t.texts[i];
+            imgtext.res_text = t.res.texts[i];
             self.addChild(imgtext);
             //imgtext.dispatchEvent('click');
         }
