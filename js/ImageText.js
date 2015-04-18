@@ -56,11 +56,6 @@ define(['createjs', 'TextLine'], function(createjs) {
 
     p.imageLoder = new Function();
 
-    ImageText.config = function(obj)
-    {
-        createjs.TextLine.config(obj);
-    };
-
     p.load = function(str)
     {
         var def = $.Deferred();
@@ -192,6 +187,14 @@ define(['createjs', 'TextLine'], function(createjs) {
 
         return def;
     };
+
+    p.change = function(str){
+        str = str || " ";
+        if(str != this.originText) {
+            this.originText = str;
+            this.load(str);
+        }
+    }
 
     createjs.ImageText = ImageText;
     return createjs.promote(ImageText, "Container");

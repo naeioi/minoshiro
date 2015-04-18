@@ -8,3 +8,8 @@ Desktop.ini
 *.ttc
 *.TTC
 *.TTF
+.*
+*.svg
+*.eot
+*.wo*
+*.otf

@@ -23,7 +23,7 @@
     $black = imagecolorallocatealpha($img, 0,0,0,0);
     $transparent = imagecolorallocatealpha($img, 255, 255, 255,127);
     $c_color = imagecolorallocatealpha($img,$c_red,$c_green,$c_blue,0);
-    $font_file = './'.$fontname;
+    $font_file = './fonts/'.$fontname;
     imagesavealpha ($img , true );
     imagefill($img,0,0,$transparent);
     if($dir==1)
