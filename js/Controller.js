@@ -5,57 +5,58 @@
 This is the main JS file for requireJS
  */
 
-requirejs.config({
-    paths: {
-        'createjs': '../lib/easeljs-0.8.0.combined',
-        'jquery': '../lib/jquery-2.1.3.min'
-    },
-    shim: {
-        /*'jquery': {
-            export: '$'
-        },*/
-        /*'createjs': {
-            export: 'createjs'
-        }*/
-    },
-    map: {
-        '*': {'createjs': 'createjs_private'},
-        'createjs_private': {'createjs': 'createjs'}
-    }
-});
+define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(createjs, $){
 
-require(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(createjs, $){
+    var Controller = function(canvas){
+        this.stage = new createjs.Stage(canvas);
+        this.model = null;
+        createjs.Ticker.addEventListener('tick', this.stage);
+        this.stage.enableMouseOver(10);
+    };
 
-    var stage = new createjs.Stage('canvas');
-    var model = new createjs.Model();
+    var p = Controller.prototype;
 
-    stage.enableMouseOver(10);
-    stage.addChild(model);
-    createjs.Ticker.addEventListener("tick", stage);
+    p.load = function(src){
+        var self = this;
+        this.stage.removeAllChildren();
 
-    var def = model.load("templates/flat/baijiang/main.json");
+        var model = new createjs.Model();
+        this.model = model;
+        var def = model.load(src);
 
-    $('#btn').click(function(){
-        model.output().then(function(img){
-            location.href = img;
+        def = def.then(function(){
+            var bound = model.getBounds();
+            if(bound.width > self.stage.canvas.width){
+                model.scaleY = model.scaleX = self.stage.canvas.width / bound.width;
+                model.x = model.y = 0;
+            }
+            else{
+                model.x = (self.stage.canvas.width - bound.width) / 2;
+            }
         })
-    })
 
-    var curTarget = null;
-    var curStr = null;
+        def = def.then(function(){
+            self.stage.addChild(model);
+        })
 
-    model.addEventListener('click', function(e){
-        if(e.target.name === 'TextLine'){
-            var imgtext = e.target.father;
-            $('#textarea').val(imgtext.originText);
-            curTarget = imgtext;
-            curStr = imgtext;
-        }
-    })
+        def = def.then(function(){
+            model.addEventListener('click', function(e){
+                if(e.target.name === "TextLine"){
+                    $(self).trigger({
+                        type: 'click',
+                        targer: e.target.father,
+                        text: e.target.father.originText
+                    })
+                }
+            })
+        })
 
-    setInterval(function(){
-        var str = $('#textarea').val();
-        if(curTarget)
-            curTarget.change(str);
-    }, 0.2);
+        return def.promise();
+    }
+
+    p.output = function(){
+        return this.model.output();
+    }
+
+    window.Controller = Controller;
 })

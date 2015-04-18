@@ -63,6 +63,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
 
         //load template
         def = def.then(function(res){
+
             return t.load(rootUrl, res);
         })
 
