@@ -23,6 +23,11 @@
             overflow: auto;
             position: relative;
         }
+        .scrollspy-2 {
+            height: 500px;
+            overflow: auto;
+            position: relative;
+        }
     </style>
 </head>
 <body style="background-image: url(pics/bg1.jpg);">
@@ -225,24 +230,26 @@
                             </div>
                         </div>
 
-                        <div class="pad2 row hidden">
-                            <h4 class="text-center">配色</h4>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
-                                        <img id="op21" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,1)">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img id="op22" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,2)">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img id="op23" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,2)">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img id="op24" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,2)">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img id="op25" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,2)">
+                        <div class="pad2 row hidden scrollspy-2">
+                            <div class="col-md-12" data-spy="scroll" data-offset="50">
+                                <h4 class="text-center">配色</h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <img id="op21" class="img-rounded btn btn-tip"  width="100%" onclick="selectedItem(2,1)">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img id="op22" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,2)">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img id="op23" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,2)">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img id="op24" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,2)">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img id="op25" class="img-rounded btn btn-tip" width="100%" onclick="selectedItem(2,2)">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

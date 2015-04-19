@@ -56,6 +56,7 @@ function test(item)
 }
 function jmpStep(step)
 {
+    var map=["templates/classes.json","templates/classes/colorset/chinese.json"];
     if(step<=stepProgress)
     {
         $('div.pad'+stepOn).addClass('hidden');
@@ -64,7 +65,7 @@ function jmpStep(step)
         $('li.todoli'+step).addClass('todo-done');
         stepOn=step;
     }
-    loadThumbnail("templates/classes.json",step);
+    loadThumbnail(map[step-1],step);
 }
 function selectedItem(nStep,nItem)
 {
@@ -123,11 +124,11 @@ function loadThumbnail(src,item) {
     $.getJSON(src,function(json)
     {
         //var info=JSON.parse(json);
-        //console.log(json);
+        console.log(json);
         $.each(json.classes,function(key,value)
         {
-            $('#op'+1+(key+1)).attr('src','templates/classes/'+value);
-            console.log(value);
+            $('#op'+item+(key+1)).attr('src','templates/classes/'+value);
+            console.log(item);
         })
         //
     });
