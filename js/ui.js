@@ -64,6 +64,7 @@ function jmpStep(step)
         $('li.todoli'+step).addClass('todo-done');
         stepOn=step;
     }
+    loadThumbnail("templates/background.json",step);
 }
 function selectedItem(nStep,nItem)
 {
@@ -91,4 +92,13 @@ function selectedItem(nStep,nItem)
     {
         $('img.mainCanvas').attr('src','pics/theme'+nItem+'.jpg');
     }
+}
+
+function loadThumbnail(src,item) {
+    var info = $.getJSON(src);
+    $.each(info,function(i,item)
+    {
+        console.log(item);
+        $('img.op'+1+i).attr('src','templates/background/'+info[item]);
+    });
 }
