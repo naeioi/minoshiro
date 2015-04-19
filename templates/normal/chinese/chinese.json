@@ -1,0 +1,11 @@
+{
+  "role":"master",
+  "isBottom":false,
+  "next":[
+    "mainThumbnail":"normal/chinese/mainThumbnail/list.json",
+    "colorset":"normal/chinese/colorset/list.json",
+    "original":"normal/chinese/original/list.json"
+  ]
+  "father":"normal/normal.json",
+  "childrenNumber":3
+}

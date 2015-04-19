@@ -1,0 +1,6 @@
+{
+  "role":"list",
+  "isBottom":true,
+  "items":["main.png"],
+  "father":"normal/chinese/chinese.json"
+}

@@ -1,0 +1,9 @@
+{
+  "role":"root",
+  "isBottom":false,
+  "next":[
+    "normalTemplates":"normal/normal.json",
+    "userTemplates":"manual/manual.json"
+  ],
+  "childrenNumber":2
+}

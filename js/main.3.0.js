@@ -14,27 +14,16 @@ requirejs.config({
 
 require(['Controller'], function() {
     loadThumbnail("templates/classes.json",1);
-    function loadResource(mainJsonFile) {
-        controller = new Controller('canvas');
-        controller.load(mainJsonFile);
-        var curTarger = null;
-        var curStr = null;
-        $(controller).click(function(e){
-            curTarger = e.targer;
-            curStr = e.text;
-            $('#textarea').val(curStr);
+    setInterval(function(){
+        var str = $('#textarea').val();
+        if(curTarger != null && str != curStr){
+            curStr = str;
+            curTarger.change(str);
+        }
+    }, 0.2)
+    $('#btnspecific').click(function(){
+        controller.output().then(function(data){
+            location.href = data;
         })
-        setInterval(function(){
-            var str = $('#textarea').val();
-            if(curTarger != null && str != curStr){
-                curStr = str;
-                curTarger.change(str);
-            }
-        }, 0.2)
-        $('#btnspecific').click(function(){
-            controller.output().then(function(data){
-                location.href = data;
-            })
-        })
-    }
+    })
 })

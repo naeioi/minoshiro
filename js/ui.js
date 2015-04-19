@@ -69,34 +69,35 @@ function jmpStep(step)
 }
 function selectedItem(nStep,nItem)
 {
-    var map=["templates/classes/chinese.json"];
+    var map=["templates/classes/chinese.json","templates/classes/chinese.json","templates/classes/chinese.json"];
     var numberOfItem=4;
     if(nStep+1>stepProgress)stepProgress=nStep+1;
     //$('img.op'+nStep+nItem).addClass('focus');
-    loadResource(map[nStep-1]);
+    var curTarger = null;
+    var curStr = null;
+    if(nStep==1)
+        loadResource(map[nStep-1]);
     function loadResource(mainJsonFile) {
         controller = new Controller('canvas');
         controller.load(mainJsonFile);
-        var curTarger = null;
-        var curStr = null;
-        $(controller).click(function(e){
-            curTarger = e.targer;
-            curStr = e.text;
-            $('#textarea').val(curStr);
-        })
-        setInterval(function(){
-            var str = $('#textarea').val();
-            if(curTarger != null && str != curStr){
-                curStr = str;
-                curTarger.change(str);
-            }
-        }, 0.2)
-        $('#btnspecific').click(function(){
-            controller.output().then(function(data){
-                location.href = data;
-            })
-        })
     }
+    $(controller).click(function(e){
+        curTarger = e.targer;
+        curStr = e.text;
+        $('#textarea').val(curStr);
+    })
+    setInterval(function(){
+        var str = $('#textarea').val();
+        if(curTarger != null && str != curStr){
+            curStr = str;
+            curTarger.change(str);
+        }
+    }, 0.2)
+    $('#btnspecific').click(function(){
+        controller.output().then(function(data){
+            location.href = data;
+        })
+    })
     for(var i=1;i<=numberOfItem;i++)
     {
         if(i>stepProgress)
@@ -131,5 +132,31 @@ function loadThumbnail(src,item) {
             console.log(item);
         })
         //
+    });
+}
+
+function selItem(name,func,crt)
+{
+    var common="template/";
+    $.getJSON(crt,function(json){
+        if(json.isBottom==true)
+        {
+            if(json.name==name)
+            {
+                $.each(json.items,func);
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            $.each(json.next,function(key,value){
+                selItem(name,func,common+value);
+            });
+        }
+
     });
 }
