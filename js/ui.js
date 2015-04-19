@@ -95,10 +95,15 @@ function selectedItem(nStep,nItem)
 }
 
 function loadThumbnail(src,item) {
-    var info = $.getJSON(src);
-    console.log(info);
-    $.each(info,function(i,item)
+    $.getJSON(src,function(json)
     {
-        $('img.op'+1+i).attr('src','templates/background/'+info[item]);
+        //var info=JSON.parse(json);
+        //console.log(json);
+        $.each(json.background,function(key,value)
+        {
+            $('#op'+1+key).attr('src','templates/background/'+value);
+            console.log(key);
+        })
+        //
     });
 }
