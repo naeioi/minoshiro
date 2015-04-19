@@ -75,8 +75,10 @@ function selectedItem(nStep,nItem)
     //$('img.op'+nStep+nItem).addClass('focus');
     var curTarger = null;
     var curStr = null;
+    console.log("lalala");
     if(nStep==1)
-        loadResource(map[nStep-1]);
+        //loadResource(map[nStep-1]);
+    selItem('mainThumbnail',loadResource,"root.json");
     function loadResource(mainJsonFile) {
         controller = new Controller('canvas');
         controller.load(mainJsonFile);
@@ -137,13 +139,18 @@ function loadThumbnail(src,item) {
 
 function selItem(name,func,crt)
 {
-    var common="template/";
-    $.getJSON(crt,function(json){
+    var common="templates/";
+    $.getJSON(common+crt,function(json){
+        console.log(json);
         if(json.isBottom==true)
         {
+
             if(json.name==name)
             {
-                $.each(json.items,func);
+
+                $.each(json.items,function(key,value){
+                    func(value);
+                });
                 return 1;
             }
             else
@@ -154,7 +161,7 @@ function selItem(name,func,crt)
         else
         {
             $.each(json.next,function(key,value){
-                selItem(name,func,common+value);
+                selItem(name,func,value);
             });
         }
 

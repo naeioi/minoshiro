@@ -2,9 +2,9 @@
   "role":"class",
   "isBottom":false,
   "next":[
-    "chinese":"normal/chinese/chinese.json",
-    "flat":"normal/flat.flat.json"
-  ],
+      "normal/chinese/chinese.json",
+       "normal/flat.flat.json"
+    ],
   "father":"root.json",
   "childrenNumber":2
 }

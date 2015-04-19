@@ -35,7 +35,7 @@ define(["createjs"], function(createjs){
         var width, height;
 
         if(mode === 'demo') {
-            baseUrl = baseUrl + 'demo/';
+            //baseUrl = baseUrl + 'demo/';
             width = res.demo_width;
             height = res.demo_height;
         }
