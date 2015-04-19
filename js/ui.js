@@ -96,9 +96,9 @@ function selectedItem(nStep,nItem)
 
 function loadThumbnail(src,item) {
     var info = $.getJSON(src);
+    console.log(info);
     $.each(info,function(i,item)
     {
-        console.log(item);
         $('img.op'+1+i).attr('src','templates/background/'+info[item]);
     });
 }
