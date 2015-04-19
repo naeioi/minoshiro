@@ -68,10 +68,11 @@ function jmpStep(step)
 }
 function selectedItem(nStep,nItem)
 {
+    var map=["templates/classes/chinese.json"];
     var numberOfItem=4;
     if(nStep+1>stepProgress)stepProgress=nStep+1;
     //$('img.op'+nStep+nItem).addClass('focus');
-    loadResource("templates/classes/chinese.json");
+    loadResource(map[nStep-1]);
     function loadResource(mainJsonFile) {
         controller = new Controller('canvas');
         controller.load(mainJsonFile);
