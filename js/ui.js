@@ -64,13 +64,37 @@ function jmpStep(step)
         $('li.todoli'+step).addClass('todo-done');
         stepOn=step;
     }
-    loadThumbnail("templates/background.json",step);
+    loadThumbnail("templates/classes.json",step);
 }
 function selectedItem(nStep,nItem)
 {
     var numberOfItem=4;
     if(nStep+1>stepProgress)stepProgress=nStep+1;
     //$('img.op'+nStep+nItem).addClass('focus');
+    loadResource("templates/classes/chinese.json");
+    function loadResource(mainJsonFile) {
+        controller = new Controller('canvas');
+        controller.load(mainJsonFile);
+        var curTarger = null;
+        var curStr = null;
+        $(controller).click(function(e){
+            curTarger = e.targer;
+            curStr = e.text;
+            $('#textarea').val(curStr);
+        })
+        setInterval(function(){
+            var str = $('#textarea').val();
+            if(curTarger != null && str != curStr){
+                curStr = str;
+                curTarger.change(str);
+            }
+        }, 0.2)
+        $('#btnspecific').click(function(){
+            controller.output().then(function(data){
+                location.href = data;
+            })
+        })
+    }
     for(var i=1;i<=numberOfItem;i++)
     {
         if(i>stepProgress)
@@ -99,10 +123,10 @@ function loadThumbnail(src,item) {
     {
         //var info=JSON.parse(json);
         //console.log(json);
-        $.each(json.background,function(key,value)
+        $.each(json.classes,function(key,value)
         {
-            $('#op'+1+key).attr('src','templates/background/'+value);
-            console.log(key);
+            $('#op'+1+(key+1)).attr('src','templates/classes/'+value);
+            console.log(value);
         })
         //
     });
