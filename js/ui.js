@@ -81,7 +81,7 @@ function selectedItem(nStep,nItem)
     if(nStep==1)
     {
         //loadResource(map[nStep-1]);
-        selItem('mainDemo',loadResource,mapItem[nItem-1]);
+        selItem('mainDemo',loadResource,{"fatherDomain":"root","fatherRole":"root"});
     }
     function loadResource(mainJsonFile) {
         controller = new Controller('canvas');
@@ -145,9 +145,9 @@ function loadThumbnail(src,item,name) {
     selItem(name,load,src);
 }
 
-function selItem(name,func,crt)
+function selItemold(name,func,crt)
 {
-    var common="templates/";
+    var common="UIresource/";
     $.getJSON(common+crt,function(json){
         if(json.isBottom==true)
         {
@@ -173,4 +173,53 @@ function selItem(name,func,crt)
         }
 
     });
+}
+function dfs(name,func,obj,description)
+{
+    if(obj.isBottom==true)
+    {
+        if(obj.name==name)
+        {
+            $.each(obj.next,function(key,value){
+                console.log("step into "+ value);
+                func(value);
+            })
+        }
+    }
+    else if(obj.role==description.fatherRole)
+    {
+        if(obj.domain==description.fatherDomain)
+        {
+            $.each(obj.next,function(key,value){
+                console.log("step into "+ value.role);
+                dfs(name,func,value,description);
+                console.log("back to "+value.role);
+            });
+        }
+    }
+    else
+    {
+        $.each(obj.next,function(key,value){
+            console.log("step into "+ value.role);
+            dfs(name,func,value,description);
+            console.log("back to "+value.role);
+        });
+    }
+}
+/*
+Description should contain following infomation
+{
+    "fatherDomain":"",
+    "fatherRole":"",
+    "name":""
+}
+ */
+function selItem(name,func,description)
+{
+    var structure="UIresource/structure.json";
+    $.getJSON(structure, function (json) {
+       $.each(json.next,function(key,value){
+           dfs(name,func,value,description);
+       })
+    })
 }

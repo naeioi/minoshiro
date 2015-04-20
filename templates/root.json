@@ -1,9 +1,0 @@
-{
-  "role":"root",
-  "isBottom":false,
-  "next":[
-      "normal/normal.json",
-      "manual/manual.json"
-    ],
-  "childrenNumber":2
-}
