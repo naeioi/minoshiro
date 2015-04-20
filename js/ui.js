@@ -70,10 +70,27 @@ function jmpStep(step)
 function selectedItem(nStep,nItem)
 {
     if(nStep==1)_Item=nItem;
-    var mapItem=["chinese","flat"];
-    var mapStep=["mainDemo","complete"];
     var numberOfItem=4;
     if(nStep+1>stepProgress)stepProgress=nStep+1;
+    for(var i=1;i<=numberOfItem;i++)
+    {
+        if(i>stepProgress)
+        {
+            if(!($('li.todoli'+i).hasClass('disabled')))
+            {
+                $('li.li'+i).addClass('disabled');
+            }
+        }
+        else if(i<=stepProgress)
+        {
+            if(($('li.todoli'+i).hasClass('disabled')))
+            {
+                $('li.todoli'+i).removeClass('disabled');
+            }
+        }
+    }
+    var mapItem=["chinese","flat"];
+    var mapStep=["mainDemo","complete"];
     var curTarger = null;
     var curStr = null;
     var description={"fatherRole":"master","fatherDomain":mapItem[_Item-1]};
@@ -96,40 +113,19 @@ function selectedItem(nStep,nItem)
         curTarger = e.targer;
         curStr = e.text;
         $('#textarea').val(curStr);
-    })
+    });
     setInterval(function(){
         var str = $('#textarea').val();
         if(curTarger != null && str != curStr){
             curStr = str;
             curTarger.change(str);
         }
-    }, 0.2)
+    }, 0.2);
     $('#btnspecific').click(function(){
         controller.output().then(function(data){
             location.href = data;
         })
     })
-    for(var i=1;i<=numberOfItem;i++)
-    {
-        if(i>stepProgress)
-        {
-            if(!($('li.todoli'+i).hasClass('disabled')))
-            {
-                $('li.li'+i).addClass('disabled');
-            }
-        }
-        else if(i<=stepProgress)
-        {
-            if(($('li.todoli'+i).hasClass('disabled')))
-            {
-                $('li.todoli'+i).removeClass('disabled');
-            }
-        }
-    }
-    if(nItem!=-1)
-    {
-        $('img.mainCanvas').attr('src','pics/theme'+nItem+'.jpg');
-    }
 }
 var loadNumber=0;
 function loadThumbnail(description,item,name) {
