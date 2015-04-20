@@ -14,4 +14,9 @@ requirejs.config({
 
 require(['Controller'], function() {
     jmpStep(1);
+    $('#btnspecific').click(function(){
+        controller.output().then(function(data){
+            location.href = data;
+        })
+    })
 });
