@@ -1,15 +1,15 @@
 {
-  "demo_width": 397,
-  "demo_height": 561,
-  "origin_width": 1191,
-  "origin_height": 1684,
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1985,
+  "origin_height": 2807,
   "bg_manualable": false,
   "bg": [
-    {
-      "src": "green.png",
-      "x": 0,
-      "y": 0
-    }
+    {"src": "red.png"},
+	{"src": "qing.png"},
+	{"src": "blue.png"},
+	{"src": "green.png"},
+	{"src": "yellow.png"}
   ],
   "elements": [],
   "texts": [
@@ -31,5 +31,8 @@
       "x": 600,
       "y": 880
     }
-  ]
+  ],
+  "text_color": [["001100"],["110011"],["110011"],["110011"],["110011"]],
+  "set_name": ["red", "qing", "blue", "green", "yellow"]
+  
 }

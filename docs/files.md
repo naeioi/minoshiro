@@ -34,12 +34,15 @@ main.json	//模板主文件，记录背景、组件、文字信息
 	{
 		demo_width:960 , demo_height: 400,
 		origin_width: 9600, origin_height: 4000,
-		bg: {
-				manualable: false	//是否可手动设置背景
-				src: ["bg1.png","bg2.png", ... ],	//默认背景，可能有多种
-		},
+		bg_manualble: false,
+		bg: [{
+				src: "red.png",
+				x: 0, y: 0
+		}],
 		elements: [element1, element2, ... ],	//各部件数组，每个element是一个JS对象，下面描述
-		texts: [text1, text2, ... ]		//文字数组，每个text是一个JS对象，下面描述
+		texts: [text1, text2, ... ],		//文字数组，每个text是一个JS对象，下面描述
+		texts_color: ["000000", "110000"],
+		colorset: ["red", "green", ...]
 	}
 
 //element描述

@@ -58,5 +58,9 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
         return this.model.output();
     }
 
+    p.set_color = function(color){
+        this.model.set_color(color);
+    }
+
     window.Controller = Controller;
 })

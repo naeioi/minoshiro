@@ -22,9 +22,23 @@ define(["createjs"], function(createjs){
     }
 
     p.load = function(rootUrl, res, mode) {
+
+        //console.log("in template load");
+
         var t = this;
 
         mode = mode || "demo";
+
+        //a map: color_name -> index
+        if (!t.map) {
+            t.map = {};
+            for (var i = 0; i < res.set_name.length; i++)
+                t.map[res.set_name[i]] = i;
+        }
+
+        var curColor = res.curColor || res.set_name[0];
+        res.curColor = res.set_name[curColor];
+        var cIndex = t.map[curColor];
 
         t.res = res;
         t.rootUrl = rootUrl;
@@ -34,12 +48,12 @@ define(["createjs"], function(createjs){
 
         var width, height;
 
-        if(mode === 'demo') {
-            //baseUrl = baseUrl + 'demo/';
+        if (mode === 'demo') {
+            baseUrl = baseUrl + 'demo/';
             width = res.demo_width;
             height = res.demo_height;
         }
-        else if(mode === 'origin'){
+        else if (mode === 'origin') {
             baseUrl = baseUrl + 'origin/';
             width = res.origin_width;
             height = res.origin_height;
@@ -59,21 +73,19 @@ define(["createjs"], function(createjs){
 
         //load and set bg img
         //note that the src of default bg is src[0], with others choices to be manually selected
-        if (res.bg && res.bg.length > 0) {
-            def = getImage(baseUrl + res.bg[0].src);
-            def = def.then(function (img) {
-                //img is <img> object, due to the inconvenience of base64
-                var obj = {
-                    img: img,
-                    x: (res.bg[0].x || 0) * scaleX,
-                    y: (res.bg[0].y || 0) * scaleY,
-                    scaleX: (res.bg[0].scaleX || 0) * scaleX,
-                    scaleY: (res.bg[0].scaleY || 0) * scaleY
-                }
+        def = getImage(baseUrl + res.bg[cIndex].src);
+        def = def.then(function (img) {
+            //img is <img> object, due to the inconvenience of base64
+            var obj = {
+                img: img,
+                x: (res.bg[cIndex].x || 0) * scaleX,
+                y: (res.bg[cIndex].y || 0) * scaleY,
+                scaleX: (res.bg[cIndex].scaleX || 0) * scaleX,
+                scaleY: (res.bg[cIndex].scaleY || 0) * scaleY
+            }
 
-                t.bg.push(obj);
-            })
-        }
+            t.bg = obj;
+        })
 
         //load and set elements
         def = def.then(function () {
@@ -108,6 +120,7 @@ define(["createjs"], function(createjs){
         //load texts
         def = def.then(function () {
             var texts = res.texts;
+            var colors = res.text_color[cIndex];
 
             var chain = $.Deferred();
             chain.resolve();
@@ -115,16 +128,74 @@ define(["createjs"], function(createjs){
             for (var i = 0; i < texts.length; i++) {
                 (function () {
                     var text = texts[i];
+                    var color = colors[i];
                     var imgtext = new createjs.ImageText(text.content, text.reg, text.dir,
                         text.space, Math.floor(text.size * scaleX),
-                        text.font, text.color);
+                        text.font, color);
 
                     imgtext.x = text.x * scaleX;
                     imgtext.y = text.y * scaleY;
 
                     t.texts.push(imgtext);
 
-                    chain = chain.then(function(){
+                    chain = chain.then(function () {
+                        return imgtext.load();
+                    });
+                })();
+            }
+
+            return chain.promise();
+        })
+
+        return def.promise();
+    }
+
+    p.set_color = function(colorset){
+        var t = this;
+        var res = t.res;
+        var scaleX = res.demo_width / res.origin_width,
+            scaleY = res.demo_height / res.origin_height;
+
+        t.curColor = colorset;
+        res.curColor = colorset;
+        var cIndex = t.map[colorset];
+        var baseUrl = t.rootUrl + 'demo/';
+
+        var def = getImage(baseUrl + res.bg[cIndex].src);
+        def = def.then(function (img) {
+            //img is <img> object, due to the inconvenience of base64
+            var obj = {
+                img: img,
+                x: (res.bg[cIndex].x || 0) * scaleX,
+                y: (res.bg[cIndex].y || 0) * scaleY,
+                scaleX: (res.bg[cIndex].scaleX || 0) * scaleX,
+                scaleY: (res.bg[cIndex].scaleY || 0) * scaleY
+            }
+
+            t.bg = obj;
+        })
+
+        def = def.then(function () {
+            var texts = t.res.texts;
+            var colors = t.res.text_color[cIndex];
+
+            var chain = $.Deferred();
+            chain.resolve();
+
+            for (var i = 0; i < texts.length; i++) {
+                (function () {
+                    var text = texts[i];
+                    var color = colors[i];
+                    var imgtext = new createjs.ImageText(text.content, text.reg, text.dir,
+                        text.space, Math.floor(text.size * scaleX),
+                        text.font, color);
+
+                    imgtext.x = text.x * scaleX;
+                    imgtext.y = text.y * scaleY;
+
+                    t.texts.push(imgtext);
+
+                    chain = chain.then(function () {
                         return imgtext.load();
                     });
                 })();

@@ -19,7 +19,7 @@ require(['Controller'], function() {
 
     //通过load方法从main.json文件中读取模板并放到canvas中
     //load返回jQuery的promise对象，方便异步操作
-    controller.load('templates/flat/baijiang/main.json');
+    controller.load('templates/chinese/complete/chinese.json');
 
     /*
     --- 测试实时输入 ---
@@ -60,5 +60,9 @@ require(['Controller'], function() {
         controller.output().then(function(data){
             location.href = data;
         })
+    })
+
+    $('#btn2').click(function(){
+        controller.set_color("green");
     })
 })

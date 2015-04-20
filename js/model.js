@@ -10,25 +10,23 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
 
     //put template into container
     //bind res to texts at the same time
-    p.put = function(){
+    p.put = function() {
         var self = this;
         var t = self.template;
 
         //put bg
-        for(var i = 0; i < t.bg.length; i++){
-            var bg = t.bg[i];
-            var bitmap = new createjs.Bitmap(bg.img);
-            bitmap.set({
-                x: bg.x,
-                y: bg.y,
-                scaleX: bg.scaleX || 1,
-                scaleY: bg.scaleY || 1
-            })
-            self.addChild(bitmap);
-        }
+        var bg = t.bg;
+        var bitmap = new createjs.Bitmap(bg.img);
+        bitmap.set({
+            x: bg.x,
+            y: bg.y,
+            scaleX: bg.scaleX || 1,
+            scaleY: bg.scaleY || 1
+        })
+        self.addChild(bitmap);
 
         //put elements
-        for(var i = 0; i < t.elements.length; i++){
+        for (var i = 0; i < t.elements.length; i++) {
             var element = t.elements[i];
             var bitmap = new createjs.Bitmap(element.img);
             bitmap.set({
@@ -41,7 +39,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         }
 
         //put texts;
-        for(var i = 0; i < t.texts.length; i++){
+        for (var i = 0; i < t.texts.length; i++) {
             var imgtext = t.texts[i];
             imgtext.res_text = t.res.texts[i];
             self.addChild(imgtext);
@@ -60,10 +58,12 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         this.rootUrl = rootUrl;
 
         var def = $.get(src);
+        //console.log("begin load template");
+        //console.log(src);
 
         //load template
         def = def.then(function(res){
-
+            console.log("load done");
             return t.load(rootUrl, res);
         })
 
@@ -72,6 +72,16 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             self.put();
         })
 
+        return def.promise();
+    }
+
+    p.set_color = function(colorset){
+        var def = this.template.set_color(colorset);
+        var self = this;
+        def = def.then(function(){
+            //console.log(this.template);
+            self.put();
+        })
         return def.promise();
     }
 
