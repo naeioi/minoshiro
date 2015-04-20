@@ -1,7 +1,0 @@
-{
-  "role":"list",
-  "isBottom":true,
-  "items":["templates/normal/chinese/colorset/colorset.json"],
-  "name":"colorset",
-  "father":"normal/chinese/chinese.json"
-}

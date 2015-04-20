@@ -44,20 +44,15 @@ function selectedItemSm(nStep,nItem)
 }
 var stepProgress=1;//start from 1
 var stepOn=1;
-function init()
-{
-    for(var i=1;i<=4;i++)
-    {
-    }
-}
+var _Item;
 function test(item)
 {
     $('li.todoli'+item).addClass('todo-done');
 }
 function jmpStep(step)
 {
-    var maplevel=["root.json","root.json"];
-    var level=["mainThumbnail","colorset"];
+    var mapItem=["chinese","flat"];
+    var mapStep=["mainThumbnail","colorset"];
     if(step<=stepProgress)
     {
         $('div.pad'+stepOn).addClass('hidden');
@@ -66,22 +61,32 @@ function jmpStep(step)
         $('li.todoli'+step).addClass('todo-done');
         stepOn=step;
     }
-    loadThumbnail(maplevel[step-1],step,level[step-1]);
-    //selItem(level[step-1],load,maplevel[step-1])
+    var description=[{"fatherRole":"root","fatherDomain":"root"},{"fatherRole":"master","fatherDomain":mapItem[_Item-1]}];
+
+    console.log(description[0]);
+    console.log("jmpStep "+step);
+    loadThumbnail(description[step-1],step,mapStep[step-1]);
 }
 function selectedItem(nStep,nItem)
 {
-    var mapItem=["normal/chinese/chinese.json","normal/flat/flat.json"];
+    if(nStep==1)_Item=nItem;
+    var mapItem=["chinese","flat"];
+    var mapStep=["mainDemo","complete"];
     var numberOfItem=4;
     if(nStep+1>stepProgress)stepProgress=nStep+1;
-    //$('img.op'+nStep+nItem).addClass('focus');
     var curTarger = null;
     var curStr = null;
-    console.log("lalala");
-    if(nStep==1)
+    var description={"fatherRole":"master","fatherDomain":mapItem[_Item-1]};
+    console.log("selected item "+nStep+" "+nItem);
+    if(nStep==1)selItem(mapStep[nStep-1],loadResource,description);
+    if(nStep==2)selItem(mapStep[nStep-1],loaddemo,description);
+    function loaddemo(mainJsonFile)
     {
-        //loadResource(map[nStep-1]);
-        selItem('mainDemo',loadResource,{"fatherDomain":"root","fatherRole":"root"});
+        console.log("loaddemo "+mainJsonFile);
+        $.getJSON(mainJsonFile, function (json) {
+            console.log(json.demofile);
+            loadResource(json.demofile[nItem]);
+        });
     }
     function loadResource(mainJsonFile) {
         controller = new Controller('canvas');
@@ -127,7 +132,7 @@ function selectedItem(nStep,nItem)
     }
 }
 var loadNumber=0;
-function loadThumbnail(src,item,name) {
+function loadThumbnail(description,item,name) {
     function load (jsonFile)
     {
         //var info=JSON.parse(json);
@@ -135,47 +140,20 @@ function loadThumbnail(src,item,name) {
             console.log("Load : "+json);
             $.each(json.classes, function (key, value) {
                 $('#op' + item + (loadNumber + 1)).attr('src', value);
-                console.log(item);
+                console.log(value);
                 loadNumber+=1;
             })
         });
         //
     }
     loadNumber=0;
-    selItem(name,load,src);
+    console.log("loadThumbnail "+name);
+    selItem(name,load,description);
 }
 
-function selItemold(name,func,crt)
-{
-    var common="UIresource/";
-    $.getJSON(common+crt,function(json){
-        if(json.isBottom==true)
-        {
-
-            if(json.name==name)
-            {
-
-                $.each(json.items,function(key,value){
-                    func(value);
-                });
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        else
-        {
-            $.each(json.next,function(key,value){
-                selItem(name,func,value);
-            });
-        }
-
-    });
-}
 function dfs(name,func,obj,description)
 {
+    console.log("description "+description.fatherDomain);
     if(obj.isBottom==true)
     {
         if(obj.name==name)
@@ -193,8 +171,7 @@ function dfs(name,func,obj,description)
             $.each(obj.next,function(key,value){
                 console.log("step into "+ value.role);
                 dfs(name,func,value,description);
-                console.log("back to "+value.role);
-            });
+            })
         }
     }
     else
@@ -202,22 +179,15 @@ function dfs(name,func,obj,description)
         $.each(obj.next,function(key,value){
             console.log("step into "+ value.role);
             dfs(name,func,value,description);
-            console.log("back to "+value.role);
-        });
+        })
     }
 }
-/*
-Description should contain following infomation
-{
-    "fatherDomain":"",
-    "fatherRole":"",
-    "name":""
-}
- */
 function selItem(name,func,description)
 {
     var structure="UIresource/structure.json";
+    console.log("selItem "+name);
     $.getJSON(structure, function (json) {
+        console.log("get json"+name);
        $.each(json.next,function(key,value){
            dfs(name,func,value,description);
        })
