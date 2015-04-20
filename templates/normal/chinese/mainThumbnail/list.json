@@ -1,7 +1,7 @@
 {
   "role":"list",
   "isBottom":true,
-  "items":["templates/normal/chinese/mainThumbnail/demo.json"],
+  "items":["templates/normal/chinese/mainThumbnail/thumb.json"],
   "name":"mainThumbnail",
   "father":"normal/chinese/chinese.json"
 }

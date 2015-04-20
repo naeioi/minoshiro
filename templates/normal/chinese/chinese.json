@@ -2,9 +2,9 @@
   "role":"master",
   "isBottom":false,
   "next":[
-
       "normal/chinese/mainThumbnail/list.json",
-    "normal/chinese/colorset/list.json",
+      "normal/chinese/mainThumbnail/maindemo.json",
+      "normal/chinese/colorset/list.json",
       "normal/chinese/original/list.json"
     ],
   "father":"normal/normal.json",

@@ -13,6 +13,7 @@ root.json
     }
 
     normal/
+    normal.json
     {
       "role":"class",
       "isBottom":false,
@@ -25,11 +26,12 @@ root.json
     }
 
             chinese/
+            chinese.json
             {
               "role":"master",
               "isBottom":false,
               "next":[
-
+              "normal/chinese/mainThumbnail/maindemo.json",
                   "normal/chinese/mainThumbnail/list.json",
                 "normal/chinese/colorset/list.json",
                   "normal/chinese/original/list.json"
@@ -39,6 +41,7 @@ root.json
             }
 
                     mainThumbnail/
+                    list.json
                     {
                       "role":"list",
                       "isBottom":true,

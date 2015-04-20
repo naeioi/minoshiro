@@ -27,6 +27,7 @@ require(['Controller'], function() {
             location.href = data;
         })
     })*/
+
     function selectedItem(nStep,nItem)
     {
         var map=["templates/classes/chinese.json","templates/classes/chinese.json","templates/classes/chinese.json"];

@@ -3,7 +3,7 @@
   "isBottom":false,
   "next":[
       "normal/chinese/chinese.json",
-       "normal/flat.flat.json"
+      "normal/flat/flat.json"
     ],
   "father":"root.json",
   "childrenNumber":2

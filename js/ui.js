@@ -56,7 +56,8 @@ function test(item)
 }
 function jmpStep(step)
 {
-    var map=["templates/classes.json","templates/classes/colorset/chinese.json"];
+    var maplevel=["root.json","root.json"];
+    var level=["mainThumbnail","colorset"];
     if(step<=stepProgress)
     {
         $('div.pad'+stepOn).addClass('hidden');
@@ -65,11 +66,12 @@ function jmpStep(step)
         $('li.todoli'+step).addClass('todo-done');
         stepOn=step;
     }
-    loadThumbnail(map[step-1],step);
+    loadThumbnail(maplevel[step-1],step,level[step-1]);
+    //selItem(level[step-1],load,maplevel[step-1])
 }
 function selectedItem(nStep,nItem)
 {
-    var map=["templates/classes/chinese.json","templates/classes/chinese.json","templates/classes/chinese.json"];
+    var mapItem=["normal/chinese/chinese.json","normal/flat/flat.json"];
     var numberOfItem=4;
     if(nStep+1>stepProgress)stepProgress=nStep+1;
     //$('img.op'+nStep+nItem).addClass('focus');
@@ -77,8 +79,10 @@ function selectedItem(nStep,nItem)
     var curStr = null;
     console.log("lalala");
     if(nStep==1)
+    {
         //loadResource(map[nStep-1]);
-    selItem('mainThumbnail',loadResource,"root.json");
+        selItem('mainDemo',loadResource,mapItem[nItem-1]);
+    }
     function loadResource(mainJsonFile) {
         controller = new Controller('canvas');
         controller.load(mainJsonFile);
@@ -122,26 +126,29 @@ function selectedItem(nStep,nItem)
         $('img.mainCanvas').attr('src','pics/theme'+nItem+'.jpg');
     }
 }
-
-function loadThumbnail(src,item) {
-    $.getJSON(src,function(json)
+var loadNumber=0;
+function loadThumbnail(src,item,name) {
+    function load (jsonFile)
     {
         //var info=JSON.parse(json);
-        console.log(json);
-        $.each(json.classes,function(key,value)
-        {
-            $('#op'+item+(key+1)).attr('src','templates/classes/'+value);
-            console.log(item);
-        })
+        $.getJSON(jsonFile,function(json) {
+            console.log("Load : "+json);
+            $.each(json.classes, function (key, value) {
+                $('#op' + item + (loadNumber + 1)).attr('src', value);
+                console.log(item);
+                loadNumber+=1;
+            })
+        });
         //
-    });
+    }
+    loadNumber=0;
+    selItem(name,load,src);
 }
 
 function selItem(name,func,crt)
 {
     var common="templates/";
     $.getJSON(common+crt,function(json){
-        console.log(json);
         if(json.isBottom==true)
         {
 

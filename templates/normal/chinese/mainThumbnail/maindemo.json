@@ -1,0 +1,7 @@
+{
+  "role":"list",
+  "isBottom":true,
+  "items":["templates/normal/chinese/mainThumbnail/demo.json"],
+  "name":"mainDemo",
+  "father":"normal/chinese/chinese.json"
+}
