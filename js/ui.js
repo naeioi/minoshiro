@@ -184,7 +184,7 @@ function dfs(name,func,obj,description)
 }
 function selItem(name,func,description)
 {
-    var structure="UIresource/structure.json";
+    var structure="templates/structure.json";
     console.log("selItem "+name);
     $.getJSON(structure, function (json) {
         console.log("get json"+name);

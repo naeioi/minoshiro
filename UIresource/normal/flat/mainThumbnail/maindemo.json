@@ -1,7 +1,0 @@
-{
-  "role":"list",
-  "isBottom":true,
-  "items":["templates/normal/flat/mainThumbnail/demo.json"],
-  "name":"mainDemo",
-  "father":"normal/flat/flat.json"
-}

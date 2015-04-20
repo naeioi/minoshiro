@@ -13,7 +13,6 @@ requirejs.config({
 });
 
 require(['Controller'], function() {
-    //loadThumbnail("templates/classes.json",1);
     /*
     setInterval(function(){
         var str = $('#textarea').val();
@@ -30,7 +29,6 @@ require(['Controller'], function() {
 
     function selectedItem(nStep,nItem)
     {
-        var map=["templates/classes/chinese.json","templates/classes/chinese.json","templates/classes/chinese.json"];
         var numberOfItem=4;
         if(nStep+1>stepProgress)stepProgress=nStep+1;
         //$('img.op'+nStep+nItem).addClass('focus');

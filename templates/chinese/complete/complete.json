@@ -1,0 +1,18 @@
+{
+  "demofile":[
+    "templates/chinese/complete/demo_red.json",
+    "templates/chinese/complete/demo_green.json",
+    "templates/chinese/complete/demo_yellow.json",
+    "templates/chinese/complete/demo_blue.json",
+    "templates/chinese/complete/demo_qing.json"
+  ],
+  "pnglist": {
+    "classes": [
+      "templates/chinese/complete/blue.png",
+      "templates/chinese/complete/green.png",
+      "templates/chinese/complete/qing.png",
+      "templates/chinese/complete/red.png",
+      "templates/chinese/complete/yellow.png"
+    ]
+  }
+}

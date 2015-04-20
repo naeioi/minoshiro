@@ -16,29 +16,29 @@
               {
                 "role":"mainThumbnail",
                 "isBottom":true,
-                "next":["UIresource/normal/chinese/mainThumbnail/thumb.json"],
+                "next":["templates/chinese/mainThumbnail/thumb.json"],
                 "name":"mainThumbnail",
-                "father":"normal/chinese/chinese.json"
+                "father":"chinese/chinese.json"
               },
               {
                 "role":"list",
                 "isBottom":true,
-                "next":["UIresource/normal/chinese/mainThumbnail/demo.json"],
+                "next":["templates/chinese/mainThumbnail/demo.json"],
                 "name":"mainDemo",
-                "father":"normal/chinese/chinese.json"
+                "father":"chinese/chinese.json"
               },
               {
                 "role":"list",
                 "isBottom":true,
-                "next":["UIresource/normal/chinese/colorset/colorset.json"],
+                "next":["templates/chinese/colorset/colorset.json"],
                 "name":"colorset",
-                "father":"normal/flat/flat.json"
+                "father":"flat/flat.json"
               }
             ,
               {
                 "role":"list",
                 "isBottom":true,
-                "next":["UIresource/normal/chinese/complete/complete.json"],
+                "next":["templates/chinese/complete/complete.json"],
                 "name":"complete"
               }
             ]
@@ -51,17 +51,17 @@
             {
               "role":"mainDemo",
               "isBottom":true,
-              "next":["UIresource/normal/flat/mainThumbnail/demo.json"],
+              "next":["templates/flat/mainThumbnail/demo.json"],
               "name":"mainDemo",
-              "father":"normal/flat/flat.json"
+              "father":"flat/flat.json"
             },
             {
               "role":"mainThumbnail",
               "isBottom":true,
-              "next":["UIresource/normal/flat/mainThumbnail/thumb.json"],
-              "next":["UIresource/normal/flat/mainThumbnail/thumb.json"],
+              "next":["templates/flat/mainThumbnail/thumb.json"],
+              "next":["templates/flat/mainThumbnail/thumb.json"],
               "name":"mainThumbnail",
-              "father":"normal/flat/flat.json"
+              "father":"flat/flat.json"
             }
           ]
         }

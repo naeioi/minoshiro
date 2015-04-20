@@ -1,7 +1,0 @@
-{
-  "role":"list",
-  "isBottom":true,
-  "items":["/normal/flat/colorset/colorset.json"],
-  "name":"colorset",
-  "father":"normal/flat/flat.json"
-}
