@@ -7,6 +7,7 @@ define(["createjs"], function(createjs){
         this.elements = [];
         this.bg = [];
         this.texts = [];
+        this.manual_bg = {};
     }
 
     var p = createjs.extend(Template, createjs.DisplayObject);
@@ -39,6 +40,7 @@ define(["createjs"], function(createjs){
         var curColor = res.curColor || res.set_name[0];
         res.curColor = res.set_name[curColor];
         var cIndex = t.map[curColor];
+        var self = this;
 
         t.res = res;
         t.rootUrl = rootUrl;
@@ -148,6 +150,28 @@ define(["createjs"], function(createjs){
             return chain.promise();
         })
 
+        //load manual_bg
+        if(res.manual_bg){
+            def = def.then(function(){
+                var img = document.createElement('img');
+                img.src = res.manual_bg.src;
+
+                var def2 = $.Deferred();
+                img.onload = function () {
+                    console.log(img);
+                    self.manual_bg = {
+                        img: img,
+                        x: res.manual_bg.x * scaleX,
+                        y: res.manual_bg.y * scaleY,
+                        scaleX: scaleX,
+                        scaleY: scaleY
+                    }
+                    def2.resolve();
+                }
+                return def2.promise();
+            });
+        }
+
         return def.promise();
     }
 
@@ -192,6 +216,32 @@ define(["createjs"], function(createjs){
 
             return chain.promise();
         })
+
+        return def.promise();
+    }
+
+    p.set_bg = function(url){
+        var self = this;
+        var res = this.res;
+
+        res.manual_bg = {
+            src: url,
+            x: 0, y: 0,
+            scaleX: 1, scaleY: 1
+        }
+
+        var def = $.Deferred();
+        var img = document.createElement('img');
+        img.src = url;
+        img.onload = function(){
+            self.manual_bg = {
+                img: img,
+                x: 0, y: 0,
+                scaleX: res.demo_width / res.origin_width,
+                scaleY: res.demo_height / res.origin_height
+            }
+            def.resolve();
+        }
 
         return def.promise();
     }

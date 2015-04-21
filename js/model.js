@@ -11,6 +11,9 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
     //put template into container
     //bind res to texts at the same time
     p.put = function() {
+
+        this.removeAllChildren();
+
         var self = this;
         var t = self.template;
 
@@ -23,6 +26,10 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             scaleX: bg.scaleX || 1,
             scaleY: bg.scaleY || 1
         })
+
+        //THIS IS A TEST
+        bitmap.alpha = 0.3;
+        //--------------
         self.addChild(bitmap);
 
         //put elements
@@ -45,6 +52,22 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             self.addChild(imgtext);
             //imgtext.dispatchEvent('click');
         }
+
+        //put manual_bg
+        if(t.manual_bg){
+            var bitmap = new createjs.Bitmap(t.manual_bg.img);
+
+            bitmap.set({
+                x: t.manual_bg.x,
+                y: t.manual_bg.y,
+                scaleX: t.manual_bg.scaleX,
+                scaleY: t.manual_bg.scaleY
+            })
+
+            self.addChild(bitmap);
+
+            ////TODO: add event listener to manual_bg
+        }
     }
 
     //read main.json and load template
@@ -63,7 +86,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
 
         //load template
         def = def.then(function(res){
-            console.log("load done");
+            //console.log("load done");
             return t.load(rootUrl, res);
         })
 
@@ -95,7 +118,40 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         def = def.then(function(){
             oriModel.put();
             oriModel.cache(0, 0, oriTemplate.width, oriTemplate.height);
-            return oriModel.cacheCanvas.toDataURL('image/png');
+            //console.log(oriModel.cacheCanvas.toDataURL('image/png'));
+            return oriModel.cacheCanvas.toDataURL('image/jpeg');
+        })
+
+        return def.promise();
+    }
+
+    p.set_bg = function(url) {
+        //Model.manual_bg @Bitmap is a reference to the manual_bg in Model.child
+        //Template.manual_bg @Object = {img: img, x:.. , y:.. }
+        //Template.res.manual_bg @Object = {img: img, x:.. , y:..}
+        //note that in res.manual_bg there is an original scale
+        //in template.manual_bg, img x y have another scale for display
+        var self = this;
+        var t = self.template;
+        var res = t.res;
+
+        if(this.manual_bg)
+            this.removeChild(this.manual_bg);
+
+        var def = t.set_bg(url);
+        def = def.then(function(){
+            var bitmap = new createjs.Bitmap(t.manual_bg.img);
+            self.manual_bg = bitmap;
+
+            bitmap.set({
+                x: t.manual_bg.x,
+                y: t.manual_bg.y,
+                scaleX: t.manual_bg.scaleX,
+                scaleY: t.manual_bg.scaleY
+            })
+
+            self.addChild(bitmap);
+            //TODO: add event listener to manual_bg
         })
 
         return def.promise();

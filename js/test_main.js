@@ -58,11 +58,15 @@ require(['Controller'], function() {
     //注意output()需要从服务器异步加载数据，因此返回的是jQuery的promise对象
     $('#btn').click(function(){
         controller.output().then(function(data){
-            location.href = data;
+            console.log(data);
         })
     })
 
     $('#btn2').click(function(){
         controller.set_color("green");
+    })
+
+    $('#fileSelect').change(function(e){
+        controller.set_bg(e.target.files[0]);
     })
 })

@@ -63,5 +63,16 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
         this.model.set_color(color);
     }
 
+    //file is an instance of File(HTML5 API)
+    p.set_bg = function(file){
+        if(!/^image\//.test(file.type))
+            throw "file is not an image";
+
+        window.URL = window.URL || window.webkitURL;
+        var url = window.URL.createObjectURL(file);
+
+        this.model.set_bg(url);
+    }
+
     window.Controller = Controller;
 })
