@@ -45,6 +45,7 @@ function selectedItemSm(nStep,nItem)
 var stepProgress=1;//start from 1
 var stepOn=1;
 var _Item;
+var mORn=1;
 function test(item)
 {
     $('li.todoli'+item).addClass('todo-done');
@@ -53,19 +54,72 @@ function jmpStep(step)
 {
     var mapItem=["chinese","flat","full"];
     var mapStep=["mainThumbnail","colorset"];
-    if(step<=stepProgress)
+    if(step<=stepProgress&&step!=2)
     {
-        $('div.pad'+stepOn).addClass('hidden');
-        $('li.todoli'+stepOn).removeClass('todo-done');
-        $('div.pad'+step).removeClass('hidden');
-        $('li.todoli'+step).addClass('todo-done');
+        if(stepOn!=2)
+        {
+            $('div.pad'+stepOn).addClass('hidden');
+            $('li.todoli'+stepOn).removeClass('todo-done');
+            $('div.pad'+step).removeClass('hidden');
+            $('li.todoli'+step).addClass('todo-done');
+        }
+        else
+        {
+            $('div.pad'+stepOn+mORn).addClass('hidden');
+            $('li.todoli'+stepOn).removeClass('todo-done');
+            $('div.pad'+step).removeClass('hidden');
+            $('li.todoli'+step).addClass('todo-done');
+        }
         stepOn=step;
     }
     var description=[{"fatherRole":"root","fatherDomain":"root"},{"fatherRole":"master","fatherDomain":mapItem[_Item-1]}];
     console.log(description[step-1]);
     console.log("jmpStep "+step);
-    if(step==1)loadThumbnail(description[step-1],step,mapStep[step-1]);
-    if(step==2)selItem("colorset",loadColorSet,description[1]);
+    if(step==1)
+    {
+        _Item=0;
+        loadThumbnail(description[step-1],step,mapStep[step-1]);
+    }
+    if(step==2)
+    {
+        if(_Item<=2)
+        {
+            $('div.pad1').addClass('hidden');
+            $('li.todoli1').removeClass('todo-done');
+            $('div.pad21').removeClass('hidden');
+            $('li.todoli2').addClass('todo-done');
+            stepOn=step;
+            selItem("colorset",loadColorSet,description[1]);
+            mORn=1;
+        }
+        else
+        {
+            $('div.pad1').addClass('hidden');
+            $('li.todoli1').removeClass('todo-done');
+            $('div.pad22').removeClass('hidden');
+            $('li.todoli2').addClass('todo-done');
+            stepOn=step;
+            mORn=2;
+        }
+        stepProgress=3;
+        for(var i=1;i<=4;i++)
+        {
+            if(i>stepProgress)
+            {
+                if(!($('li.todoli'+i).hasClass('disabled')))
+                {
+                    $('li.li'+i).addClass('disabled');
+                }
+            }
+            else if(i<=stepProgress)
+            {
+                if(($('li.todoli'+i).hasClass('disabled')))
+                {
+                    $('li.todoli'+i).removeClass('disabled');
+                }
+            }
+        }
+    }
     if(step==4)
     {
         controller.output().then(function(data){
