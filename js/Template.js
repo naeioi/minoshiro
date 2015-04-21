@@ -75,19 +75,19 @@ define(["createjs"], function(createjs){
 
         //load and set bg img
         //note that the src of default bg is src[0], with others choices to be manually selected
-        def = getImage(baseUrl + res.bg[cIndex].src);
-        def = def.then(function (img) {
-            //img is <img> object, due to the inconvenience of base64
-            var obj = {
-                img: img,
-                x: (res.bg[cIndex].x || 0) * scaleX,
-                y: (res.bg[cIndex].y || 0) * scaleY,
-                scaleX: 1,
-                scaleY: 1
-            }
+            def = getImage(baseUrl + res.bg[cIndex].src);
+            def = def.then(function (img) {
+                //img is <img> object, due to the inconvenience of base64
+                var obj = {
+                    img: img,
+                    x: (res.bg[cIndex].x || 0) * scaleX,
+                    y: (res.bg[cIndex].y || 0) * scaleY,
+                    scaleX: 1,
+                    scaleY: 1
+                }
 
-            t.bg = obj;
-        })
+                t.bg = obj;
+            })
 
         //load and set elements
         def = def.then(function () {
@@ -158,7 +158,7 @@ define(["createjs"], function(createjs){
 
                 var def2 = $.Deferred();
                 img.onload = function () {
-                    console.log(img);
+                    //console.log(img);
                     self.manual_bg = {
                         img: img,
                         x: res.manual_bg.x * scaleX,
@@ -224,25 +224,27 @@ define(["createjs"], function(createjs){
         var self = this;
         var res = this.res;
 
-        res.manual_bg = {
-            src: url,
-            x: 0, y: 0,
-            scaleX: 1, scaleY: 1
-        }
-
         var def = $.Deferred();
         var img = document.createElement('img');
+        var scaleX = res.demo_width / res.origin_width, scaleY = res.demo_height / res.origin_height;
+
         img.src = url;
         img.onload = function(){
-            self.manual_bg = {
-                img: img,
-                x: 0, y: 0,
-                scaleX: res.demo_width / res.origin_width,
-                scaleY: res.demo_height / res.origin_height
+
+            res.manual_bg = {
+                src: url,
+                x: res.origin_width / 4,
+                y: res.origin_height / 4,
+                scaleX: res.origin_width / 2 / img.width,
+                scaleY: res.origin_width / 2 / img.width
             }
 
-            res.manual_bg.scaleX = res.origin_width / 2 / img.width;
-            res.manual_bg.scaleY = res.manual_bg.scaleX;
+            self.manual_bg = {
+                img: img,
+                x: res.manual_bg.x * scaleX, y: res.manual_bg.y * scaleY,
+                scaleX: scaleX,
+                scaleY: scaleY
+            }
 
             def.resolve();
         }

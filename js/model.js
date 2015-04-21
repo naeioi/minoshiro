@@ -51,6 +51,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             var imgtext = t.texts[i];
             imgtext.res_text = t.res.texts[i];
             self.addChild(imgtext);
+            //self.stage.update();
             //imgtext.dispatchEvent('click');
         }
 
@@ -66,6 +67,9 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             })
 
             self.addChild(bitmap);
+            if(self.stage && self.stage.update)
+                self.stage.update();
+            self.bindTrans(bitmap);
         }
     }
 
@@ -124,43 +128,131 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         return def.promise();
     }
 
-    p.bindScale = function(obj){
+    p.bindTrans = function(obj){
         obj.cursor = "move";
 
         var self = this;
+        var t = this.template.manual_bg;
+        var res = this.template.res.manual_bg;
+
         var bound = obj.getBounds();
         var border = new createjs.Container();
-        var rect = new createjs.Shape();
 
-        rect.graphics.setStrokeStyle(1,0,2,1).beginStroke("blue").drawRect(-0.5, -0.5, Math.floor(bound.width*obj.scaleX+1), Math.floor(bound.height*obj.scaleY+1));
-        border.set({
-            x: obj.x,
-            y: obj.y,
-            scaleX: 1,
-            scaleY: 1
-        })
+        var scaleX = this.template.res.demo_width / this.template.res.origin_width;
+        var scaleY = this.template.res.demo_height / this.template.res.origin_height;
+
+        var rect = new createjs.Shape(), round = new createjs.Shape();
+
         border.addChild(rect);
+        border.addChild(round);
 
+        var set = function() {
+
+            //border.removeAllChildren();
+
+            rect.graphics.clear();
+            round.graphics.clear();
+
+            obj.hitArea = new createjs.Shape();
+            obj.hitArea.graphics.beginFill("black")
+                .drawRect(-7 / scaleX, -7 / scaleX, bound.width + 14 / scaleX, bound.height + 14 / scaleX);
+
+            rect.graphics.setStrokeStyle(1, 0, 2, 1)
+                .beginStroke("#0055FF")
+                .drawRect(-0.5, 0, Math.floor(bound.width * obj.scaleX + 2), Math.floor(bound.height * obj.scaleY + 1));
+            round.graphics.beginFill("#66CCFF")
+                .drawRect(bound.width * obj.scaleX - 3, bound.height * obj.scaleY - 3, 5, 5);
+
+            round.hitArea = new createjs.Shape();
+            round.hitArea.graphics.beginFill("black").drawRect(bound.width * obj.scaleX - 13, bound.height * obj.scaleY - 13, 20, 20);
+            round.cursor = "nw-resize";
+            border.set({
+                x: obj.x,
+                y: obj.y,
+                scaleX: 1,
+                scaleY: 1
+            })
+        }
+
+        set();
+
+        //var ind = self.getChildIndex(obj) - 1;
+        round.addEventListener('mouseover', function(){
+            self.bgBitmap.alpha = 0.3;
+            self.addChild(border);
+        })
+
+        round.addEventListener('mouseout', function(){
+            self.bgBitmap.alpha = 1;
+            self.removeChild(border);
+        })
+
+        round.addEventListener('mousedown', function(e){
+            var x0 = e.stageX, y0 = e.stageY;
+            var x1 = obj.x + bound.width  * obj.scaleX;
+            var y1 = obj.y + bound.height * obj.scaleY;
+
+            console.log('x0='+x0);
+            console.log('y0='+y0);
+            var onpressmove = function(e){
+                console.log('onpressmove');
+                var dx = e.stageX - x0, dy = e.stageY - y0;
+                //console.log('dx='+dx);
+                //console.log('dy='+dy);
+                obj.scaleX = (x1+dx-obj.x) / bound.width;
+                obj.scaleY = (y1+dy-obj.y) / bound.height;
+                res.scaleX = obj.scaleX / scaleX;
+                res.scaleY = obj.scaleY / scaleY;
+                set();
+            }
+
+            var onpressup = function(e){
+                console.log('onpressup');
+                self.stage.removeAllEventListeners();
+            }
+
+            self.stage.addEventListener('pressmove', onpressmove);
+            self.stage.addEventListener('pressup', onpressup);
+        })
+
+/*
+        round.addEventListener('mousedown', function(e){
+            round.pos = { x: e.stageX, Y: e.stageY };
+        })
+
+        round.addEventListener('mousemove', function(){
+            obj.scaleX = (e.stageX - round.pos.x)/bound.width + obj.scaleX;
+            obj.scaleY = (e.stageY - round.pos.y)/bound.height + obj.scaleY;
+            round.pos = { x: e.stageX, Y: e.stageY };
+            set();
+        })
+*/
         obj.addEventListener('mouseover', function(){
             self.bgBitmap.alpha = 0.3;
             self.addChild(border);
         })
+
         obj.addEventListener('mouseout', function(){
             self.bgBitmap.alpha = 1;
             self.removeChild(border);
         })
 
         obj.addEventListener('mousedown', function(e){
+            res.offset = { x: obj.x - e.stageX, y: obj.y - e.stageY};
             obj.offset = { x: obj.x - e.stageX, y: obj.y - e.stageY};
             border.offset = { x: border.x - e.stageX, y: border.y - e.stageY};
         })
 
         obj.addEventListener('pressmove', function(e){
+            res.x = (e.stageX + res.offset.x) / scaleX;
+            res.y = (e.stageY + res.offset.y) / scaleY;
             obj.x = e.stageX + obj.offset.x;
             obj.y = e.stageY + obj.offset.y;
+            t.x = obj.x; t.y = obj.y;
             border.x = e.stageX + border.offset.x;
             border.y = e.stageY + border.offset.y;
         })
+
     }
 
     p.set_bg = function(url) {
@@ -173,8 +265,10 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         var t = self.template;
         var res = t.res;
 
-        if(this.manual_bg)
+        if(this.manual_bg) {
             this.removeChild(this.manual_bg);
+            if(this.stage) this.stage.update();
+        }
 
         var def = t.set_bg(url);
         def = def.then(function(){
@@ -189,9 +283,8 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             })
 
             self.addChild(bitmap);
-            //TODO: add event listener to manual_bg
 
-            self.bindScale(bitmap);
+            self.bindTrans(bitmap);
         })
 
         return def.promise();

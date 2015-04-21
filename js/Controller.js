@@ -10,6 +10,7 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
     var Controller = function(canvas){
         this.stage = new createjs.Stage(canvas);
         this.model = null;
+        createjs.Ticker.timingMode = createjs.Ticker.RAF;
         createjs.Ticker.addEventListener('tick', this.stage);
         this.stage.enableMouseOver(10);
         this.stage.mouseMoveOutside = true;
