@@ -188,10 +188,12 @@ define(['createjs', 'TextLine'], function(createjs) {
         return def;
     };
 
-    p.change = function(str){
+    p.change = function(str, color){
         str = str || " ";
-        if(str != this.originText) {
+        color = color || this.color;
+        if(str != this.originText || color != this.color) {
             this.originText = str;
+            this.color = color;
             this.load(str);
         }
     }

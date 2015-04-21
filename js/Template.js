@@ -120,7 +120,8 @@ define(["createjs"], function(createjs){
         //load texts
         def = def.then(function () {
             var texts = res.texts;
-            var colors = res.text_color[cIndex];
+            res.text_color = res.text_color || [];
+            var colors = res.text_color[cIndex] || [];
 
             var chain = $.Deferred();
             chain.resolve();
@@ -177,28 +178,16 @@ define(["createjs"], function(createjs){
 
         def = def.then(function () {
             var texts = t.res.texts;
-            var colors = t.res.text_color[cIndex];
+            //t.res.text_color = t.res.text_color || [];
+            var colors = t.res.text_color[cIndex] || [];
 
             var chain = $.Deferred();
             chain.resolve();
 
             for (var i = 0; i < texts.length; i++) {
-                (function () {
-                    var text = texts[i];
-                    var color = colors[i];
-                    var imgtext = new createjs.ImageText(text.content, text.reg, text.dir,
-                        text.space, Math.floor(text.size * scaleX),
-                        text.font, color);
-
-                    imgtext.x = text.x * scaleX;
-                    imgtext.y = text.y * scaleY;
-
-                    t.texts.push(imgtext);
-
-                    chain = chain.then(function () {
-                        return imgtext.load();
-                    });
-                })();
+                chain = chain.then(function () {
+                    return t.texts[i].change(texts[i].content, colors[i]);
+                })
             }
 
             return chain.promise();

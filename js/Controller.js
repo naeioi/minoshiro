@@ -21,6 +21,7 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
         this.stage.removeAllChildren();
 
         var model = new createjs.Model();
+        //model.shadow = new createjs.Shadow('#000000', 5, 5, 10);
         this.model = model;
         var def = model.load(src);
 
