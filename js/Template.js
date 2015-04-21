@@ -7,7 +7,7 @@ define(["createjs"], function(createjs){
         this.elements = [];
         this.bg = [];
         this.texts = [];
-        this.manual_bg = {};
+        this.manual_bg = null;
     }
 
     var p = createjs.extend(Template, createjs.DisplayObject);
@@ -82,8 +82,8 @@ define(["createjs"], function(createjs){
                 img: img,
                 x: (res.bg[cIndex].x || 0) * scaleX,
                 y: (res.bg[cIndex].y || 0) * scaleY,
-                scaleX: (res.bg[cIndex].scaleX || 0) * scaleX,
-                scaleY: (res.bg[cIndex].scaleY || 0) * scaleY
+                scaleX: 1,
+                scaleY: 1
             }
 
             t.bg = obj;
@@ -193,8 +193,8 @@ define(["createjs"], function(createjs){
                 img: img,
                 x: (res.bg[cIndex].x || 0) * scaleX,
                 y: (res.bg[cIndex].y || 0) * scaleY,
-                scaleX: (res.bg[cIndex].scaleX || 0) * scaleX,
-                scaleY: (res.bg[cIndex].scaleY || 0) * scaleY
+                scaleX: 1,
+                scaleY: 1
             }
 
             t.bg = obj;
@@ -240,6 +240,10 @@ define(["createjs"], function(createjs){
                 scaleX: res.demo_width / res.origin_width,
                 scaleY: res.demo_height / res.origin_height
             }
+
+            res.manual_bg.scaleX = res.origin_width / 2 / img.width;
+            res.manual_bg.scaleY = res.manual_bg.scaleX;
+
             def.resolve();
         }
 

@@ -12,6 +12,8 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
         this.model = null;
         createjs.Ticker.addEventListener('tick', this.stage);
         this.stage.enableMouseOver(10);
+        this.stage.mouseMoveOutside = true;
+        createjs.Touch.enable(this.stage);
     };
 
     var p = Controller.prototype;

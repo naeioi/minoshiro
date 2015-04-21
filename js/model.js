@@ -4,6 +4,7 @@
 define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquery){
     function Model(){
         this.Container_constructor();
+        this.bgBitmap = null;
     }
 
     var p = createjs.extend(Model, createjs.Container);
@@ -26,9 +27,9 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             scaleX: bg.scaleX || 1,
             scaleY: bg.scaleY || 1
         })
-
+        self.bgBitmap = bitmap;
         //THIS IS A TEST
-        bitmap.alpha = 0.3;
+        //bitmap.alpha = 0.3;
         //--------------
         self.addChild(bitmap);
 
@@ -60,13 +61,11 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             bitmap.set({
                 x: t.manual_bg.x,
                 y: t.manual_bg.y,
-                scaleX: t.manual_bg.scaleX,
-                scaleY: t.manual_bg.scaleY
+                scaleX: t.manual_bg.scaleX * t.res.manual_bg.scaleX,
+                scaleY: t.manual_bg.scaleY * t.res.manual_bg.scaleY
             })
 
             self.addChild(bitmap);
-
-            ////TODO: add event listener to manual_bg
         }
     }
 
@@ -125,6 +124,45 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         return def.promise();
     }
 
+    p.bindScale = function(obj){
+        obj.cursor = "move";
+
+        var self = this;
+        var bound = obj.getBounds();
+        var border = new createjs.Container();
+        var rect = new createjs.Shape();
+
+        rect.graphics.setStrokeStyle(1,0,2,1).beginStroke("blue").drawRect(-0.5, -0.5, Math.floor(bound.width*obj.scaleX+1), Math.floor(bound.height*obj.scaleY+1));
+        border.set({
+            x: obj.x,
+            y: obj.y,
+            scaleX: 1,
+            scaleY: 1
+        })
+        border.addChild(rect);
+
+        obj.addEventListener('mouseover', function(){
+            self.bgBitmap.alpha = 0.3;
+            self.addChild(border);
+        })
+        obj.addEventListener('mouseout', function(){
+            self.bgBitmap.alpha = 1;
+            self.removeChild(border);
+        })
+
+        obj.addEventListener('mousedown', function(e){
+            obj.offset = { x: obj.x - e.stageX, y: obj.y - e.stageY};
+            border.offset = { x: border.x - e.stageX, y: border.y - e.stageY};
+        })
+
+        obj.addEventListener('pressmove', function(e){
+            obj.x = e.stageX + obj.offset.x;
+            obj.y = e.stageY + obj.offset.y;
+            border.x = e.stageX + border.offset.x;
+            border.y = e.stageY + border.offset.y;
+        })
+    }
+
     p.set_bg = function(url) {
         //Model.manual_bg @Bitmap is a reference to the manual_bg in Model.child
         //Template.manual_bg @Object = {img: img, x:.. , y:.. }
@@ -146,12 +184,14 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             bitmap.set({
                 x: t.manual_bg.x,
                 y: t.manual_bg.y,
-                scaleX: t.manual_bg.scaleX,
-                scaleY: t.manual_bg.scaleY
+                scaleX: t.manual_bg.scaleX * res.manual_bg.scaleX,
+                scaleY: t.manual_bg.scaleY * res.manual_bg.scaleY
             })
 
             self.addChild(bitmap);
             //TODO: add event listener to manual_bg
+
+            self.bindScale(bitmap);
         })
 
         return def.promise();
