@@ -63,7 +63,8 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
                 x: t.manual_bg.x,
                 y: t.manual_bg.y,
                 scaleX: t.manual_bg.scaleX * t.res.manual_bg.scaleX,
-                scaleY: t.manual_bg.scaleY * t.res.manual_bg.scaleY
+                scaleY: t.manual_bg.scaleY * t.res.manual_bg.scaleY,
+                compositeOperation: "destination-over"
             })
 
             self.addChild(bitmap);
@@ -192,10 +193,10 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             var x1 = obj.x + bound.width  * obj.scaleX;
             var y1 = obj.y + bound.height * obj.scaleY;
 
-            console.log('x0='+x0);
-            console.log('y0='+y0);
+            //console.log('x0='+x0);
+            //console.log('y0='+y0);
             var onpressmove = function(e){
-                console.log('onpressmove');
+                //console.log('onpressmove');
                 var dx = e.stageX - x0, dy = e.stageY - y0;
                 //console.log('dx='+dx);
                 //console.log('dy='+dy);
@@ -207,7 +208,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             }
 
             var onpressup = function(e){
-                console.log('onpressup');
+                //console.log('onpressup');
                 self.stage.removeAllEventListeners();
             }
 
@@ -279,7 +280,8 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
                 x: t.manual_bg.x,
                 y: t.manual_bg.y,
                 scaleX: t.manual_bg.scaleX * res.manual_bg.scaleX,
-                scaleY: t.manual_bg.scaleY * res.manual_bg.scaleY
+                scaleY: t.manual_bg.scaleY * res.manual_bg.scaleY,
+                compositeOperation: "destination-over"
             })
 
             self.addChild(bitmap);
