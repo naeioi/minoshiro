@@ -5,5 +5,13 @@
     "templates/chinese/colorset/blue.png",
     "templates/chinese/colorset/yellow.png",
     "templates/chinese/colorset/qing.png"
-  ]
+  ],
+  "nameArray":
+          [
+            "colorbox-green",
+            "colorbox-red",
+            "colorbox-blue",
+            "colorbox-yellow",
+            "colorbox-qing"
+          ]
 }

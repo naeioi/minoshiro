@@ -7,7 +7,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <script src="lib/jquery-2.1.3.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
-    <script src="lib/flat-ui.js" ></script>
+    <script src="js/ui.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var canvas=$('canvas').get(0);
@@ -16,6 +16,7 @@
         });
     </script>
     <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/colorset.css" rel="stylesheet">
     <title></title>
     <style type="text/css">
         .scrollspy-example {
@@ -193,8 +194,8 @@
             <div class="col-md-7">
                 <div id="wrap" style="border:dashed">
                     <canvas id="canvas" width="1000" height="1000"></canvas>
+                    <script data-main="js/main.3.0" src="lib/require.js"></script>
                 </div>
-                <script data-main="js/main.3.0" src="lib/require.js"></script>
             </div>
 
             <div class="col-md-3">
@@ -263,6 +264,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <a href="" class="output form-group btn btn-default col-md-12" download="">导出</a>
+                                    <a href="#exportModal" class="form-group btn btn-default col-md-12" data-toggle="modal">Modal</a>
                                 </div>
                             </div>
                         </div>

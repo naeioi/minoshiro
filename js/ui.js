@@ -51,7 +51,7 @@ function test(item)
 }
 function jmpStep(step)
 {
-    var mapItem=["chinese","flat"];
+    var mapItem=["chinese","flat","full"];
     var mapStep=["mainThumbnail","colorset"];
     if(step<=stepProgress)
     {
@@ -62,10 +62,16 @@ function jmpStep(step)
         stepOn=step;
     }
     var description=[{"fatherRole":"root","fatherDomain":"root"},{"fatherRole":"master","fatherDomain":mapItem[_Item-1]}];
-
-    console.log(description[0]);
+    console.log(description[step-1]);
     console.log("jmpStep "+step);
-    loadThumbnail(description[step-1],step,mapStep[step-1]);
+    if(step==1)loadThumbnail(description[step-1],step,mapStep[step-1]);
+    if(step==2)selItem("colorset",loadColorSet,description[1]);
+    if(step==4)
+    {
+        controller.output().then(function(data){
+            $('a.output').attr({'download':'poster.jpg','href':data});
+        })
+    }
 }
 function selectedItem(nStep,nItem)
 {
@@ -89,43 +95,21 @@ function selectedItem(nStep,nItem)
             }
         }
     }
-    var mapItem=["chinese","flat"];
-    var mapStep=["mainDemo","complete"];
+    var mapItem=["chinese","flat","full"];
+    var mapcolor=["green","red","blue","yellow","qing"];
     var curTarger = null;
     var curStr = null;
     var description={"fatherRole":"master","fatherDomain":mapItem[_Item-1]};
     console.log("selected item "+nStep+" "+nItem);
-    if(nStep==1)selItem(mapStep[nStep-1],loadResource,description);
-    if(nStep==2)selItem(mapStep[nStep-1],loaddemo,description);
-    function loaddemo(mainJsonFile)
+    if(nStep==1)selItem("complete",loadResource,description);
+    if(nStep==2)
     {
-        console.log("loaddemo "+mainJsonFile);
-        $.getJSON(mainJsonFile, function (json) {
-            console.log(json.demofile);
-            loadResource(json.demofile[nItem]);
-        });
+        controller.set_color(mapcolor[nItem-1]);
     }
     function loadResource(mainJsonFile) {
-        controller = new Controller('canvas');
+        console.log("loadResource"+mainJsonFile);
         controller.load(mainJsonFile);
     }
-    $(controller).click(function(e){
-        curTarger = e.targer;
-        curStr = e.text;
-        $('#textarea').val(curStr);
-    });
-    setInterval(function(){
-        var str = $('#textarea').val();
-        if(curTarger != null && str != curStr){
-            curStr = str;
-            curTarger.change(str);
-        }
-    }, 0.2);
-    $('#btnspecific').click(function(){
-        controller.output().then(function(data){
-            location.href = data;
-        })
-    })
 }
 var loadNumber=0;
 function loadThumbnail(description,item,name) {
@@ -146,7 +130,19 @@ function loadThumbnail(description,item,name) {
     console.log("loadThumbnail "+name);
     selItem(name,load,description);
 }
+function loadColorSet(namejson)
+{
+    var i=1;
+    console.log('loadColorSet');
+    $.getJSON(namejson,function(json){
+        $.each(json.nameArray, function (key,item) {
+            console.log('#color1'+i+item);
+            $('#color1'+i).addClass(item);
+            i++;
+        });
+    });
 
+}
 function dfs(name,func,obj,description)
 {
     console.log("description "+description.fatherDomain);

@@ -38,7 +38,7 @@
               {
                 "role":"list",
                 "isBottom":true,
-                "next":["templates/chinese/complete/complete.json"],
+                "next":["templates/chinese/complete/chinese.json"],
                 "name":"complete"
               }
             ]
@@ -62,6 +62,34 @@
               "next":["templates/flat/mainThumbnail/thumb.json"],
               "name":"mainThumbnail",
               "father":"flat/flat.json"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"full",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/full/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail",
+              "father":"full/full.json"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/full/colorset/colorset.json"],
+              "name":"colorset",
+              "father":"flat/flat.json"
+            }
+          ,
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/full/complete/full.json"],
+              "name":"complete"
             }
           ]
         }
