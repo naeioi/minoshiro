@@ -120,6 +120,7 @@ define(['createjs'], function(createjs) {
             img.src = data;
 
             img.onload = function() {
+                img.onload = null;
                 p.trimPic(img);
                 def.resolve(img);
             }
