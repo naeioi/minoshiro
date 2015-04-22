@@ -115,12 +115,16 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
     p.output = function(){
         var oriModel = new createjs.Model();
         var oriTemplate = new createjs.Template();
+        var whiteBG = new createjs.Shape();
         var def;
 
         oriModel.template = oriTemplate;
         def = oriTemplate.load(this.rootUrl, this.template.res, 'origin');
         def = def.then(function(){
+            whiteBG.graphics.beginFill('white')
+                .drawRect(0, 0, oriTemplate.width, oriTemplate.height);
             oriModel.put();
+            oriModel.addChildAt(whiteBG, 0);
             oriModel.cache(0, 0, oriTemplate.width, oriTemplate.height);
             //console.log(oriModel.cacheCanvas.toDataURL('image/png'));
             return oriModel.cacheCanvas.toDataURL('image/jpeg');

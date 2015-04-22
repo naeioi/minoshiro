@@ -188,13 +188,23 @@ define(['createjs', 'TextLine'], function(createjs) {
         return def;
     };
 
-    p.change = function(str, color){
-        str = str || " ";
-        color = color || this.color;
-        if(str != this.originText || color != this.color) {
-            this.originText = str;
-            this.color = color;
-            this.load(str);
+    p.change = function(argv){
+        if(typeof argv === 'string') {
+            argv = argv || " ";
+            if (argv != this.originText) {
+                this.originText = argv;
+                this.load();
+            }
+        }else if(typeof argv === 'object'){
+            var flag = false;
+            for(var i in argv){
+                if(argv.hasOwnProperty(i) && this.hasOwnProperty(i) && this[i] != argv[i]){
+                    this[i] = argv[i];
+                    flag = true;
+                }
+            }
+            if(flag)
+                this.load();
         }
     }
 
