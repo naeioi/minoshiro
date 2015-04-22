@@ -1,0 +1,52 @@
+{
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1191,
+  "origin_height": 1684,
+  "bg_manualable": false,
+  "bg": [
+	{"src": "blue.png"},
+    {"src": "green.png"},
+	{"src": "pink.png"},
+	{"src": "white.png"},
+	{"src": "yellow.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "chsj.TTF",
+      "content": "播种希望",
+      "size": 130,
+      "dir": 0,
+      "reg": 3,
+      "x": 127,
+      "y": 795
+    },
+    {
+      "font": "zxh.ttf",
+      "content": "你的一个小小的行动\n也许就播下了一粒种子\n也许将来的这里将绿树成林\n支教行动 我们需要你的加入",
+      "size": 40,
+      "dir": 0,
+      "reg": 0,
+      "x": 151,
+      "y": 1076
+    },{
+		"font": "ffh.TTF",
+      "content": "二月一日\n百年讲堂门口\n不见不散",
+      "size": 40,
+      "dir": 0,
+      "reg": 1,
+      "x": 1045,
+      "y": 88
+	},{
+		"font": "zxh.ttf",
+      "content": "北京大学学生会",
+      "size": 30,
+      "dir": 0,
+      "reg": 1,
+      "x": 1161,
+      "y": 1605
+	}
+  ],
+  "set_name": ["blue", "green", "pink", "white", "yellow"]
+}

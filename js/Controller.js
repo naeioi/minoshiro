@@ -19,14 +19,14 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
 
     var p = Controller.prototype;
 
-    p.load = function(src){
+    p.load = function(src, mode){
         var self = this;
         this.stage.removeAllChildren();
 
         var model = new createjs.Model();
         //model.shadow = new createjs.Shadow('#000000', 5, 5, 10);
         this.model = model;
-        var def = model.load(src, 'origin');
+        var def = model.load(src, mode);
 
         def = def.then(function(){
             var bound = model.getBounds();

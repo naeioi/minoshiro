@@ -1,0 +1,38 @@
+{
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1985,
+  "origin_height": 2807,
+  "bg_manualable": false,
+  "bg": [
+    {"src": "red.png"},
+    {"src": "qing.png"},
+    {"src": "blue.png"},
+    {"src": "green.png"},
+    {"src": "yellow.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "kxzd.otf",
+      "content": "桂林",
+      "size": 135,
+      "dir": 1,
+      "reg": 4,
+      "x": 530,
+      "y": 270
+    },
+    {
+      "font": "y.ttf",
+      "content": "桂林山水甲天下，\n玉碧罗青意可参.",
+      "size": 58,
+      "dir": 1,
+      "reg": 4,
+      "x": 289,
+      "y": 644
+    }
+  ],
+  "text_color": [["001100"],["110011"],["110011"],["110011"],["110011"]],
+  "set_name": ["red", "qing", "blue", "green", "yellow"]
+
+}

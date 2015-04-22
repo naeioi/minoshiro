@@ -52,8 +52,8 @@ define(['createjs'], function(createjs) {
         var _w = img.width, _h = img.height;
         var bitmap;
 
-        _can.width = _w+2;
-        _can.height = _h+2;
+        _can.width = _w;
+        _can.height = _h;
 
         ctx.drawImage(img, 0, 0);
 

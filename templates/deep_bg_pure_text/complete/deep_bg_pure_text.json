@@ -1,0 +1,74 @@
+{
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1985,
+  "origin_height": 2807,
+  "bg_manualable": false,
+  "bg": [
+	{"src": "blue.png"},
+    {"src": "black.png"},
+	{"src": "brown.png"},
+	{"src": "red.png"},
+	{"src": "green.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "ffh.TTF",
+      "content": "数学社",
+      "size": 130,
+      "dir": 1,
+      "reg": 1,
+      "x": 1319,
+      "y": 613
+    },
+    {
+      "font": "ffh.TTF",
+      "content": "在这里 你可以找到\n志趣相投的朋友\n在这里 你可以探索\n最美丽的科学的秘密\n我们期待 最独特的你",
+      "size": 49,
+      "dir": 0,
+      "reg": 2,
+      "x": 1241,
+      "y": 1077
+    },
+	{
+      "font": "ffh.TTF",
+      "content": "报名信息",
+      "size": 93,
+      "dir": 1,
+      "reg": 0,
+      "x": 623,
+      "y": 1265
+    },
+	{
+      "font": "ffh.TTF",
+      "content": "面试时间：三月二十四日\n地点：二教101\n报名请关注微信\n@爱数学",
+      "size": 60,
+      "dir": 0,
+      "reg": 0,
+      "x": 809,
+      "y": 1271
+    },
+	{
+      "font": "ffh.TTF",
+      "content": "不见不散",
+      "size": 60,
+      "dir": 0,
+      "reg": 0,
+      "x": 827,
+      "y": 1989
+    },
+	{
+		"font": "ffh.TTF",
+      "content": "XX协会",
+      "size": 58,
+      "dir": 0,
+      "reg": 0,
+      "x": 54,
+      "y": 2702
+	}
+  ],
+  "text_color":  [["FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","000000"],["FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","000000"],["FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","000000"],["FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","000000"],["FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","000000"],["FFFFFF","FFFFFF","FFFFFF","FFFFFF","FFFFFF","000000"]],
+  "set_name": ["blue", "black", "brown", "red", "green"]
+  
+}

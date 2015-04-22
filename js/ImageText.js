@@ -46,7 +46,7 @@ define(['createjs', 'TextLine'], function(createjs) {
         this.fontSize = size || 20;
         this.fontFamily = family || "";
         this.color = color || "000000";
-        this.lineHeight = 200;  //___% of font-size
+        this.lineHeight = 220;  //___% of font-size
 
         this.texts = [];
         this.name = "ImageText";    //click事件冒泡到model时用于判断是否是点击了文字
@@ -117,6 +117,7 @@ define(['createjs', 'TextLine'], function(createjs) {
 
             if (self.dir == 0) {
                 var _h = self.fontSize * self.lineHeight / 100;
+                var n = arr.length;
                 switch (self.reg) {
                     case 0:
                         textline.set({
@@ -133,13 +134,13 @@ define(['createjs', 'TextLine'], function(createjs) {
                     case 2:
                         textline.set({
                             x: -bound.width,
-                            y: -i * _h
+                            y: -(n-i-1) * _h
                         });
                         break;
                     case 3:
                         textline.set({
                             x: 0,
-                            y: -i * _h
+                            y: -(n-i-1) * _h
                         });
                         break;
                     case 4:
