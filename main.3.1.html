@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1 , user-scalable=no">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/jquery-ui.css" rel="stylesheet">
     <script src="lib/jquery-2.1.3.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/jquery-ui.js"></script>
     <script src="js/ui.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -192,6 +194,7 @@
                 </div>
             </div>
             <div class="col-md-7">
+
                 <div id="wrap" style="border:dashed">
                     <canvas id="canvas" width="1000" height="1000"></canvas>
                     <script data-main="js/main.3.0" src="lib/require.js"></script>
@@ -200,38 +203,56 @@
 
             <div class="col-md-3">
                 <div data-spy="affix" style="padding-right: 5%;width: 30%" class="hidden-sm hidden-xs">
-                    <div class="well toolbox" style="background-color: rgba(255, 255, 255, 0.9)">
-                        <div class="pad1 row scrollspy-example ">
-                            <div class="col-md-12" data-spy="scroll" data-offset="50">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <h6 class="">固定背景</h6>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <img id="op11" class="img-rounded padbox" width="100%" onclick="selectedItem(1,1)">
+                    <div class="">
+                        <div class="pad1 row scrollspy-example uibox  toolbox">
+                            <div class="row">
+                                <div class="col-md-12 uibox-head"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" data-spy="scroll" data-offset="50">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12 uibox-content">
+                                                    <h6 class="uibox-name">固定背景</h6>
+                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <img id="op12" class="img-rounded padbox" width="100%" onclick="selectedItem(1,2)">
+                                            <div class="row">
+                                                <div class="col-md-12 uibox-content">
+                                                    <div class="col-md-4">
+                                                        <img id="op11" class="img-rounded" width="100%" onclick="selectedItem(1,1)">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <img id="op12" class="img-rounded" width="100%" onclick="selectedItem(1,2)">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <hr>
-                                            <h6>自定义背景</h6>
-                                            <div class="col-md-6">
-                                                <img id="op13" class="img-rounded padbox" width="100%" onclick="selectedItem(1,3)">
+                                            <div class="row">
+                                                <div class="col-md-12 uibox-content">
+                                                    <h6 class="uibox-name">自定义背景</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 uibox-content">
+                                                    <div class="col-md-4">
+                                                        <div class="row">
+                                                            <img id="op13" class="img-roundedx" width="100%" onclick="selectedItem(1,3)">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="pad21 row hidden scrollspy-2">
-                            <div class="col-md-12" data-spy="scroll" data-offset="50">
-                                <h4 class="text-center">配色</h4>
+                        <div class="pad21 row hidden scrollspy-2  uibox  toolbox">
+                            <div class="col-md-12 " data-spy="scroll" data-offset="50">
+                                <div class="row uibox-head">
+                                    <h4 class="text-center">配色</h4>
+                                </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 uibox-content">
                                         <div class="col-md-4">
                                             <div id="color11" class="" onclick="selectedItem(2,1)"></div>
                                         </div>
@@ -252,11 +273,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pad22 row hidden scrollspy-2">
+                        <div class="pad22 row hidden scrollspy-2 uibox  toolbox">
                             <div class="col-md-12" data-spy="scroll" data-offset="50">
-                                <h4 class="text-center">上传背景</h4>
+                                <div class="row uibox-head">
+                                    <h4 class="text-center">上传背景</h4>
+                                </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 uibox-content">
                                         <div class="input-group">
                                             <span class="input-group-addon glyphicon glyphicon-upload" aria-hidden="true"></span>
                                             <input type="file" class="form-control" id="fileSelect">
@@ -265,20 +288,43 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pad3 row hidden">
-                            <h4 class="text-center">文字</h4>
-                            <div class="row">
-                                <form>
-                                    <div class="form-group col-md-10 col-md-offset-1">
-                                        <textarea class="form-control" placeholder="输入文字" onclick="selectedItem(3,-1)" id="textarea" style="height: 400px"></textarea>
+                        <div class="pad3 row hidden uibox toolbox">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12 uibox-head">
+                                        <h4 class="text-center">文字</h4>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="row uibox-content">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div id="h-slider"></div>
+                                        </div>
+                                        <div class="col-md-1" id="sizeshow">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <form>
+                                            <div class="form-group col-md-10 col-md-offset-1">
+                                                <textarea class="form-control" placeholder="输入文字" onclick="selectedItem(3,-1)" id="textarea" style="height: 400px"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="pad4 row hidden">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <a href="#exportModal" class="form-group btn btn-default col-md-12" data-toggle="modal">导出</a>
+                        <div class="pad4 row hidden uibox toolbox">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12 uibox-head">
+                                    </div>
+                                </div>
+                                <div class="row uibox-content">
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <a href="#exportModal" class="form-group btn btn-default col-md-12" data-toggle="modal">导出</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

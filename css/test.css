@@ -1,77 +1,9 @@
-.toolbox
-{
-    box-shadow: 0px 0px 5px 5px #888888;
-    margin-top: 10px;
-    margin-bottom: 10px;
-
-}
-.padbox
-{
-    box-shadow: 5px 5px 2px #888888;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    cursor:pointer;
-}
-.colorbox-red
-{
-    width:80px;
-    height:80px;
-    background-color:#ff88a2;
-    border-radius: 8px;
-    margin-top: 10px;
-    cursor:pointer;
-}
-.colorbox-green
-{
-    width:80px;
-    height:80px;
-    background-color:#90b592;
-    border-radius: 8px;
-    margin-top: 10px;
-    cursor:pointer;
-}
-.colorbox-blue
-{
-    width:80px;
-    height:80px;
-    background-color:#4ca7df;
-    border-radius: 8px;
-    margin-top: 10px;
-    cursor:pointer;
-}
-.colorbox-yellow
-{
-    width:80px;
-    height:80px;
-    background-color:#ffdf59;
-    border-radius: 8px;
-    margin-top: 10px;
-    cursor:pointer;
-}
-.colorbox-qing
-{
-    width:80px;
-    height:80px;
-    background-color:#62bab8;
-    border-radius: 8px;
-    margin-top: 10px;
-    cursor:pointer;
-}
-.folder
-{
-    width:100px;
-    height:100px;
-    background-color: rgba(222,222,255,0.6);
-    border-radius: 8px;
-    margin-top:10px;
-    cursor:pointer;
-}
 .uibox {
     margin-bottom: 20px;
-    color: #000000;
+    color: #798795;
     border-radius: 6px;
 }
-.uibox-top {
+.uibox-yop {
     padding: 0;
     margin: 0;
     list-style-type: none;
@@ -83,13 +15,12 @@
     padding: 18px 42px 21px 25px;
     margin-top: 2px;
     font-size: 14px;
-    -contentne-height: 1.214;
+   -contentne-height: 1.214;
     cursor: pointer;
-    background: #eeeeee;
+    background: #34495e;
     background-size: 20px 20px;
     -webkit-transition: .25s;
     transition: .25s;
-    border-radius: 50%;
 }
 .uibox-content:first-child {
     margin-top: 0;
@@ -99,7 +30,7 @@
     border-radius: 0 0 6px 6px;
 }
 .uibox-content.uibox-done {
-    color: #000000;
+    color: #1abc9c;
     background: transparent;
 }
 .uibox-content.disabled {
@@ -107,7 +38,7 @@
     background-color:rgba(200,200,200,0.3);
 }
 .uibox-content.uibox-done .uibox-name {
-    color: #000000;
+    color: #1abc9c;
 }
 .uibox-content:after {
     position: absolute;
@@ -117,13 +48,30 @@
     width: 20px;
     height: 20px;
     margin-top: -10px;
+    content: " ";
     background: #fff;
     border-radius: 50%;
+}
+.uibox-content.uibox-done:after {
+    font-family: 'Flat-UI-Icons';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 21px;
+    color: #2c3e50;
+    text-align: center;
+    text-transform: none;
+    content: "\e60a";
+    background: #1abc9c;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 .uibox-head {
     position: relative;
     padding: 19px 25px 20px;
-    color: #eeeeee;
+    color: #34495e;
     background: #1abc9c;
     background-size: 16px 16px;
     border-radius: 6px 6px 0 0;
@@ -145,15 +93,24 @@
     font-size: 19px;
     font-weight: 700;
     line-height: 23px;
-    color: #eeeeee;
+    color: #34495e;
     text-indent: 0;
     background: none;
     border: none;
     outline: none;
     box-shadow: none;
 }
+.uibox-icon {
+    float: left;
+    padding: 11px 22px 0 0;
+    font-size: 24px;
+}
+.uibox-content {
+    padding-top: 1px;
+    overflow: hidden;
+}
 .uibox-name {
     margin: 1px 0 3px;
     font-size: 17px;
-    color: #000000;
+    color: #fff;
 }
