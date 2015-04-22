@@ -1,46 +1,58 @@
-.colorbox
+.toolbox
 {
     box-shadow: 10px 10px 5px #888888;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.padbox
+{
+    box-shadow: 5px 5px 2px #888888;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor:pointer;
+}
 .colorbox-red
 {
-    width:60px;
-    height:60px;
+    width:80px;
+    height:80px;
     background-color:#ff88a2;
-    box-shadow: 10px 10px 5px #888888;
+    border-radius: 8px;
     margin-top: 10px;
+    cursor:pointer;
 }
 .colorbox-green
 {
-    width:60px;
-    height:60px;
+    width:80px;
+    height:80px;
     background-color:#90b592;
-    box-shadow: 10px 10px 5px #888888;
+    border-radius: 8px;
     margin-top: 10px;
+    cursor:pointer;
 }
 .colorbox-blue
 {
-    width:60px;
-    height:60px;
+    width:80px;
+    height:80px;
     background-color:#4ca7df;
-    box-shadow: 10px 10px 5px #888888;
+    border-radius: 8px;
     margin-top: 10px;
+    cursor:pointer;
 }
 .colorbox-yellow
 {
-    width:60px;
-    height:60px;
+    width:80px;
+    height:80px;
     background-color:#ffdf59;
-    box-shadow: 10px 10px 5px #888888;
+    border-radius: 8px;
     margin-top: 10px;
+    cursor:pointer;
 }
 .colorbox-qing
 {
-    width:60px;
-    height:60px;
+    width:80px;
+    height:80px;
     background-color:#62bab8;
-    box-shadow: 10px 10px 5px #888888;
+    border-radius: 8px;
     margin-top: 10px;
+    cursor:pointer;
 }
