@@ -31,8 +31,8 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
         def = def.then(function(){
             var bound = model.getBounds();
             if(bound.width > self.stage.canvas.width){
-                model.scaleY = model.scaleX = self.stage.canvas.width / 2 / bound.width;
-                model.x = self.stage.canvas.width / 4;
+                model.scaleY = model.scaleX = self.stage.canvas.width / bound.width;
+                model.x = 0;
             }
             else{
                 model.x = (self.stage.canvas.width - bound.width) / 2;
