@@ -1,3 +1,9 @@
+.colorbox
+{
+    box-shadow: 10px 10px 5px #888888;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .colorbox-red
 {
     width:60px;

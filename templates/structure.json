@@ -17,22 +17,19 @@
                 "role":"mainThumbnail",
                 "isBottom":true,
                 "next":["templates/chinese/mainThumbnail/thumb.json"],
-                "name":"mainThumbnail",
-                "father":"chinese/chinese.json"
+                "name":"mainThumbnail"
               },
               {
                 "role":"list",
                 "isBottom":true,
                 "next":["templates/chinese/mainThumbnail/demo.json"],
-                "name":"mainDemo",
-                "father":"chinese/chinese.json"
+                "name":"mainDemo"
               },
               {
                 "role":"list",
                 "isBottom":true,
                 "next":["templates/chinese/colorset/colorset.json"],
-                "name":"colorset",
-                "father":"flat/flat.json"
+                "name":"colorset"
               }
             ,
               {

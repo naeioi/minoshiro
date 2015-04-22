@@ -1,35 +1,38 @@
 {
-  "demo_width": 397,
-  "demo_height": 561,
-  "origin_width": 1191,
-  "origin_height": 1684,
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1985,
+  "origin_height": 2807,
   "bg_manualable": false,
   "bg": [
-    {
-      "src": "main.png",
-      "x": 0,
-      "y": 0
-    }
+    {"src": "red.png"},
+    {"src": "qing.png"},
+    {"src": "blue.png"},
+    {"src": "green.png"},
+    {"src": "yellow.png"}
   ],
   "elements": [],
   "texts": [
     {
       "font": "kxzd.otf",
-      "content": "百年\n讲堂",
+      "content": "桂林",
       "size": 135,
-      "dir": 0,
+      "dir": 1,
       "reg": 4,
-      "x": 600,
-      "y": 350
+      "x": 530,
+      "y": 270
     },
     {
       "font": "y.ttf",
-      "content": "艺术的乐章在这里回荡\n智慧的火花在这里迸发",
+      "content": "桂林山水甲天下，\n玉碧罗青意可参.",
       "size": 58,
-      "dir": 0,
+      "dir": 1,
       "reg": 4,
-      "x": 600,
-      "y": 880
+      "x": 289,
+      "y": 644
     }
-  ]
+  ],
+  "text_color": [["001100"],["110011"],["110011"],["110011"],["110011"]],
+  "set_name": ["red", "qing", "blue", "green", "yellow"]
+
 }
