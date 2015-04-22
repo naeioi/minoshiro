@@ -34,11 +34,11 @@ require(['Controller'], function() {
     text是事件触发时ImageText对象内的文字（注意：text并未跟imagetext绑定！调用imagetext.change(str)后text不会改变！
     */
 
-    var curTarger = null;
+    var curTarget = null;
     var curStr = null;
 
     $(controller).click(function(e){
-        curTarger = e.targer;
+        curTarget = e.target;
         curStr = e.text;
         $('#textarea').val(curStr);
     })
@@ -48,9 +48,9 @@ require(['Controller'], function() {
     //不要通过绑定textarea.onchange实现这个功能，有bug
     setInterval(function(){
         var str = $('#textarea').val();
-        if(curTarger != null && str != curStr){
+        if(curTarget != null && str != curStr){
             curStr = str;
-            curTarger.change(str);
+            curTarget.change(str);
         }
     }, 0.2)
 

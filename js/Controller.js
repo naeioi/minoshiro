@@ -46,11 +46,16 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
         def = def.then(function(){
             model.addEventListener('click', function(e){
                 if(e.target.name === "TextLine"){
-                    $(self).trigger({
+                    var obj = {
                         type: 'click',
-                        targer: e.target.father,
-                        text: e.target.father.originText
-                    })
+                        target: e.target.father
+                    }
+
+                    for(var i in obj.target)
+                        if(obj.target.hasOwnProperty(i))
+                            obj[i] = obj.target[i];
+
+                    $(self).trigger(obj);
                 }
             })
         })
