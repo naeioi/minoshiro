@@ -52,8 +52,8 @@ define(['createjs'], function(createjs) {
         var _w = img.width, _h = img.height;
         var bitmap;
 
-        _can.width = _w;
-        _can.height = _h;
+        _can.width = _w+2;
+        _can.height = _h+2;
 
         ctx.drawImage(img, 0, 0);
 
@@ -119,11 +119,10 @@ define(['createjs'], function(createjs) {
             var img = document.createElement('img');
             img.src = data;
 
-            p.trimPic(img);
-
-            //document.getElementById('test_img').src = img.src;
-
-            def.resolve(img);
+            img.onload = function() {
+                p.trimPic(img);
+                def.resolve(img);
+            }
         }
 
         //console.log('text=' + encodeURI(t.text));

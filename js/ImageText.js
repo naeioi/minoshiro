@@ -34,7 +34,7 @@
 */
 
 define(['createjs', 'TextLine'], function(createjs) {
-    function ImageText(originText, reg, dir, space, size, family, color)
+    function ImageText(originText, reg, dir, space, size, family, color, lineSpacing)
     {
         this.Container_constructor();
 
@@ -42,10 +42,11 @@ define(['createjs', 'TextLine'], function(createjs) {
         this.reg = reg || 0;
         this.dir = dir || 0;
         this.letterSpacing = space || 0;
+        this.lineSpacing = 0;
         this.fontSize = size || 20;
         this.fontFamily = family || "";
         this.color = color || "000000";
-        this.lineHeight = 170;  //___% of font-size
+        this.lineHeight = 200;  //___% of font-size
 
         this.texts = [];
         this.name = "ImageText";    //click事件冒泡到model时用于判断是否是点击了文字

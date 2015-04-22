@@ -1,6 +1,18 @@
 <?php
     //version = 1.1
     $str=$_GET['text'];
+
+    # detect if the string was passed in as unicode
+    $text_encoding = mb_detect_encoding($str, 'UTF-8, ISO-8859-1');
+    # make sure it's in unicode
+    if ($text_encoding != 'UTF-8') {
+        $str = mb_convert_encoding($str, 'UTF-8', $text_encoding);
+    }
+
+    # html numerically-escape everything (&#[dec];)
+    $str = mb_encode_numericentity($str,
+        array (0x0, 0xffff, 0, 0xffff), 'UTF-8');
+
     $fontsize=$_GET['size'];
     $dir=$_GET['dir'];
     $color=$_GET['color'];

@@ -19,7 +19,7 @@ require(['Controller'], function() {
 
     //通过load方法从main.json文件中读取模板并放到canvas中
     //load返回jQuery的promise对象，方便异步操作
-    controller.load('templates/chinese/complete/chinese.json');
+    controller.load('templates/half_pic/complete/half_pic.json');
 
     /*
     --- 测试实时输入 ---
@@ -36,11 +36,20 @@ require(['Controller'], function() {
 
     var curTarget = null;
     var curStr = null;
+    var curX = null;
+    var curY = null;
+    var curSize = null;
 
     $(controller).click(function(e){
         curTarget = e.target;
-        curStr = e.text;
+        curStr = e.originText;
+        curX = e.x;
+        curY = e.y;
+        curSize = e.fontSize;
         $('#textarea').val(curStr);
+        $('#x').val(curX);
+        $('#y').val(curY);
+        $('#size').val(curSize);
     })
 
 
@@ -48,9 +57,20 @@ require(['Controller'], function() {
     //不要通过绑定textarea.onchange实现这个功能，有bug
     setInterval(function(){
         var str = $('#textarea').val();
-        if(curTarget != null && str != curStr){
+        var x = $('#x').val();
+        var y = $('#y').val();
+        var size = $('#size').val();
+        if(curTarget != null && (str != curStr || x != curX || y != curY || size != curSize)){
             curStr = str;
-            curTarget.change(str);
+            curX = x;
+            curY = y;
+            curSize = size;
+            curTarget.change({
+                originText: str,
+                x: x,
+                y: y,
+                fontSize: size
+            });
         }
     }, 0.2)
 
@@ -63,7 +83,15 @@ require(['Controller'], function() {
     })
 
     $('#btn2').click(function(){
-        controller.set_color("green");
+        var style = $('#style').val();
+        controller.set_color(style);
+    })
+
+    $('#test_text').change(function(e){
+        $.get('pcs.1.1.php?text='+e.target.value+'&dir=0&space=0&font=chsj.TTF&size=40&color=000000')
+            .then(function(data){
+                $('#test_img')[0].src = data;
+            })
     })
 
     $('#fileSelect').change(function(e){

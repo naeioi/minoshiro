@@ -75,7 +75,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
     }
 
     //read main.json and load template
-    p.load = function(src)
+    p.load = function(src, mode)
     {
         var self = this;
         var t = new createjs.Template();
@@ -91,7 +91,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         //load template
         def = def.then(function(res){
             //console.log("load done");
-            return t.load(rootUrl, res);
+            return t.load(rootUrl, res, mode);
         })
 
         //add all staff into container
