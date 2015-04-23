@@ -1,0 +1,46 @@
+{
+  "demo_width":700,
+  "demo_height":990,
+  "origin_width":1191,
+  "origin_height":1684,
+  "bg_manualable": false,
+  "bg": [
+	{"src": "light1.png"},
+    {"src": "light2.png"},
+    {"src": "light3.png"},
+    {"src": "light4.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "zqh.ttf",
+      "content": "大学生职业规划讲座",
+      "size": 100,
+      "dir": 1,
+      "reg": 0,
+      "x": 87,
+      "y": 143
+    },
+    {
+      "font": "zqh.ttf",
+      "content": "拥抱未来",
+      "size": 100,
+      "dir": 0,
+      "reg": 0,
+      "x": 285,
+      "y": 164
+    },
+    {
+      "font": "zqh.ttf",
+      "content": "初入大学，你是否还感\n觉迷茫？怎样选择发展\n方向？现在的我应该开\n始做什么？大神学长学\n姐为你提供建议！\n\n二月十四日\n二教一零一\n我们等你来~",
+      "size": 58,
+      "dir": 0,
+      "reg": 0,
+      "x": 285,
+      "y": 401
+    }
+  ],
+  "text_color": [["000000","000000","000000"],["000000","000000","000000"],["000000","000000","000000"],["000000","000000","000000"]],
+  "set_name": ["light1","light2","light3","light4"]
+  
+}

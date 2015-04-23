@@ -1,0 +1,56 @@
+{
+  "demo_width":700,
+  "demo_height":990,
+  "origin_width":1985,
+  "origin_height":2807,
+  "bg_manualable": false,
+  "bg": [
+	{"src": "red.png"},
+    {"src": "blue.png"},
+    {"src": "green.png"},
+    {"src": "purple.png"},
+    {"src": "brown.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "kxzd.otf",
+      "content": "水墨\n世界",
+      "size": 257,
+      "dir": 0,
+      "reg": 4,
+      "x": 1001,
+      "y": 534
+    },
+    {
+      "font": "kxzd.otf",
+      "content": "———2月13号晚8点",
+      "size": 58,
+      "dir": 0,
+      "reg": 0,
+      "x": 371,
+      "y": 1580
+    },
+    {
+      "font": "kxzd.otf",
+      "content": "北大二教101———",
+      "size": 58,
+      "dir": 0,
+      "reg": 1,
+      "x": 1655,
+      "y": 1675
+    },
+    {
+      "font": "zqh.ttf",
+      "content": "让国画大师\n带你走入\n水墨的时间\n感受穿越百年\n走到今天的\n水墨的清香\n著名画家XXX\n国画知识讲座",
+      "size": 68,
+      "dir": 1,
+      "reg": 1,
+      "x": 1445,
+      "y": 1773
+    }
+  ],
+  "text_color": [["ffffff","ffffff","ffffff","ffffff"],["ffffff","ffffff","ffffff","ffffff"],["ffffff","ffffff","ffffff","ffffff"],["ffffff","ffffff","ffffff","ffffff"],["ffffff","ffffff","ffffff","ffffff"]],
+  "set_name": ["red", "blue","green","purple","brown"]
+  
+}
