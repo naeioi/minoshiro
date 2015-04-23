@@ -3,7 +3,7 @@
   "demo_height": 990,
   "origin_width": 1191,
   "origin_height": 1684,
-  "bg_manualable": true,
+  "bg_manualable": false,
   "bg": [
 	{"src": "hc.png"},
     {"src": "lz.png"},

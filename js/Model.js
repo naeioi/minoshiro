@@ -311,8 +311,25 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, $){
             })
 
             self.addChild(bitmap);
-
             self.bindTrans(bitmap);
+
+            var hint = new createjs.Shape();
+            hint.graphics.beginFill('gray')
+                .drawRect(0, 0, t.manual_bg.img.width, t.manual_bg.img.height);
+
+            hint.set({
+                x: bitmap.x,
+                y: bitmap.y,
+                scaleX: t.manual_bg.scaleX * res.manual_bg.scaleX,
+                scaleY: t.manual_bg.scaleY * res.manual_bg.scaleY,
+                alpha: 0.3
+            })
+
+            hint.addEventListener('rollover', function(){
+                self.removeChild(hint);
+            })
+
+            self.addChild(hint);
         })
 
         return def.promise();
