@@ -14,24 +14,33 @@
   "elements": [],
   "texts": [
     {
-      "font": "kxzd.otf",
+      "font": "hkwh.ttf",
       "content": "桂林",
-      "size": 135,
+      "size": 207,
       "dir": 1,
-      "reg": 4,
-      "x": 1248,
-      "y": 286
+      "reg": 0,
+      "x": 1211,
+      "y": 233
     },
     {
-      "font": "y.ttf",
-      "content": "桂林山水甲天下，\n玉碧罗青意可参.",
-      "size": 58,
+      "font": "qkby.TTF",
+      "content": "桂林山水甲天下，\n玉碧罗青意可参。\n士气未饶军气振，\n文场端似战场酣。",
+      "size": 73,
       "dir": 1,
-      "reg": 4,
-      "x": 473,
-      "y": 1204
-    }
+      "reg": 1,
+      "x": 1226,
+      "y": 1103
+    },{
+	"font": "qkby.TTF",
+      "content": "桂林文化展\n时间：一月一日\n地点：二教101\n期待你的光临",
+      "size": 60,
+      "dir": 0,
+      "reg": 0,	
+      "x": 197,
+      "y": 2171
+	}
   ],
-  "set_name": ["red", "qing", "blue", "green", "yellow"]
+  "text_color": [["362c07","FFFFFF","362c07"],["362c07","FFFFFF","362c07"],["362c07","FFFFFF","362c07"],["362c07","FFFFFF","362c07"],["362c07","FFFFFF","362c07"]],
+  "set_name": ["green", "red", "qing", "blue", "yellow"]
   
 }

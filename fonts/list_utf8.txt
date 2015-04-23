@@ -1,4 +1,4 @@
-八大山人字体试用版 -> bdsr.TTF
+﻿八大山人字体试用版 -> bdsr.TTF
 方正粗黑宋简体	   -> chjs.TTF
 方正清刻本悦宋简体 -> qkby.TTF
 方正正纤黑简体	   -> zqh.ttf
@@ -11,3 +11,4 @@
 书体坊颜体         -> y.ttf
 浙江民間書刻體     -> zjsk.ttf
 中山行书百年纪念版 -> zsxs.ttf
+华康文徽明体	   -> hkwh.ttf

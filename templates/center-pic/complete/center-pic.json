@@ -1,0 +1,43 @@
+{
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1191,
+  "origin_height": 1684,
+  "bg_manualable": false,
+  "bg": [
+	{"src": "blue.png"},
+    {"src": "brown.png"},
+	{"src": "pink.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "chjs.TTF",
+      "content": "手工社",
+      "size": 113,
+      "dir": 0,
+      "reg": 4,
+      "x": 594,
+      "y": 155
+    },
+    {
+      "font": "qkby.TTF",
+      "content": "学手工 长见识\n想认识各种手工大牛吗？\n报名请关注微信号：@xxxx",
+      "size": 38,
+      "dir": 0,
+      "reg": 4,
+      "x": 576,
+      "y": 1332
+    },{
+	"font": "qkby.TTF",
+      "content": "XX协会",
+      "size": 31,
+      "dir": 0,
+      "reg": 0,
+      "x": 1020,
+      "y": 1611
+	}
+  ],
+  "text_color": [["FFFFFF","000000","000000"],["FFFFFF","000000","000000"],["FFFFFF","000000","000000"]],
+  "set_name": ["blue", "brown", "pink"]
+}

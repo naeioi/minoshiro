@@ -77,7 +77,7 @@ define(["createjs"], function(createjs){
 
         //load and set bg img
         //note that the src of default bg is src[0], with others choices to be manually selected
-        if(res.bg) {
+        if(res.bg && res.bg[cIndex]) {
             def = getImage(baseUrl + res.bg[cIndex].src);
             def = def.then(function (img) {
                 //img is <img> object, due to the inconvenience of base64
