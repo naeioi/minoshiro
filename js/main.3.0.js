@@ -54,7 +54,7 @@ require(['Controller','jqueryui'], function() {
                 originText: str
             });
         }
-        $('#h-slider').value(curSize);
+        $('#h-slider').val(curSize);
     }, 0.2)
 
     $(controller).click(function(e){
