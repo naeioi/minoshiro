@@ -44,20 +44,14 @@ require(['Controller','jqueryui'], function() {
             $('#sizeshow').text(ui.value);
         }
     });
-    //检查textarea更改并更新
+    //�?查textarea更改并更�?
     //不要通过绑定textarea.onchange实现这个功能，有bug
     setInterval(function(){
         var str = $('#textarea').val();
-        if(curTarget != null && (str != curStr || x != curX || y != curY || size != curSize)){
+        if(curTarget != null && str != curStr){
             curStr = str;
-            curX = x;
-            curY = y;
-            curSize = size;
             curTarget.change({
-                originText: str,
-                x: x,
-                y: y,
-                fontSize: size
+                originText: str
             });
         }
         $('#h-slider').value(curSize);
