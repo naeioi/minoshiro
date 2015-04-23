@@ -125,12 +125,11 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, $){
         def = def.then(function(){
             whiteBG.graphics.beginFill('white')
                 .drawRect(0, 0, oriTemplate.width, oriTemplate.height);
-            whiteBG.alpha = 0.3;
             oriModel.put();
             //oriModel.addChildAt(whiteBG, 0);
             oriModel.cache(0, 0, oriTemplate.width, oriTemplate.height);
             //console.log(oriModel.cacheCanvas.toDataURL('image/png'));
-            return oriModel.cacheCanvas.toDataURL('image/jpeg');
+            return oriModel.cacheCanvas.toDataURL('image/png');
         })
 
         return def.promise();

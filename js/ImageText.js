@@ -67,8 +67,10 @@ define(['createjs', 'TextLine'], function(createjs) {
         //this.removeAllChildren();
         this.texts.length = 0;
 
-        if(this.res_text)
+        if(this.res_text) {
             this.res_text.content = str;
+            this.res_text.size = this.fontSize / (this.parent.template.res.demo_width / this.parent.template.res.origin_width);
+        }
 
         var arr = str.split('\n');
         var textline_arr = []
