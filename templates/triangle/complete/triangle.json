@@ -1,0 +1,44 @@
+{
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1191,
+  "origin_height": 1684,
+  "bg_manualable": true,
+  "bg": [
+	{"src": "hc.png"},
+    {"src": "lz.png"},
+	{"src": "hl.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "chsj.TTF",
+      "content": "机器人大赛",
+      "size": 127,
+      "dir": 0,	
+      "reg": 0,
+      "x": 187,
+      "y": 244
+    },
+    {
+      "font": "zqh.ttf",
+      "content": "用你灵巧的双手\n拼出凝聚的奇迹\n第十届机器人大赛\n我们期待你的身影",
+      "size": 40,
+      "dir": 0,
+      "reg": 3,
+      "x": 194,
+      "y": 1188
+    },{
+	"font": "zqh.ttf",
+      "content": "报名网站：xxxxxxxxxx\n截止时间：xxxx年x月x日",
+      "size": 40,
+      "dir": 0,
+      "reg": 0,
+      "x": 203,
+      "y": 1356
+	}
+  ],	
+  "text_color": [["4B4817","4B4817","4B4817"],["4B4817","4B4817","4B4817"],["4B4817","4B4817","4B4817"]],
+  "set_name": ["hc", "lz", "hl"]
+  
+}
