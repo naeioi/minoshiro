@@ -43,94 +43,89 @@ function selectedItemSm(nStep,nItem)
     }
 }
 var stepProgress=1;//start from 1
-var stepOn=1;
-var _Item;
-var mORn=1;
-function test(item)
-{
-    $('li.todoli'+item).addClass('todo-done');
-}
+var stepOn={
+    step:1,
+    mORn:1//whether a manualable template
+};
+var _Item={bg_manualable:false,id:1,group:0};
+var namesOther=["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"];
+var namesGroup=[["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"]];
+var Steps=["mainThumbnail","colorset"];
+//color specific by json file
 function jmpStep(step)
 {
-    var mapStep=["mainThumbnail","colorset"];
-    var mapItem=["deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"];
-    var mapcolor=["green","red","blue","yellow","qing"];
+    //setting ui element
     if(step<=stepProgress&&step!=2)
     {
-        if(stepOn!=2)
+        if(stepOn.step!=2)
         {
-            $('div.pad'+stepOn).addClass('hidden');
-            $('li.todoli'+stepOn).removeClass('todo-done');
+            $('div.pad'+stepOn.step).addClass('hidden');
+            $('li.todoli'+stepOn.step).removeClass('todo-done');
             $('div.pad'+step).removeClass('hidden');
             $('li.todoli'+step).addClass('todo-done');
         }
         else
         {
-            $('div.pad'+stepOn+mORn).addClass('hidden');
-            $('li.todoli'+stepOn).removeClass('todo-done');
+            $('div.pad2'+stepOn.mORn).addClass('hidden');
+            $('li.todoli2').removeClass('todo-done');
             $('div.pad'+step).removeClass('hidden');
             $('li.todoli'+step).addClass('todo-done');
         }
-        stepOn=step;
+        stepOn.step=step;
     }
-    var description=[{"fatherRole":"root","fatherDomain":"root"},{"fatherRole":"master","fatherDomain":mapItem[_Item-1]}];
-    console.log(description[step-1]);
-    console.log("jmpStep "+step);
-    if(step==1)
+    else if(step<=stepProgress&&step==2)
     {
-        _Item=0;
-        loadThumbnail(description[step-1],step,mapStep[step-1]);
-    }
-    if(step==2)
-    {
-        if(_Item>4)
+        if(_Item.bg_manualable==false)
         {
-            $('div.pad1').addClass('hidden');
-            $('li.todoli1').removeClass('todo-done');
+            $('div.pad'+stepOn.step).addClass('hidden');
+            $('li.todoli'+stepOn.step).removeClass('todo-done');
             $('div.pad21').removeClass('hidden');
             $('li.todoli2').addClass('todo-done');
-            stepOn=step;
-            selItem("colorset",loadColorSet,description[1]);
-            mORn=1;
+            stepOn.step=step;
+            stepOn.mORn=1;
         }
-        else
+        if(_Item.bg_manualable==true)
         {
-            $('div.pad1').addClass('hidden');
-            $('li.todoli1').removeClass('todo-done');
+            $('div.pad'+stepOn.step).addClass('hidden');
+            $('li.todoli'+stepOn.step).removeClass('todo-done');
             $('div.pad22').removeClass('hidden');
             $('li.todoli2').addClass('todo-done');
-            stepOn=step;
-            mORn=2;
-        }
-        stepProgress=3;
-        for(var i=1;i<=4;i++)
-        {
-            if(i>stepProgress)
-            {
-                if(!($('li.todoli'+i).hasClass('disabled')))
-                {
-                    $('li.li'+i).addClass('disabled');
-                }
-            }
-            else if(i<=stepProgress)
-            {
-                if(($('li.todoli'+i).hasClass('disabled')))
-                {
-                    $('li.todoli'+i).removeClass('disabled');
-                }
-            }
+            stepOn.step=step;
+            stepOn.mORn=2;
         }
     }
-    if(step==4)
+
+    //filling toolbar
+    switch(step)
     {
-        controller.output().then(function(data){
-            $('a.output').attr({'download':'poster.jpg','href':data});
-        })
+        case 1:
+            loadThumbnail({fatherRole:"root",fatherDomain:"root"},1,Steps[0]);
+            break;
+        case 2:
+            if(_Item.bg_manualable==true)//step into 22
+            {
+
+            }
+            else
+            {
+                selItem("complete",loadColorSet,{fatherRole:"master",fatherDomain:namesOther[_Item.id]})
+            }
+            break;
+        case 3:
+            break;
+        case 4:
+            controller.output().then(function(data){
+                $('a.output').attr({'download':'poster.jpg','href':data});
+            })
+        default:
+            break;
     }
+
+    console.log("jmpStep "+step+" succeeded");
 }
-function selectedItem(nStep,nItem)
+
+function setProgress(nStep)
 {
-    if(nStep==1)_Item=nItem;
     var numberOfItem=4;
     if(nStep+1>stepProgress)stepProgress=nStep+1;
     for(var i=1;i<=numberOfItem;i++)
@@ -150,21 +145,42 @@ function selectedItem(nStep,nItem)
             }
         }
     }
+}
+
+function selColor(_color)//_color is a string
+{
+    setProgress(2);
+    controller.set_color(_color);
+}
+
+function selectedItem(nStep,nItem)//nItem is an object
+{
+    if(nStep==1)_Item=nItem;
+    setProgress(nStep);
     var mapItem=["deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"];
-    var mapcolor=["green","red","blue","yellow","qing"];
-    var description={"fatherRole":"master","fatherDomain":mapItem[_Item-1]};
+    var description={fatherRole:"master",fatherDomain:mapItem[_Item.id-1]};
     console.log("selected item "+nStep+" "+nItem);
-    if(nStep==1)selItem("complete",loadResource,description);
-    if(nStep==2)
+
+    switch(nStep)
     {
-        controller.set_color(mapcolor[nItem-1]);
+        case 1:
+            if(_Item.group=='other')
+            selItem("complete",loadResource,{fatherRole:"master",fatherDomain:namesOther[_Item.id-1]})
+            else
+            {
+                var defination={fatherRole:"master"};
+                defination.fatherDomain=namesGroup[_Item.group][_Item.id];
+                selItem("complete",loadResource,defination);
+            }
+            break;
+        default:break;
     }
     function loadResource(mainJsonFile) {
         console.log("loadResource"+mainJsonFile);
         controller.load(mainJsonFile);
     }
 }
-var loadNumber=0;
+
 function loadThumbnail(description,item,name) {
     function load (jsonFile)
     {
@@ -175,24 +191,20 @@ function loadThumbnail(description,item,name) {
                 if(json.class=="other")
                 $('#' + json.class + json.id).attr('src', value);
                 console.log(value);
-                loadNumber+=1;
             })
         });
-        //
     }
-    loadNumber=0;
     console.log("loadThumbnail "+name);
     selItem(name,load,description);
 }
+
 function loadColorSet(namejson)
 {
-    var i=1;
     console.log('loadColorSet');
     $.getJSON(namejson,function(json){
-        $.each(json.nameArray, function (key,item) {
-            console.log('#color1'+i+item);
-            $('#color1'+i).addClass(item);
-            i++;
+        $.each(json.set_name, function (key,item) {
+            console.log('#color '+item);
+            $('#color_'+item).addClass("colorbox-"+item);
         });
     });
 

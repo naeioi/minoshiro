@@ -35,7 +35,6 @@ require(['Controller','jqueryui'], function() {
     $('#h-slider').slider({
         max:300,
         min:0,
-        range:true,
         animate:"fast",
         change:function(event,ui){
             curTarget.change({
@@ -60,7 +59,6 @@ require(['Controller','jqueryui'], function() {
                 fontSize: size
             });
         }
-        $('#h-slider').value(curSize);
     }, 0.2)
 
     $(controller).click(function(e){

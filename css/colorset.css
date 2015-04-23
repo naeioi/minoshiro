@@ -57,6 +57,42 @@
     margin-top: 10px;
     cursor:pointer;
 }
+.colorbox-black
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(0,0,0,0.7);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-brown
+{
+    width:80px;
+    height:80px;
+    background-color: rgba(57,57,57,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-white
+{
+    width:80px;
+    height:80px;
+    background-color: rgba(255,255,255,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-pink
+{
+    width:80px;
+    height:80px;
+    background-color: rgba(255,215,227,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
 .folder
 {
     width:100px;

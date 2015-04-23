@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1 , user-scalable=no">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/flat-ui.min.css" rel="stylesheet">
+    <link href="css/colorset.css" rel="stylesheet">
     <script src="lib/jquery-2.1.3.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/jquery-ui.js"></script>
@@ -17,8 +19,6 @@
             canvas.height=$('#wrap').width()*1.414;
         });
     </script>
-    <link href="css/flat-ui.css" rel="stylesheet">
-    <link href="css/colorset.css" rel="stylesheet">
     <title>Minoshiro 3.1</title>
     <style type="text/css">
         .scrollspy-example {
@@ -194,7 +194,6 @@
                 </div>
             </div>
             <div class="col-md-7">
-
                 <div id="wrap" style="border:dashed">
                     <canvas id="canvas" width="1000" height="1000"></canvas>
                     <script data-main="js/main.3.0" src="lib/require.js"></script>
@@ -220,16 +219,16 @@
                                             <div class="row">
                                                 <div class="col-md-12 uibox-content">
                                                     <div class="col-md-4">
-                                                        <img id="other1" class="img-rounded" width="100%" onclick="selectedItem(1,1)" style="margin-bottom: 20px">
+                                                        <img id="other1" class="img-rounded" width="100%" onclick="selectedItem(1,{bg_manualable:false,id:1,group:0})" style="margin-bottom: 20px">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <img id="other2" class="img-rounded" width="100%" onclick="selectedItem(1,2)" style="margin-bottom: 20px">
+                                                        <img id="other2" class="img-rounded" width="100%" onclick="selectedItem(1,{bg_manualable:true,id:2,group:0})" style="margin-bottom: 20px">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <img id="other3" class="img-rounded" width="100%" onclick="selectedItem(1,3)" style="margin-bottom: 20px">
+                                                        <img id="other3" class="img-rounded" width="100%" onclick="selectedItem(1,{bg_manualable:true,id:3,group:0})" style="margin-bottom: 20px">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <img id="other4" class="img-rounded" width="100%" onclick="selectedItem(1,4)" style="margin-bottom: 20px">
+                                                        <img id="other4" class="img-rounded" width="100%" onclick="selectedItem(1,{bg_manualable:false,id:4,group:0})" style="margin-bottom: 20px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,23 +245,26 @@
                                 <div class="row">
                                     <div class="col-md-12 uibox-content">
                                         <div class="col-md-4">
-                                            <div id="color11" class="" onclick="selectedItem(2,1)"></div>
+                                            <div id="color_green" class="" onclick="selColor('green')"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color12" class="" onclick="selectedItem(2,2)"></div>
+                                            <div id="color_blue" class="" onclick="selColor('blue')"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color13" class="" onclick="selectedItem(2,3)"></div>
+                                            <div id="color_red" class="" onclick="selColor('red')"></div>
                                         </div>
                                         <br>
                                         <div class="col-md-4">
-                                            <div id="color14" class="" onclick="selectedItem(2,4)"></div>
+                                            <div id="color_yellow" class="" onclick="selColor('yellow')"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color15" class="" onclick="selectedItem(2,5)"></div>
+                                            <div id="color_black" class="" onclick="selColor('black')"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color16" class="" onclick="selectedItem(2,5)"></div>
+                                            <div id="color_qing" class="" onclick="selColor('qing')"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_brown" class="" onclick="selColor('brown')"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -302,7 +304,7 @@
                                     <div class="row">
                                         <form>
                                             <div class="form-group col-md-10 col-md-offset-1">
-                                                <textarea class="form-control" placeholder="输入文字" onclick="selectedItem(3,-1)" id="textarea" style="height: 200px"></textarea>
+                                                <textarea class="form-control" placeholder="输入文字" onclick="setProgress(3)" id="textarea" style="height: 200px"></textarea>
                                             </div>
                                         </form>
                                     </div>
