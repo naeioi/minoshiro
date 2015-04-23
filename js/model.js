@@ -1,7 +1,7 @@
 /**
  * Created by naeioi on 2015/4/8.
  */
-define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquery){
+define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, $){
     function Model(){
         this.Container_constructor();
         this.bgBitmap = null;
@@ -19,19 +19,21 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         var t = self.template;
 
         //put bg
-        var bg = t.bg;
-        var bitmap = new createjs.Bitmap(bg.img);
-        bitmap.set({
-            x: bg.x,
-            y: bg.y,
-            scaleX: bg.scaleX || 1,
-            scaleY: bg.scaleY || 1
-        })
-        self.bgBitmap = bitmap;
-        //THIS IS A TEST
-        //bitmap.alpha = 0.3;
-        //--------------
-        self.addChild(bitmap);
+        if(t.bg) {
+            var bg = t.bg;
+            var bitmap = new createjs.Bitmap(bg.img);
+            bitmap.set({
+                x: bg.x,
+                y: bg.y,
+                scaleX: bg.scaleX || 1,
+                scaleY: bg.scaleY || 1
+            })
+            self.bgBitmap = bitmap;
+            //THIS IS A TEST
+            //bitmap.alpha = 0.3;
+            //--------------
+            self.addChild(bitmap);
+        }
 
         //put elements
         for (var i = 0; i < t.elements.length; i++) {
@@ -123,8 +125,9 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         def = def.then(function(){
             whiteBG.graphics.beginFill('white')
                 .drawRect(0, 0, oriTemplate.width, oriTemplate.height);
+            whiteBG.alpha = 0.3;
             oriModel.put();
-            oriModel.addChildAt(whiteBG, 0);
+            //oriModel.addChildAt(whiteBG, 0);
             oriModel.cache(0, 0, oriTemplate.width, oriTemplate.height);
             //console.log(oriModel.cacheCanvas.toDataURL('image/png'));
             return oriModel.cacheCanvas.toDataURL('image/jpeg');
@@ -193,31 +196,37 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         })
 
         round.addEventListener('mousedown', function(e){
+            //console.log('mousedown');
+
             var x0 = e.stageX, y0 = e.stageY;
-            var x1 = obj.x + bound.width  * obj.scaleX;
-            var y1 = obj.y + bound.height * obj.scaleY;
+            var x1 = (obj.x + bound.width  * obj.scaleX) * self.scaleX;
+            var y1 = (obj.y + bound.height * obj.scaleY) * self.scaleY;
 
             //console.log('x0='+x0);
             //console.log('y0='+y0);
             var onpressmove = function(e){
-                //console.log('onpressmove');
+                //console.log('pressmove');
                 var dx = e.stageX - x0, dy = e.stageY - y0;
                 //console.log('dx='+dx);
                 //console.log('dy='+dy);
-                obj.scaleX = (x1+dx-obj.x) / bound.width;
-                obj.scaleY = (y1+dy-obj.y) / bound.height;
+                obj.scaleX = ((x1+dx)/self.scaleX-obj.x) / bound.width;
+                obj.scaleY = ((y1+dy)/self.scaleY-obj.y) / bound.height;
                 res.scaleX = obj.scaleX / scaleX;
                 res.scaleY = obj.scaleY / scaleY;
                 set();
             }
 
             var onpressup = function(e){
-                //console.log('onpressup');
+                //console.log('pressup');
                 self.stage.removeAllEventListeners();
             }
 
             self.stage.addEventListener('pressmove', onpressmove);
             self.stage.addEventListener('pressup', onpressup);
+
+            $('#canvas').mouseleave(function(){
+                self.stage.dispatchEvent('pressup');
+            })
         })
 
 /*
@@ -243,6 +252,20 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
         })
 
         obj.addEventListener('mousedown', function(e){
+            var x0 = e.stageX, y0 = e.stageY;
+            var x1 = res.x, y1 = res.y;
+            obj.addEventListener('pressmove', function(e){
+                var dx = e.stageX - x0, dy = e.stageY - y0;
+                res.x = x1 + dx / scaleX / self.scaleX;
+                res.y = y1 + dy / scaleY / self.scaleY;
+                obj.x = res.x * scaleX;
+                obj.y = res.y * scaleY;
+                border.x = obj.x - 1;
+                border.y = obj.y - 1;
+            })
+        })
+/*
+        obj.addEventListener('mousedown', function(e){
             res.offset = { x: obj.x - e.stageX, y: obj.y - e.stageY};
             obj.offset = { x: obj.x - e.stageX, y: obj.y - e.stageY};
             border.offset = { x: border.x - e.stageX, y: border.y - e.stageY};
@@ -257,7 +280,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, jquer
             border.x = e.stageX + border.offset.x;
             border.y = e.stageY + border.offset.y;
         })
-
+*/
     }
 
     p.set_bg = function(url) {

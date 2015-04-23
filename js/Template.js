@@ -31,6 +31,8 @@ define(["createjs"], function(createjs){
         mode = mode || "demo";
 
         //a map: color_name -> index
+        res.set_name = res.set_name || [];
+
         if (!t.map) {
             t.map = {};
             for (var i = 0; i < res.set_name.length; i++)
@@ -75,6 +77,7 @@ define(["createjs"], function(createjs){
 
         //load and set bg img
         //note that the src of default bg is src[0], with others choices to be manually selected
+        if(res.bg) {
             def = getImage(baseUrl + res.bg[cIndex].src);
             def = def.then(function (img) {
                 //img is <img> object, due to the inconvenience of base64
@@ -88,6 +91,7 @@ define(["createjs"], function(createjs){
 
                 t.bg = obj;
             })
+        }
 
         //load and set elements
         def = def.then(function () {

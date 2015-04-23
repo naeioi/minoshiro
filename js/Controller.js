@@ -26,10 +26,16 @@ define(['createjs', 'jquery', 'ImageText', 'TextLine', 'Model'], function(create
         var model = new createjs.Model();
         //model.shadow = new createjs.Shadow('#000000', 5, 5, 10);
         this.model = model;
+        mode = mode || 'demo';
         var def = model.load(src, mode);
 
         def = def.then(function(){
-            var bound = model.getBounds();
+
+            var bound = {
+                width: model.template.res[mode+'_width'],
+                height: model.template.res[mode+'_height']
+            }
+
             if(bound.width > self.stage.canvas.width){
                 model.scaleY = model.scaleX = self.stage.canvas.width / bound.width;
                 model.x = 0;
