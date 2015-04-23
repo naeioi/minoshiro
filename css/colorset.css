@@ -89,7 +89,6 @@
     background-size: 20px 20px;
     -webkit-transition: .25s;
     transition: .25s;
-    border-radius: 50%;
 }
 .uibox-content:first-child {
     margin-top: 0;

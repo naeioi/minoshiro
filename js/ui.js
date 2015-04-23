@@ -52,8 +52,9 @@ function test(item)
 }
 function jmpStep(step)
 {
-    var mapItem=["chinese","flat","full"];
     var mapStep=["mainThumbnail","colorset"];
+    var mapItem=["deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"];
+    var mapcolor=["green","red","blue","yellow","qing"];
     if(step<=stepProgress&&step!=2)
     {
         if(stepOn!=2)
@@ -82,7 +83,7 @@ function jmpStep(step)
     }
     if(step==2)
     {
-        if(_Item<=2)
+        if(_Item>4)
         {
             $('div.pad1').addClass('hidden');
             $('li.todoli1').removeClass('todo-done');
@@ -149,10 +150,8 @@ function selectedItem(nStep,nItem)
             }
         }
     }
-    var mapItem=["chinese","flat","full"];
+    var mapItem=["deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"];
     var mapcolor=["green","red","blue","yellow","qing"];
-    var curTarger = null;
-    var curStr = null;
     var description={"fatherRole":"master","fatherDomain":mapItem[_Item-1]};
     console.log("selected item "+nStep+" "+nItem);
     if(nStep==1)selItem("complete",loadResource,description);
@@ -173,7 +172,8 @@ function loadThumbnail(description,item,name) {
         $.getJSON(jsonFile,function(json) {
             console.log("Load : "+json);
             $.each(json.classes, function (key, value) {
-                $('#op' + item + (loadNumber + 1)).attr('src', value);
+                if(json.class=="other")
+                $('#' + json.class + json.id).attr('src', value);
                 console.log(value);
                 loadNumber+=1;
             })

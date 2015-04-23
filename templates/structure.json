@@ -22,12 +22,6 @@
               {
                 "role":"list",
                 "isBottom":true,
-                "next":["templates/chinese/mainThumbnail/demo.json"],
-                "name":"mainDemo"
-              },
-              {
-                "role":"list",
-                "isBottom":true,
                 "next":["templates/chinese/colorset/colorset.json"],
                 "name":"colorset"
               }
@@ -46,19 +40,127 @@
           "domain":"flat",
           "next":[
             {
-              "role":"mainDemo",
-              "isBottom":true,
-              "next":["templates/flat/mainThumbnail/demo.json"],
-              "name":"mainDemo",
-              "father":"flat/flat.json"
-            },
-            {
               "role":"mainThumbnail",
               "isBottom":true,
               "next":["templates/flat/mainThumbnail/thumb.json"],
-              "next":["templates/flat/mainThumbnail/thumb.json"],
-              "name":"mainThumbnail",
-              "father":"flat/flat.json"
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/flat/colorset/colorset.json"],
+              "name":"colorset"
+            }
+          ,
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/flat/complete/flat.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"deep_bg_pure_text",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/deep_bg_pure_text/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/deep_bg_pure_text/colorset/colorset.json"],
+              "name":"colorset"
+            }
+          ,
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/deep_bg_pure_text/complete/deep_bg_pure_text.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"half_pic_column",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/half_pic_column/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/half_pic_column/colorset/colorset.json"],
+              "name":"colorset"
+            }
+          ,
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/half_pic_column/complete/half_pic_column.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"light_bg_pure_text",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/light_bg_pure_text/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/light_bg_pure_text/colorset/colorset.json"],
+              "name":"colorset"
+            }
+          ,
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/light_bg_pure_text/complete/light_bg_pure_text.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"half_pic_row",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/half_pic_row/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/half_pic_row/colorset/colorset.json"],
+              "name":"colorset"
+            }
+          ,
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/half_pic_row/complete/half_pic_row.json"],
+              "name":"complete"
             }
           ]
         },
@@ -71,15 +173,13 @@
               "role":"mainThumbnail",
               "isBottom":true,
               "next":["templates/full/mainThumbnail/thumb.json"],
-              "name":"mainThumbnail",
-              "father":"full/full.json"
+              "name":"mainThumbnail"
             },
             {
               "role":"list",
               "isBottom":true,
               "next":["templates/full/colorset/colorset.json"],
-              "name":"colorset",
-              "father":"flat/flat.json"
+              "name":"colorset"
             }
           ,
             {
