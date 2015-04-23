@@ -1,0 +1,56 @@
+{
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1191,
+  "origin_height": 1684,
+  "bg_manualable": false,
+  "bg": [
+	{"src": "bg.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "zqh.ttf",
+      "content": "至简",
+      "size": 152,
+      "dir": 0,
+      "reg": 4,
+      "x": 600,
+      "y": 224
+    },
+	{
+      "font": "zqh.ttf",
+      "content": "主义",
+      "size": 152,
+      "dir": 0,
+      "reg": 4,
+      "x": 600,
+      "y": 450
+    },
+    {
+      "font": "msyh.ttc",
+      "content": "抛掉包袱   忘掉烦恼\n简单生活   重拾自我",
+      "size": 42,
+      "dir": 0,
+      "reg": 4,
+      "x": 596,
+      "y": 747
+    },{
+	"font": "zqh.ttf",
+      "content": "讲座 为心灵卸下包袱\n北大心理系教授XXX\n四月一日 二教101",
+      "size": 39,
+      "dir": 0,
+      "reg": 4,
+      "x": 606,
+      "y": 1075
+	},{
+	"font": "zqh.ttf",
+      "content": "北京大学学生会",
+      "size": 33,
+      "dir": 0,
+      "reg": 0,
+      "x": 870,
+      "y": 1627
+	}
+  ]  
+}

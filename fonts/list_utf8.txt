@@ -12,3 +12,6 @@
 浙江民間書刻體     -> zjsk.ttf
 中山行书百年纪念版 -> zsxs.ttf
 华康文徽明体	   -> hkwh.ttf
+微软雅黑           -> msyh.ttc
+华文宋体	   -> STSONG.TTF
+华文中宋	   -> STZHONGS.TTF

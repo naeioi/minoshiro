@@ -31,6 +31,12 @@ define(["createjs"], function(createjs){
         mode = mode || "demo";
 
         //a map: color_name -> index
+        if(!res.set_name && res.bg){
+            res.set_name = [];
+            for(var i = 0; i < res.bg.length; i++)
+                res.set_name[i] = i;
+        }
+
         res.set_name = res.set_name || [];
 
         if (!t.map) {
