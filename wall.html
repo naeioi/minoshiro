@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1 , user-scalable=no">
+    <link href="pics/logo2.png" rel="shortcut icon">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/flat-ui.min.css" rel="stylesheet">
+    <link href="css/colorset.css" rel="stylesheet">
+    <script src="lib/jquery-2.1.3.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <title>图片墙</title>
+    <style>
+        .wall
+        {
+            margin-top: 100px;
+        }
+        .mymodal
+        {
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 2%;
+        }
+    </style>
+    <script>
+        var map=["pic1","pic2","pic3","pic4","pic5","pic6","pic7","pic8","pic9","pic10","pic11","pic12","pic13",'pic14','pic15'];
+        $(document).ready(function(){
+            $.each(map,function(key,item)
+            {
+                var name=$('#'+item).attr('src');
+                console.log(name);
+                $('#'+item).bind('click',function(e){
+                    $('#imgcontent').attr({'src':name});
+                    $('#viewModal').modal('toggle');
+                });
+            });
+        });
+    </script>
+</head>
+<body style="background-image: url(pics/bg1.jpg);">
+<div class="modal fade" id="viewModal" style="display: none" data-backdrop="true" data-keyboard="true">
+    <div class="modal-dialog">
+        <!--
+        <div class="modal-header mymodal" >
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: rgba(255,255,255,1)">&times;</button>
+        </div>
+        <div id="content" class="modal-body mymodal">
+            <img id="imgcontent" width="100%" src="">
+        </div>
+        <div class="modal-footer mymodal">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                Ok
+            </button>
+        </div>
+        -->
+        <div id="content" class="modal-body mymodal">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: rgba(255,255,255,1)">&times;</button>
+            <img id="imgcontent" width="100%" src="">
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-5">
+            <span class="sr-only">Toggle navigation</span>
+        </button>
+        <a class="navbar-brand" href="#">Design</a>
+        <ul class="nav navbar-nav">
+            <li><a href="index.html" class="text-capitalize">主页</a></li>
+            <li><a href="wall.html" class="text-capitalize">燕园之意作品展</a></li>
+
+        </ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse-5">
+    </div>
+</nav>
+<div data-ride="carousel" class="carousel slide hidden" id="carousel-container" style="margin-right: 900px">
+    <div class="carousel-inner">
+        <div class="item active">
+            <img alt="p1" src="pics/poster1.jpg" width="1920">
+        </div>
+        <div class="item"><img alt="p2" src="pics/poster2.jpg"></div>
+        <div class="item"><img alt="p3" src="pics/poster3.jpg"></div>
+    </div>
+    <ol class="carousel-indicators">
+        <li data-slide-to="0" data-target="#carousel-container"></li>
+        <li data-slide-to="1" data-target="#carousel-container"></li>
+        <li data-slide-to="2" data-target="#carousel-container"></li>
+    </ol>
+    <a data-slide="prev" href="#carousel-container" class="left carousel-control">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a data-slide="next" href="#carousel-container" class="right carousel-control">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+<br><br><br>
+<div class="container toolbox">
+    <div class="row">
+        <div class="col-md-3">
+            <img id="pic1" class="img-rounded padbox wall" width="100%" src="pics/11111.png.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic2" class="img-rounded padbox wall" width="100%" src="pics/22222.png.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic3" class="img-rounded padbox wall" width="100%" src="pics/33333.png.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic4" class="img-rounded padbox wall" width="100%" src="pics/55555.png.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic5" class="img-rounded padbox wall" width="100%" src="pics/baijiang.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic14" class="img-rounded padbox wall" width="100%" src="pics/library.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic11" class="img-rounded padbox wall" width="100%" src="pics/huabiao.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic6" class="img-rounded padbox wall" width="100%" src="pics/boya.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic9" class="img-rounded padbox wall" width="100%" src="pics/yingxing.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic10" class="img-rounded padbox wall" width="100%" src="pics/yulan.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic12" class="img-rounded padbox wall" width="100%" src="pics/lan.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic8" class="img-rounded padbox wall" width="100%" src="pics/bamboo.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic13"  class="img-rounded padbox wall" width="100%" src="pics/hehua.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic7" class="img-rounded padbox wall" width="100%" src="pics/circle.jpg" style="">
+        </div>
+        <div class="col-md-3">
+            <img id="pic15" class="img-rounded padbox wall" width="100%" src="pics/triangle.jpg" style="">
+        </div>x
+    </div>
+</div>
+</body>
+</html>

@@ -13,25 +13,16 @@
     <script src="lib/flat-ui.min.js"></script>
     <title>海报大师</title>
 </head>
-<body>
+<body style="background-color: #121212">
 
-<nav class="navbar navbar-fixed-top navbar-inverse navbar-default" >
+<nav class="navbar navbar-fixed-top navbar-inverse navbar-default" style="background-color: rgba(0,0,0,0.6)">
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Design</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="#" class="text-capitalize">燕园之意作品展</a></li>
-        <!--
-        <li><a href="#">Link</a> </li>
-        <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                Drop<b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Item1</a></li>
-            </ul>
-        </li>
-        -->
+        <li><a href="index.html" class="text-capitalize">主页</a></li>
+        <li><a href="wall.html" class="text-capitalize">燕园之意作品展</a></li>
+
     </ul>
 </nav>
 <div data-ride="carousel" class="carousel slide" id="carousel-container">
@@ -58,9 +49,15 @@
     </a>
 </div>
 <div class="col-md-12">
-
+    <div class="col-md-8">
+        <img src="pics/bottom.png" width="100%"></div>
+    <div class="col-md-4">
+        <a href="main.4.0.html">
+            <img src="pics/button.png" width="100%">
+        </a>
+    </div>
 </div>
-    <div class="container">
+    <div class="container hidden">
         <div class="col-md-8">
             <div class="col-md-2 pull-left"><img src="pics/logo2.png" height="100"></div>
             <div class="col-md-10">
@@ -74,7 +71,6 @@
                 <a class="btn btn-block btn-lg" href="main.4.0.html" style="color: rgba(255,255,255,0.5);font-family:'Helvetica Neue', Helvetica, Arial, sans-serif">开始制作</a>
             </div>
         </div>
-
 </div>
 </body>
 </html>
