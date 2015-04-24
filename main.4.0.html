@@ -11,11 +11,12 @@
     <script src="lib/jquery-2.1.3.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/jquery-ui.js"></script>
+    <script data-main="js/main.4.0" src="lib/require.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var canvas=$('canvas').get(0);
             canvas.width=$('#wrap').width();
-            canvas.height=$('#wrap').width()*1.414;
+            canvas.height=$('#wrap').width()*1.41410579;
         });
     </script>
     <title>Minoshiro 3.1</title>
@@ -34,17 +35,14 @@
 </head>
 <body style="background-image: url(pics/bg1.jpg);">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-5">
             <span class="sr-only">Toggle navigation</span>
         </button>
         <a class="navbar-brand" href="#">Design</a>
     </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-5">
-
-    </div><!-- /.navbar-collapse -->
+    </div>
 </nav>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom visible-sm visible-xs">
@@ -55,16 +53,16 @@
                     <br><br>
                     <div class="row">
                         <div class="col-sm-3 col-xs-3 ">
-                            <img class="op11 img-rounded btn btn-tip"  src="pics/theme1.jpg" width="100%" onclick="selectedItemSm(1,1)">
+                            <img class="op11 img-rounded btn btn-tip"  src="pics/theme1.jpg" width="100%" >
                         </div>
                         <div class="col-sm-3 col-xs-3 ">
-                            <img class="op12 img-rounded btn btn-tip" src="pics/theme2.jpg" width="100%" onclick="selectedItemSm(1,2)">
+                            <img class="op12 img-rounded btn btn-tip" src="pics/theme2.jpg" width="100%" >
                         </div>
                         <div class="col-sm-3 col-xs-3 ">
-                            <img class="op13 img-rounded btn btn-tip"  src="pics/theme3.jpg" width="100%" onclick="selectedItemSm(1,3)">
+                            <img class="op13 img-rounded btn btn-tip"  src="pics/theme3.jpg" width="100%" >
                         </div>
                         <div class="col-sm-3 col-xs-3 ">
-                            <img class="op14 img-rounded btn btn-tip" src="pics/theme4.jpg" width="100%" onclick="selectedItemSm(1,4)">
+                            <img class="op14 img-rounded btn btn-tip" src="pics/theme4.jpg" width="100%" >
                         </div>
                     </div>
                 </div>
@@ -165,22 +163,22 @@
                                     <div class="todo-search">
                                     </div>
                                     <ul>
-                                        <li class="todoli1 todo-done" onclick="jmpStep(1)">
+                                        <li class="todoli1 todo-done" id="todoli1">
                                             <div class="todo-content">
                                                 <p>背景和排版</p>
                                             </div>
                                         </li>
-                                        <li  class="todoli2 disabled" onclick="jmpStep(2)">
+                                        <li  class="todoli2 disabled" id="todoli2">
                                             <div class="todo-content">
                                                 <p>配色方案</p>
                                             </div>
                                         </li>
-                                        <li  class="todoli3 disabled" onclick="jmpStep(3)">
+                                        <li  class="todoli3 disabled" id="todoli3">
                                             <div class="todo-content">
                                                 <p>文字</p>
                                             </div>
                                         </li>
-                                        <li  class="todoli4 disabled" onclick="jmpStep(4)">
+                                        <li  class="todoli4 disabled" id="todoli4">
                                             <div class="todo-content">
                                                 <p>完成</p>
                                             </div>
@@ -197,7 +195,6 @@
                     <canvas id="canvas" width="1000" height="1000"></canvas>
                 </div>
 
-                <script data-main="js/main.4.0" src="lib/require.js"></script>
             </div>
 
             <div class="col-md-3">
@@ -219,16 +216,16 @@
                                             <div class="row">
                                                 <div class="col-md-12 uibox-content">
                                                     <div class="col-md-4">
-                                                        <img id="other1" class="img-rounded" width="100%" onclick="selectedItem(1,{bg_manualable:false,id:1,group:0})" style="margin-bottom: 20px">
+                                                        <img id="other1" class="img-rounded" width="100%" style="margin-bottom: 20px">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <img id="other2" class="img-rounded" width="100%" onclick="selectedItem(1,{bg_manualable:true,id:2,group:0})" style="margin-bottom: 20px">
+                                                        <img id="other2" class="img-rounded" width="100%" style="margin-bottom: 20px">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <img id="other3" class="img-rounded" width="100%" onclick="selectedItem(1,{bg_manualable:true,id:3,group:0})" style="margin-bottom: 20px">
+                                                        <img id="other3" class="img-rounded" width="100%" style="margin-bottom: 20px">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <img id="other4" class="img-rounded" width="100%" onclick="selectedItem(1,{bg_manualable:false,id:4,group:0})" style="margin-bottom: 20px">
+                                                        <img id="other4" class="img-rounded" width="100%" style="margin-bottom: 20px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,26 +242,29 @@
                                 <div class="row">
                                     <div class="col-md-12 uibox-content">
                                         <div class="col-md-4">
-                                            <div id="color_green" class="" onclick="selColor('green')"></div>
+                                            <div id="color_green"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color_blue" class="" onclick="selColor('blue')"></div>
+                                            <div id="color_blue"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color_red" class="" onclick="selColor('red')"></div>
+                                            <div id="color_red"></div>
                                         </div>
                                         <br>
                                         <div class="col-md-4">
-                                            <div id="color_yellow" class="" onclick="selColor('yellow')"></div>
+                                            <div id="color_yellow"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color_black" class="" onclick="selColor('black')"></div>
+                                            <div id="color_black"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color_qing" class="" onclick="selColor('qing')"></div>
+                                            <div id="color_qing"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div id="color_brown" class="" onclick="selColor('brown')"></div>
+                                            <div id="color_brown"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_white"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -304,7 +304,7 @@
                                     <div class="row">
                                         <form>
                                             <div class="form-group col-md-10 col-md-offset-1">
-                                                <textarea class="form-control" placeholder="输入文字" onclick="setProgress(3)" id="textarea" style="height: 200px"></textarea>
+                                                <textarea class="form-control" placeholder="输入文字" id="textarea" style="height: 200px"></textarea>
                                             </div>
                                         </form>
                                     </div>
@@ -333,5 +333,4 @@
     </div>
 </div>
 </body>
-<script src="js/ui.js"></script>
 </html>

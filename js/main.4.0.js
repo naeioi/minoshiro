@@ -76,7 +76,7 @@ require(['Controller','jqueryui','jquery'], function() {
         curX = e.x;
         curY = e.y;
         curSize = e.fontSize;
-    })
+    });
 
     $('#h-slider').slider({
         max:300,
@@ -89,8 +89,7 @@ require(['Controller','jqueryui','jquery'], function() {
             $('#sizeshow').text(ui.value);
         }
     });
-    //�?查textarea更改并更�?
-    //不要通过绑定textarea.onchange实现这个功能，有bug
+
     setInterval(function(){
         var str = $('#textarea').val();
         if(curTarget != null && (str != curStr)){
@@ -99,25 +98,23 @@ require(['Controller','jqueryui','jquery'], function() {
                 originText: str
             });
         }
-    }, 0.2)
+    }, 0.2);
 
     $(controller).click(function(e){
         curTarget = e.target;
         curStr = e.originText;
         $('#textarea').val(curStr);
-    })
-
-
+    });
 
     $('#btnspecific').click(function(){
         controller.output().then(function(data){
             console.log(data);
         })
-    })
+    });
 
     $('#fileSelect').change(function(e){
         controller.set_bg(e.target.files[0]);
-    })
+    });
 
     var stepProgress=1;//start from 1
     var stepOn={
@@ -127,6 +124,7 @@ require(['Controller','jqueryui','jquery'], function() {
     var _Item={bg_manualable:false,id:1,group:0};
     var namesOther=["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"];
     var namesGroup=[["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"]];
+    var colors=["green","blue","red","yellow","black","qing","brown","white"];
     var Steps=["mainThumbnail","colorset"];
 //color specific by json file
     function jmpStep(step)
@@ -235,7 +233,7 @@ require(['Controller','jqueryui','jquery'], function() {
         if(nStep==1)_Item=nItem;
         setProgress(nStep);
         var mapItem=["deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"];
-        var description={fatherRole:"master",fatherDomain:mapItem[_Item.id-1]};
+        //var description={fatherRole:"master",fatherDomain:mapItem[_Item.id-1]};
         console.log("selected item "+nStep+" "+nItem);
 
         switch(nStep)
@@ -328,6 +326,31 @@ require(['Controller','jqueryui','jquery'], function() {
             })
         })
     }
+
+    $.each(namesOther,function(i,item){
+        i++;
+        $('#other'+i).bind('click',function(e){
+            selectedItem(1,{bg_manualable:false,id:i,group:0});
+        });
+    });
+
+    $.each(colors,function(i,item){
+        $('#color_'+colors[i]).bind('click',function(e){
+            selColor(colors[i]);
+        });
+    });
+
+    $.each([1,2,3,4],function(i,item){
+        $('#todoli'+item).bind('click',function(e){
+            console.log("todoli " +item);
+            jmpStep(item);
+        });
+    });
+
+    $('#textarea').bind('click',function(e)
+    {
+        setProgress(3);
+    });
 
     jmpStep(1);
 
