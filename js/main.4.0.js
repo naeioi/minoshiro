@@ -108,7 +108,7 @@ require(['Controller','jqueryui','jquery'], function() {
 
     $('#btnspecific').click(function(){
         controller.output().then(function(data){
-            console.log(data);
+           // console.log(data);
         })
     });
 
@@ -122,8 +122,12 @@ require(['Controller','jqueryui','jquery'], function() {
         mORn:1//whether a manualable template
     };
     var _Item={bg_manualable:false,id:1,group:0};
-    var namesOther=["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"];
-    var namesGroup=[["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text"]];
+    var namesOther=["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text","center-pic","chinese","triangle"];
+    var namesGroup=[["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text","center-pic","chinese","triangle"],
+        ["head","blur_dark","blur_light"],["flat_baijiang","flat_boya","flat_huabiao","flat_library"],
+        ["head","full_column","full_recuit","full_row1","full_row2","full_square","full_tradition"],
+        ["head","shuimo","shuimoB"]
+    ];
     var colors=["green","blue","red","yellow","black","qing","brown","white"];
     var Steps=["mainThumbnail","colorset"];
 //color specific by json file
@@ -150,6 +154,9 @@ require(['Controller','jqueryui','jquery'], function() {
         }
         else if(step<=stepProgress&&step==2)
         {
+            console.log(_Item.bg_manualable);
+            console.log(_Item.group);
+            console.log(_Item.id);
             if(_Item.bg_manualable==false)
             {
                 $('div.pad'+stepOn.step).addClass('hidden');
@@ -159,7 +166,7 @@ require(['Controller','jqueryui','jquery'], function() {
                 stepOn.step=step;
                 stepOn.mORn=1;
             }
-            if(_Item.bg_manualable==true)
+            else
             {
                 $('div.pad'+stepOn.step).addClass('hidden');
                 $('li.todoli'+stepOn.step).removeClass('todo-done');
@@ -183,7 +190,8 @@ require(['Controller','jqueryui','jquery'], function() {
                 }
                 else
                 {
-                    selItem("complete",loadColorSet,{fatherRole:"master",fatherDomain:namesOther[_Item.id]})
+                   // console.log("load color set "+namesGroup[_Item.group][_Item.id]);
+                    selItem("complete",loadColorSet,{fatherRole:"master",fatherDomain:namesGroup[_Item.group][_Item.id]});
                 }
                 break;
             case 3:
@@ -251,34 +259,56 @@ require(['Controller','jqueryui','jquery'], function() {
             default:break;
         }
         function loadResource(mainJsonFile) {
-            console.log("loadResource"+mainJsonFile);
+            //console.log("loadResource"+mainJsonFile);
             controller.load(mainJsonFile);
         }
     }
 
+    var _blur=["_dark","_light"];
+    var _other=["deep_bg_pure_text","half_pic_column","half_pic_row","light_pure_text","center-pic","chinese","triangle"];
+    var _flat=["_baijiang","_boya","_huabiao","_library"];
+    var _full=["_column","_recuit","_row1","_row2","_square","_tradition"];
+    var _shuimo=["","B"];
     function loadThumbnail(description,item,name) {
         function load (jsonFile)
         {
             //var info=JSON.parse(json);
             $.getJSON(jsonFile,function(json) {
-                console.log("Load : "+json);
+                //console.log("Load : "+json);
                 $.each(json.classes, function (key, value) {
-                    if(json.class=="other")
-                        $('#' + json.class + json.id).attr('src', value);
-                    console.log(value);
+                    switch(json.class)
+                    {
+                        case "other":
+                            $('#' + json.class + json.id).attr('src', value);
+                            break;
+                        case "blur":
+                            $('#' + json.class + _blur[json.id-1]).attr('src', value);
+                            break;
+                        case "flat":
+                            $('#' + json.class + _flat[json.id-1]).attr('src', value);
+                            break;
+                        case "full":
+                            $('#' + json.class + _full[json.id-1]).attr('src', value);
+                            break;
+                        case "shuimo":
+                            $('#' + json.class + _shuimo[json.id-1]).attr('src', value);
+                            break;
+                        default:break;
+                    }
+                    //console.log('#' + value);
                 })
             });
         }
-        console.log("loadThumbnail "+name);
+        //console.log("loadThumbnail "+name);
         selItem(name,load,description);
     }
 
     function loadColorSet(namejson)
     {
-        console.log('loadColorSet');
+       // console.log('loadColorSet');
         $.getJSON(namejson,function(json){
             $.each(json.set_name, function (key,item) {
-                console.log('#color '+item);
+                //console.log('#color '+item);
                 $('#color_'+item).addClass("colorbox-"+item);
             });
         });
@@ -286,13 +316,13 @@ require(['Controller','jqueryui','jquery'], function() {
     }
     function dfs(name,func,obj,description)
     {
-        console.log("description "+description.fatherDomain);
+        //console.log("description "+description.fatherDomain);
         if(obj.isBottom==true)
         {
             if(obj.name==name)
             {
                 $.each(obj.next,function(key,value){
-                    console.log("step into "+ value);
+                   // console.log("step into "+ value);
                     func(value);
                 })
             }
@@ -302,7 +332,7 @@ require(['Controller','jqueryui','jquery'], function() {
             if(obj.domain==description.fatherDomain)
             {
                 $.each(obj.next,function(key,value){
-                    console.log("step into "+ value.role);
+                    //console.log("step into "+ value.role);
                     dfs(name,func,value,description);
                 })
             }
@@ -310,7 +340,7 @@ require(['Controller','jqueryui','jquery'], function() {
         else
         {
             $.each(obj.next,function(key,value){
-                console.log("step into "+ value.role);
+                //console.log("step into "+ value.role);
                 dfs(name,func,value,description);
             })
         }
@@ -318,19 +348,41 @@ require(['Controller','jqueryui','jquery'], function() {
     function selItem(name,func,description)
     {
         var structure="templates/structure.json";
-        console.log("selItem "+name);
+       // console.log("selItem "+name);
         $.getJSON(structure, function (json) {
-            console.log("get json"+name);
+            //console.log("get json"+name);
             $.each(json.next,function(key,value){
                 dfs(name,func,value,description);
             })
         })
     }
-
+    var isManualble=[
+        [false,true,true,false,true,false,true],
+        [false,false],
+        [false,false,false,false],
+        [true,true,true,true,true,true],
+        [false,false]
+    ]
     $.each(namesOther,function(i,item){
         i++;
         $('#other'+i).bind('click',function(e){
-            selectedItem(1,{bg_manualable:false,id:i,group:0});
+            var manualble=isManualble[0][i-1];
+            var describe={bg_manualable:manualble,id:i,group:0};
+            selectedItem(1,describe);s
+        });
+    });
+
+    $.each(namesGroup,function(i,item)
+    {
+        if(i!=0)
+        $.each(item,function(j,name){
+            if(name!="head")
+            {
+                $('#'+name).bind('click',function(e)
+                {
+                    selectedItem(1,{bg_manualable:isManualble[i][j-1],id:j,group:i});
+                });
+            }
         });
     });
 
@@ -342,7 +394,7 @@ require(['Controller','jqueryui','jquery'], function() {
 
     $.each([1,2,3,4],function(i,item){
         $('#todoli'+item).bind('click',function(e){
-            console.log("todoli " +item);
+            //console.log("todoli " +item);
             jmpStep(item);
         });
     });

@@ -8,54 +8,21 @@
       "isBottom":false,
       "domain":"normal",
       "next":[
-          {
-            "role":"master",
-            "isBottom":false,
-            "domain":"chinese",
-            "next":[
-              {
-                "role":"mainThumbnail",
-                "isBottom":true,
-                "next":["templates/chinese/mainThumbnail/thumb.json"],
-                "name":"mainThumbnail"
-              },
-              {
-                "role":"list",
-                "isBottom":true,
-                "next":["templates/chinese/colorset/colorset.json"],
-                "name":"colorset"
-              }
-            ,
-              {
-                "role":"list",
-                "isBottom":true,
-                "next":["templates/chinese/complete/chinese.json"],
-                "name":"complete"
-              }
-            ]
-          },
         {
           "role":"master",
           "isBottom":false,
-          "domain":"flat",
+          "domain":"blur_dark",
           "next":[
             {
               "role":"mainThumbnail",
               "isBottom":true,
-              "next":["templates/flat/mainThumbnail/thumb.json"],
+              "next":["templates/blur_dark/mainThumbnail/thumb.json"],
               "name":"mainThumbnail"
             },
             {
               "role":"list",
               "isBottom":true,
-              "next":["templates/flat/colorset/colorset.json"],
-              "name":"colorset"
-            }
-          ,
-            {
-              "role":"list",
-              "isBottom":true,
-              "next":["templates/flat/complete/flat.json"],
+              "next":["templates/blur_dark/complete/blur_dark.json"],
               "name":"complete"
             }
           ]
@@ -63,25 +30,304 @@
         {
           "role":"master",
           "isBottom":false,
-          "domain":"deep_bg_pure_text",
+          "domain":"blur_light",
           "next":[
             {
               "role":"mainThumbnail",
               "isBottom":true,
-              "next":["templates/deep_bg_pure_text/mainThumbnail/thumb.json"],
+              "next":["templates/blur_light/mainThumbnail/thumb.json"],
               "name":"mainThumbnail"
             },
             {
               "role":"list",
               "isBottom":true,
-              "next":["templates/deep_bg_pure_text/colorset/colorset.json"],
-              "name":"colorset"
+              "next":["templates/blur_light/complete/blur_light.json"],
+              "name":"complete"
             }
-          ,
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"center-pic",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/center-pic/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
             {
               "role":"list",
               "isBottom":true,
-              "next":["templates/deep_bg_pure_text/complete/deep_bg_pure_text.json"],
+              "next":["templates/center-pic/complete/center-pic.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"chinese",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/chinese/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/chinese/complete/chinese.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"flat_library",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/flat_library/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/flat_library/complete/flat_library.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"flat_baijiang",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/flat_baijiang/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/flat_baijiang/complete/flat_baijiang.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"flat_boya",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/flat_boya/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/flat_boya/complete/flat_boya.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"flat_huabiao",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/flat_huabiao/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/flat_huabiao/complete/flat_huabiao.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"full_recruit",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/full_recruit/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/full_recruit/complete/full_recruit.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"full_column",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/full_column/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/full_column/complete/full_column.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"full_row1",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/full_row1/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/full_row1/complete/full_row1.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"full_row2",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/full_row2/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/full_row2/complete/full_row2.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"full_square",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/full_square/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/full_square/complete/full_square.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"full_tradition",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/full_tradition/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/full_tradition/complete/full_tradition.json"],
+              "name":"complete"
+            }
+          ]
+        },
+
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"shuimo",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/shuimo/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/shuimo/complete/shuimo.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"shuimoB",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/shuimoB/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/shuimoB/complete/shuimoB.json"],
+              "name":"complete"
+            }
+          ]
+        },
+        {
+          "role":"master",
+          "isBottom":false,
+          "domain":"triangle",
+          "next":[
+            {
+              "role":"mainThumbnail",
+              "isBottom":true,
+              "next":["templates/triangle/mainThumbnail/thumb.json"],
+              "name":"mainThumbnail"
+            },
+            {
+              "role":"list",
+              "isBottom":true,
+              "next":["templates/triangle/complete/triangle.json"],
               "name":"complete"
             }
           ]
@@ -97,13 +343,6 @@
               "next":["templates/half_pic_column/mainThumbnail/thumb.json"],
               "name":"mainThumbnail"
             },
-            {
-              "role":"list",
-              "isBottom":true,
-              "next":["templates/half_pic_column/colorset/colorset.json"],
-              "name":"colorset"
-            }
-          ,
             {
               "role":"list",
               "isBottom":true,
@@ -126,13 +365,6 @@
             {
               "role":"list",
               "isBottom":true,
-              "next":["templates/light_bg_pure_text/colorset/colorset.json"],
-              "name":"colorset"
-            }
-          ,
-            {
-              "role":"list",
-              "isBottom":true,
               "next":["templates/light_bg_pure_text/complete/light_bg_pure_text.json"],
               "name":"complete"
             }
@@ -152,13 +384,6 @@
             {
               "role":"list",
               "isBottom":true,
-              "next":["templates/half_pic_row/colorset/colorset.json"],
-              "name":"colorset"
-            }
-          ,
-            {
-              "role":"list",
-              "isBottom":true,
               "next":["templates/half_pic_row/complete/half_pic_row.json"],
               "name":"complete"
             }
@@ -167,25 +392,18 @@
         {
           "role":"master",
           "isBottom":false,
-          "domain":"full",
+          "domain":"deep_bg_pure_text",
           "next":[
             {
               "role":"mainThumbnail",
               "isBottom":true,
-              "next":["templates/full/mainThumbnail/thumb.json"],
+              "next":["templates/deep_bg_pure_text/mainThumbnail/thumb.json"],
               "name":"mainThumbnail"
             },
             {
               "role":"list",
               "isBottom":true,
-              "next":["templates/full/colorset/colorset.json"],
-              "name":"colorset"
-            }
-          ,
-            {
-              "role":"list",
-              "isBottom":true,
-              "next":["templates/full/complete/full.json"],
+              "next":["templates/deep_bg_pure_text/complete/deep_bg_pure_text.json"],
               "name":"complete"
             }
           ]

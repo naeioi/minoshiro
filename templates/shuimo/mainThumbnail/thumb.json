@@ -1,5 +1,7 @@
 {
   "classes":[
     "templates/shuimo/mainThumbnail/shuimo.jpg"
-  ]
+  ],
+  "id":1,
+  "class":"shuimo"
 }
