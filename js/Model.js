@@ -129,7 +129,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, $){
             //oriModel.addChildAt(whiteBG, 0);
             oriModel.cache(0, 0, oriTemplate.width, oriTemplate.height);
             //console.log(oriModel.cacheCanvas.toDataURL('image/png'));
-            return oriModel.cacheCanvas.toDataURL('image/png');
+            return oriModel.cacheCanvas.toDataURL('image/jpeg');
         })
 
         return def.promise();
