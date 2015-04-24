@@ -19,7 +19,7 @@ require(['Controller'], function() {
 
     //通过load方法从main.json文件中读取模板并放到canvas中
     //load返回jQuery的promise对象，方便异步操作
-    controller.load('templates/full_column/complete/full_column.json', 'origin' );
+    controller.load('templates/flat_huabiao/complete/flat_huabiao.json', 'origin' );
 
     /*
     --- 测试实时输入 ---

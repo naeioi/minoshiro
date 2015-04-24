@@ -1,0 +1,35 @@
+{
+  "demo_width": 397,
+  "demo_height": 561,
+  "origin_width": 1191,
+  "origin_height": 1684,
+  "bg_manualable": false,
+  "bg": [
+    {
+      "src": "baijiang.png",
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "kxzd.otf",
+      "content": "百年\n讲堂",
+      "size": 135,
+      "dir": 0,
+      "reg": 4,
+      "x": 600,
+      "y": 350
+    },
+    {
+      "font": "y.ttf",
+      "content": "艺术的乐章在这里回荡\n智慧的火花在这里迸发",
+      "size": 58,
+      "dir": 0,
+      "reg": 4,
+      "x": 600,
+      "y": 880
+    }
+  ]
+}

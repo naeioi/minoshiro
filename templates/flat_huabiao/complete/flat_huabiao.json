@@ -1,0 +1,37 @@
+{
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1191,
+  "origin_height": 1684,
+  "bg_manualable": false,
+  "bg": [
+  {"src": "green.png"},
+	{"src": "blue.png"},
+    {"src": "xing.png"},
+    {"src": "brown.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "kxzd.otf",
+      "content": "华表",
+      "size": 160,
+      "dir": 0,
+      "reg": 4,
+      "x": 600,
+      "y": 374
+    },
+    {
+      "font": "y.ttf",
+      "content": "静静地见证历史沧桑",
+      "size": 64,
+      "dir": 0,
+      "reg": 0,
+      "x": 216,
+      "y": 700
+    }
+  ],
+  "text_color": [["000000"],["000000"],["000000"],["000000"]],
+  "set_name": ["green","blue","xing","brown"]
+  
+}

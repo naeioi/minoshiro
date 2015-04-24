@@ -1,0 +1,37 @@
+{
+  "demo_width": 700,
+  "demo_height": 990,
+  "origin_width": 1191,
+  "origin_height": 1684,
+  "bg_manualable": false,
+  "bg": [
+  {"src": "green.png"},
+	{"src": "blue.png"},
+    {"src": "xing.png"},
+    {"src": "brown.png"}
+  ],
+  "elements": [],
+  "texts": [
+    {
+      "font": "kxzd.otf",
+      "content": "百年\n讲堂",
+      "size": 150,
+      "dir": 0,
+      "reg": 0,
+      "x": 333,
+      "y": 100
+    },
+    {
+      "font": "y.ttf",
+      "content": "艺术的乐章在这里回荡\n智慧的火花在这里迸发",
+      "size": 64,
+      "dir": 0,
+      "reg": 0,
+      "x": 130,
+      "y": 700
+    }
+  ],
+  "text_color": [["000000"],["000000"],["000000"],["000000"]],
+  "set_name": ["green","blue","xing","brown"]
+  
+}

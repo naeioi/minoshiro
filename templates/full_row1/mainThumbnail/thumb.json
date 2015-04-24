@@ -1,5 +1,7 @@
 {
   "classes":[
-    "templates/chinese/mainThumbnail/main.jpg"
-  ]
+    "templates/full_row1/mainThumbnail/full_row1.jpg"
+  ],
+  "id":3,
+  "class":"full"
 }
