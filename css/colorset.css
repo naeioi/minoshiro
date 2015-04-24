@@ -242,6 +242,7 @@
     padding-bottom: 21px;
     border-radius: 0 0 6px 6px;
 }
+/*
 .uibox-content.uibox-done {
     color: #000000;
     background: transparent;
@@ -264,6 +265,7 @@
     background: #fff;
     border-radius: 50%;
 }
+*/
 .uibox-head {
     position: relative;
     padding: 19px 25px 20px;
