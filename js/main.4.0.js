@@ -128,7 +128,7 @@ require(['Controller','jqueryui','jquery'], function() {
         ["head","full_column","full_recuit","full_row1","full_row2","full_square","full_tradition"],
         ["head","shuimo","shuimoB"]
     ];
-    var colors=["green","blue","red","yellow","black","qing","brown","white"];
+    var colors=["green","blue","red","yellow","black","qing","xing","brown","white","light1","light2","light3","light4","dark1","dark2","dark3","dark4","hc","hl","lz"];
     var Steps=["mainThumbnail","colorset"];
 //color specific by json file
     function jmpStep(step)
@@ -145,7 +145,7 @@ require(['Controller','jqueryui','jquery'], function() {
             }
             else
             {
-                $('div.pad2'+stepOn.mORn).addClass('hidden');
+                $('div.pad2').addClass('hidden');
                 $('li.todoli2').removeClass('todo-done');
                 $('div.pad'+step).removeClass('hidden');
                 $('li.todoli'+step).addClass('todo-done');
@@ -157,6 +157,7 @@ require(['Controller','jqueryui','jquery'], function() {
             console.log(_Item.bg_manualable);
             console.log(_Item.group);
             console.log(_Item.id);
+            /*
             if(_Item.bg_manualable==false)
             {
                 $('div.pad'+stepOn.step).addClass('hidden');
@@ -175,12 +176,35 @@ require(['Controller','jqueryui','jquery'], function() {
                 stepOn.step=step;
                 stepOn.mORn=2;
             }
+            */
+            $('div.pad'+stepOn.step).addClass('hidden');
+            $('li.todoli'+stepOn.step).removeClass('todo-done');
+            $('div.pad2').removeClass('hidden');
+            $('li.todoli2').addClass('todo-done');
+            stepOn.step=step;
+
+            if(_Item.bg_manualable==true)
+            {
+                if($("#switch").hasClass('hidden'))
+                {
+                    $("#switch").removeClass('hidden');
+                }
+            }
+            else
+            {
+                if(!$("#switch").hasClass('hidden'))
+                {
+                    $("#switch").addClass('hidden');
+                }
+            }
+
         }
 
         //filling toolbar
         switch(step)
         {
             case 1:
+                $('#touch2 div > div').removeClass();
                 loadThumbnail({fatherRole:"root",fatherDomain:"root"},1,Steps[0]);
                 break;
             case 2:
@@ -368,7 +392,7 @@ require(['Controller','jqueryui','jquery'], function() {
         $('#other'+i).bind('click',function(e){
             var manualble=isManualble[0][i-1];
             var describe={bg_manualable:manualble,id:i,group:0};
-            selectedItem(1,describe);s
+            selectedItem(1,describe);
         });
     });
 
@@ -404,6 +428,18 @@ require(['Controller','jqueryui','jquery'], function() {
         setProgress(3);
     });
 
+    $('#touch1').bind('click',function(e)
+    {
+        setProgress(2);
+    });
+    $('#touch2').bind('click',function(e)
+    {
+        setProgress(2);
+    });
+    $('#touch3').bind('click',function(e)
+    {
+        setProgress(3);
+    });
     jmpStep(1);
 
 

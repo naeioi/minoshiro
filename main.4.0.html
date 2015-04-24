@@ -82,12 +82,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pad3 row hidden">
+                <div class="pad3 row hidden" >
                     <h4 class="text-center">文字</h4>
                     <div class="row">
                         <form>
                             <div class="form-group col-xs-10 col-sm-10 col-xs-offset-1 col-sm-offset-1">
-                                <input type="text" class="form-control" placeholder="输入文字" onclick="selectedItemSm(3,-1)">
+                                <input type="text" class="form-control" placeholder="输入文字">
                             </div>
                         </form>
                     </div>
@@ -322,13 +322,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pad21 row hidden scrollspy-2  uibox  toolbox">
+                        <div class="pad2 row hidden scrollspy-2  uibox  toolbox">
+                            <div id="switch" class="col-md-12" data-spy="scroll" data-offset="50">
+                                <div class="row uibox-head">
+                                    <h4 class="text-center">上传背景</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 uibox-content" id="touch1">
+                                        <div class="input-group">
+                                            <span class="input-group-addon glyphicon glyphicon-upload" aria-hidden="true"></span>
+                                            <input type="file" class="form-control" id="fileSelect">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12 " data-spy="scroll" data-offset="50">
                                 <div class="row uibox-head">
                                     <h4 class="text-center">配色</h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 uibox-content">
+                                    <div class="col-md-12 uibox-content" id="touch2">
                                         <div class="col-md-4">
                                             <div id="color_green"></div>
                                         </div>
@@ -338,7 +351,6 @@
                                         <div class="col-md-4">
                                             <div id="color_red"></div>
                                         </div>
-                                        <br>
                                         <div class="col-md-4">
                                             <div id="color_yellow"></div>
                                         </div>
@@ -352,28 +364,50 @@
                                             <div id="color_brown"></div>
                                         </div>
                                         <div class="col-md-4">
+                                            <div id="xing"></div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div id="color_white"></div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pad22 row hidden scrollspy-2 uibox  toolbox">
-                            <div class="col-md-12" data-spy="scroll" data-offset="50">
-                                <div class="row uibox-head">
-                                    <h4 class="text-center">上传背景</h4>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 uibox-content">
-                                        <div class="input-group">
-                                            <span class="input-group-addon glyphicon glyphicon-upload" aria-hidden="true"></span>
-                                            <input type="file" class="form-control" id="fileSelect">
+                                        <div class="col-md-4">
+                                            <div id="color_light1"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_light2"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_light3"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_light4"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_dark1"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_dark2"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_dark3"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_dark4"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_hc"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_hl"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="color_lz"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="pad3 row hidden uibox toolbox">
+
+                        <div class="pad3 row hidden uibox toolbox" id="touch3">
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12 uibox-head">

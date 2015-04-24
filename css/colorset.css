@@ -39,6 +39,15 @@
     margin-top: 10px;
     cursor:pointer;
 }
+.colorbox-xing
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(188,189,180,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
 .colorbox-yellow
 {
     width:80px;
@@ -57,6 +66,79 @@
     margin-top: 10px;
     cursor:pointer;
 }
+.colorbox-dark1
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(57,78,89,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+
+.colorbox-dark2
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(165,85,54,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-dark3
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(223,95,119,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-dark4
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(95,104,172,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-light1
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(188,203,191,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-light2
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(167,154,192,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-light3
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(138,193,236,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-light4
+{
+    width:80px;
+    height:80px;
+    background-color:rgba(139,247,232,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
 .colorbox-black
 {
     width:80px;
@@ -70,7 +152,7 @@
 {
     width:80px;
     height:80px;
-    background-color: rgba(57,57,57,1);
+    background-color: rgba(143,75,57,1);
     border-radius: 8px;
     margin-top: 10px;
     cursor:pointer;
@@ -89,6 +171,33 @@
     width:80px;
     height:80px;
     background-color: rgba(255,215,227,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-hc
+{
+    width:80px;
+    height:80px;
+    background-color: rgba(252,175,100,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-hl
+{
+    width:80px;
+    height:80px;
+    background-color: rgba(221,255,136,1);
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.colorbox-lz
+{
+    width:80px;
+    height:80px;
+    background-color: rgba(138,132,253,1);
     border-radius: 8px;
     margin-top: 10px;
     cursor:pointer;
@@ -163,6 +272,7 @@
     background-size: 16px 16px;
     border-radius: 6px 6px 0 0;
 }
+/*
 .uibox-head:before {
     position: absolute;
     top: 50%;
@@ -172,7 +282,7 @@
     font-family: 'Flat-UI-Icons';
     font-size: 16px;
     line-height: 17px;
-    /*content: "\e630";*/
+    /*content: "\e630";
 }
 .uibox-head-field {
     padding: 5px 0;
@@ -186,7 +296,7 @@
     border: none;
     outline: none;
     box-shadow: none;
-}
+}*/
 .uibox-name {
     margin: 1px 0 3px;
     font-size: 17px;
