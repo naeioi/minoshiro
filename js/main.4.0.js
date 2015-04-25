@@ -2,52 +2,6 @@
  * Created by huyueyu on 15/4/23.
  */
 
-/*
- function setProgressBar(step)
- {
- var showProgress=step*25;
- $('div.pb1').css("width",showProgress+'%');
- }
- function jmpStepSm(step)
- {
- if(step<=stepProgress)
- {
- $('div.pad'+stepOn).addClass('hidden');
- $('button.todobtn'+stepOn).removeClass('todo-done');
- $('div.pad'+step).removeClass('hidden');
- $('button.todobtn'+step).addClass('todo-done');
- stepOn=step;
- }
- }
- function selectedItemSm(nStep,nItem)
- {
- var numberOfItem=4;
- if(nStep+1>stepProgress)stepProgress=nStep+1;
- setProgressBar(nStep);
- //$('img.op'+nStep+nItem).addClass('focus');
- for(var i=1;i<=numberOfItem;i++)
- {
- if(i>stepProgress)
- {
- if(!($('button.todobtn'+i).hasClass('disabled')))
- {
- $('li.li'+i).addClass('disabled');
- }
- }
- else if(i<=stepProgress)
- {
- if(($('button.todobtn'+i).hasClass('disabled')))
- {
- $('button.todobtn'+i).removeClass('disabled');
- }
- }
- }
- if(nItem!=-1)
- {
- $('img.mainCanvas').attr('src','pics/theme'+nItem+'.jpg');
- }
- }
- */
 requirejs.config({
     paths: {
         'createjs': '../lib/easeljs-0.8.0.combined',
@@ -222,6 +176,7 @@ require(['Controller','jqueryui','jquery'], function() {
                 break;
             case 4:
                 controller.output().then(function(data){
+                    $('a.output').removeClass('disabled');
                     $('a.output').attr({'download':'poster.jpg','href':data});
                 })
             default:
