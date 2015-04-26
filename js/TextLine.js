@@ -124,7 +124,7 @@ define(['createjs'], function(createjs) {
 
         $.ajax({
             url: 'pcs.1.1.php?'
-            +'text=' + t.text
+            +'text=' + encodeURI(t.text)
             +'&dir=' + t.dir
             +'&space=' + t.letterSpacing
             +'&font=' + t.fontFamily
