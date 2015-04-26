@@ -104,7 +104,7 @@ define(['createjs'], function(createjs) {
         var localurl='pcs.1.1.php?';
         var remoteurl='http://1.minoshiro.sinaapp.com/pcs.1.1.php?';
 
-
+        var tryerror=0;
         var onsucess = function(data){
 
             /*debug
@@ -113,8 +113,10 @@ define(['createjs'], function(createjs) {
              */
 
             //here we assign base64 to img.src, so it is not necessary to treat it in async way
-            if(data[0]=='<')//if the local php server is not valid then try a remote server
+            if(data[0]=='<'&&tryerror<100)//if the local php server is not valid then try a remote server
             {
+                tryerror++;
+                console.log("try remote");
                 $.ajax({
                     url: remoteurl
                     +'text=' + encodeURI(t.text)
@@ -126,7 +128,7 @@ define(['createjs'], function(createjs) {
                     success: onsucess
                 });
             }
-            else
+            else if(tryerror<100)
             {
                 var img = document.createElement('img');
                 img.src = data;
