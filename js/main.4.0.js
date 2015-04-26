@@ -395,6 +395,7 @@ require(['Controller','jqueryui','jquery'], function() {
     {
         setProgress(3);
     });
+
     jmpStep(1);
 
 
