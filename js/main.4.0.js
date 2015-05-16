@@ -33,7 +33,7 @@ require(['Controller','jqueryui','jquery'], function() {
     });
 
     $('#h-slider').slider({
-        max:300,
+        max:200,
         min:0,
         animate:"fast",
         change:function(event,ui){
@@ -77,7 +77,8 @@ require(['Controller','jqueryui','jquery'], function() {
     };
     var _Item={bg_manualable:false,id:1,group:0};
     var namesOther=["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text","center-pic","chinese","triangle"];
-    var namesGroup=[["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text","center-pic","chinese","triangle"],
+    var namesGroup=[
+        ["head","deep_bg_pure_text","half_pic_column","half_pic_row","light_bg_pure_text","center-pic","chinese","triangle"],
         ["head","blur_dark","blur_light"],["flat_baijiang","flat_boya","flat_huabiao","flat_library"],
         ["head","full_column","full_recuit","full_row1","full_row2","full_square","full_tradition"],
         ["head","shuimo","shuimoB"]

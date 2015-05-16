@@ -86,7 +86,7 @@ define(['createjs', 'jquery', 'ImageText', 'Template'], function(createjs, $){
         this.template = t;
         this.rootUrl = rootUrl;
 
-        var def = $.get(src);
+        var def = $.getJSON(src);
         //console.log("begin load template");
         //console.log(src);
 
