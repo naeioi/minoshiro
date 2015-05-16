@@ -163,15 +163,7 @@ require(['Controller','jqueryui','jquery'], function() {
                 loadThumbnail({fatherRole:"root",fatherDomain:"root"},1,Steps[0]);
                 break;
             case 2:
-                if(_Item.bg_manualable==true)//step into 22
-                {
-
-                }
-                else
-                {
-                   // console.log("load color set "+namesGroup[_Item.group][_Item.id]);
-                    selItem("complete",loadColorSet,{fatherRole:"master",fatherDomain:namesGroup[_Item.group][_Item.id]});
-                }
+                selItem("complete",loadColorSet,{fatherRole:"master",fatherDomain:namesGroup[_Item.group][_Item.id]});
                 break;
             case 3:
                 break;
