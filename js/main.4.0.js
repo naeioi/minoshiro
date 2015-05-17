@@ -239,7 +239,7 @@ require(['Controller','jqueryui','jquery'], function() {
     var _blur=["_dark","_light"];
     var _other=["deep_bg_pure_text","half_pic_column","half_pic_row","light_pure_text","center-pic","chinese","triangle"];
     var _flat=["_baijiang","_boya","_huabiao","_library"];
-    var _full=["_column","_recuit","_row1","_row2","_square","_tradition"];
+    var _full=["_column","_recruit","_row1","_row2","_square","_tradition"];
     var _shuimo=["","B"];
     function loadThumbnail(description,item,name) {
         function load (jsonFile)

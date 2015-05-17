@@ -3,33 +3,51 @@
   "demo_height": 990,
   "origin_width": 1191,
   "origin_height": 1684,
-  "bg_manualable": false,
-  "bg": [
-	{"src": ""},
-    {"src": ""}
-  ],
+  "bg_manualable": true,
   "elements": [],
   "texts": [
     {
-      "font": "",
-      "content": "",
-      "size": 58,
-      "dir": 1,
+      "font":"ffh.TTF",
+      "content": "WANTED",
+      "size": 133,
+      "dir": 0,
       "reg": 4,
-      "x": 0,
-      "y": 0
+      "x": 612,
+      "y": 275
     },
     {
-      "font": "",
-      "content": "",
-      "size": 58,
-      "dir": 1,
-      "reg": 4,
-      "x": 473,
-      "y": 1204
+      "font": "ffh.TTF",
+      "content": "我们需要你",
+      "size": 133,
+      "dir": 0,
+      "reg": 0,
+      "x": 181,
+      "y": 475
+    },
+    {
+      "font": "chjs.TTF",
+      "content": "怀才不遇\n别担心\n这里有最好的平台\n这里有最宽广的空间\n我们需要你——就是现在",
+      "size": 37,
+      "dir": 0,
+      "reg": 0,
+      "x": 211,
+      "y":749
+    },{
+      "font": "chjs.TTF",
+      "content": "北京大学学生会\n春季招新 火热进行中\n报名邮箱 xxxxxxxx",
+      "size": 32,
+      "dir": 0,
+      "reg": 0,
+      "x": 514,
+      "y": 1340
+    },{
+      "font": "zqh.ttf",
+      "content": "北京大学学生会",
+      "size": 32,
+      "dir": 0,
+      "reg": 0,
+      "x": 19,
+      "y": 1628
     }
-  ],
-  "text_color": [["001100"],["110011"]],
-  "set_name": ["red", "qing"]
-  
+  ]
 }
