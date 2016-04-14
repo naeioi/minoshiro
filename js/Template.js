@@ -14,15 +14,15 @@ define(["createjs"], function(createjs){
 
     function getImage(src) {
 		
-		document.getElementsByClassName('spinner')[0].visibility = 'visible';
-		document.getElementsByClassName('navbar-brand')[0].visibility = 'hidden';
+		document.getElementsByClassName('spinner')[0].style.visibility = 'visible';
+		document.getElementsByClassName('navbar-brand')[0].style.visibility = 'hidden';
 		
         var def = $.Deferred();
         var img = document.createElement('img');
         img.src = src;
         img.onload = function(){				
-			document.getElementsByClassName('spinner')[0].visibility = 'hidden';
-			document.getElementsByClassName('navbar-brand')[0].visibility = 'visible';
+			document.getElementsByClassName('spinner')[0].style.visibility = 'hidden';
+			document.getElementsByClassName('navbar-brand')[0].style.visibility = 'visible';
             def.resolve(img);
         };
         return def.promise();
