@@ -13,10 +13,16 @@ define(["createjs"], function(createjs){
     var p = createjs.extend(Template, createjs.DisplayObject);
 
     function getImage(src) {
+		
+		document.getElementsByClassName('spinner')[0].visibility = 'visible';
+		document.getElementsByClassName('navbar-brand')[0].visibility = 'hidden';
+		
         var def = $.Deferred();
         var img = document.createElement('img');
         img.src = src;
-        img.onload = function(){
+        img.onload = function(){				
+			document.getElementsByClassName('spinner')[0].visibility = 'hidden';
+			document.getElementsByClassName('navbar-brand')[0].visibility = 'visible';
             def.resolve(img);
         };
         return def.promise();
