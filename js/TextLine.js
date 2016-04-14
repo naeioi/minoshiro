@@ -131,7 +131,7 @@ define(['createjs'], function(createjs) {
             else if(tryerror<100)
             {
                 var img = document.createElement('img');
-                img.src = data.match('data:image/png;base64,.+?(<)')[0];
+                img.src = data;
 
                 img.onload = function() {
                     img.onload = null;
