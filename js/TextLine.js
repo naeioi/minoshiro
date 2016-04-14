@@ -106,7 +106,8 @@ define(['createjs'], function(createjs) {
 
         var tryerror=0;
         var onsucess = function(data){
-
+			document.getElementsByClassName('spinner')[0].style.visibility = 'hidden';
+			document.getElementsByClassName('navbar-brand')[0].style.visibility = 'visible';
             /*debug
              var img_e = document.getElementById('img');
              img_e.src = data;
@@ -143,7 +144,10 @@ define(['createjs'], function(createjs) {
         }
 
         //console.log('text=' + encodeURI(t.text));
-
+		
+		document.getElementsByClassName('spinner')[0].style.visibility = 'visible';
+		document.getElementsByClassName('navbar-brand')[0].style.visibility = 'hidden';
+		
         $.ajax({
             url: localurl
             +'text=' + encodeURI(t.text)
